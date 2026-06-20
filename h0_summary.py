@@ -15,7 +15,7 @@ delta = data[:, 1]
 boot = np.loadtxt("/tmp/h0_bootstrap.csv")
 H0_boot = boot[:, 0]
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5))
 
 # === Left: Profile likelihood ===
 ax1.plot(H0, delta, 'b-', lw=2.5, label='Joint profile (CC+BAO+DESI+SNe)')
@@ -80,8 +80,8 @@ ax2.text(0.97, 0.97, f'H0 = {b_mean:.1f} ± {b_std:.1f}\n'
          bbox=dict(boxstyle='round', facecolor='white', alpha=0.85),
          fontstyle='italic')
 
-plt.tight_layout()
-plt.savefig('/tmp/h0_summary.png', dpi=200, bbox_inches='tight')
+plt.subplots_adjust(wspace=0.3)
+plt.savefig('/tmp/h0_summary.png', dpi=150)
 print("Saved /tmp/h0_summary.png")
 
 # Also print the block for the paper

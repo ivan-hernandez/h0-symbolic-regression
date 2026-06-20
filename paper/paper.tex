@@ -108,10 +108,11 @@ where $M$ is marginalized analytically:
 \[
 \hat{M} = \frac{\mathbf{1}^\mathsf{T} \mathbf{C}^{-1} (\boldsymbol{\mu}_{\rm obs} - \boldsymbol{\mu}_{\rm model})}
                  {\mathbf{1}^\mathsf{T} \mathbf{C}^{-1} \mathbf{1}},
-\qquad
+\]
+\[
 \chi^2_{\rm SN} = (\boldsymbol{\mu}_{\rm obs} - \boldsymbol{\mu}_{\rm model})^\mathsf{T}
 \mathbf{C}^{-1} (\boldsymbol{\mu}_{\rm obs} - \boldsymbol{\mu}_{\rm model})
-- \hat{M}^2 (\mathbf{1}^\mathsf{T} \mathbf{C}^{-1} \mathbf{1})
+- \hat{M}^2\, \mathbf{1}^\mathsf{T} \mathbf{C}^{-1} \mathbf{1},
 \]
 where $\mathbf{C}$ is the full covariance matrix.  The joint statistic is
 $\chi^2_{\rm joint} = \chi^2_H + \chi^2_{\rm SN}$.
@@ -146,16 +147,16 @@ The profile likelihood (CC+BAO+DESI) gives:
 H_0 = 68.0\ [67.2, 68.7]\ \text{km/s/Mpc}\ (68\%\ \text{CL}).
 \]
 
-\begin{figure}
+\begin{figure*}
 \centering
-\includegraphics[width=\columnwidth]{h0_summary.png}
+\includegraphics[width=\textwidth]{h0_summary.png}
 \caption{Top: $H(z)$ data from CC (black), SDSS BAO (blue), and DESI DR1
 (red), with best-fit SR model (solid line) and $\Lambda$CDM (dashed).
 Bottom: Profile likelihood for $H_0$, showing the 68\% and 95\% CL
 intervals.  The vertical bands show Planck 2018 (green) and SH0ES 2024
 (orange) results.}
 \label{fig:summary}
-\end{figure}
+\end{figure*}
 
 \subsection{Data-Subset Tests}
 \begin{table*}
@@ -186,8 +187,10 @@ $+82$ (Pantheon+ diagonal), corresponding to $8$--$9\sigma$ rejection.
 \subsection{$\Lambda$CDM Comparison}
 A direct flat $\Lambda$CDM fit to the same data yields:
 \[
-H_0 = 67.9,\quad \Omega_m = 0.321,\quad \chi^2_H = 25.5\ (39\ \text{dof}),
-\quad \chi^2_{\rm SN} = 1404.0\ (1589\ \text{dof}),
+\begin{array}{l}
+H_0 = 67.9,\quad \Omega_m = 0.321,\quad \chi^2_H = 25.5\ (39\ \text{dof}),\\[2pt]
+\chi^2_{\rm SN} = 1404.0\ (1589\ \text{dof}),
+\end{array}
 \]
 with joint $\chi^2 = 1429.4$.  This is nearly identical to the SR solution
 ($\chi^2 = 1430.6$), differing by only $\Delta\chi^2 = 1.2$ for two
@@ -250,6 +253,7 @@ chronometers) will further sharpen this test.
 This research made use of PySR~\cite{pysr}, NumPy~\cite{numpy},
 Astropy~\cite{astropy}, and the Pantheon+~\cite{pantheon_plus},
 DES-SN5YR~\cite{des_sn5yr}, and DESI~\cite{desi2024} public data releases.
+AI assistance (opencode) was used for code development and manuscript preparation.
 \end{acknowledgments}
 
 \begin{thebibliography}{}
