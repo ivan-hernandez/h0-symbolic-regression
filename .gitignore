@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 output/
 *.npz
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/missfont.log
