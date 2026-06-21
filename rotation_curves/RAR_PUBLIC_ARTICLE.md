@@ -96,4 +96,4 @@ Neither camp can claim victory. But both now have a sharper target to aim at.
 
 ---
 
-*This work used the SPARC database (Lelli+2016, 175 galaxies), Mistele+2024 weak lensing data, and PySR symbolic regression. Full reproducibility: all code is open source. An adversarial debate (2 rounds, 14 challenges, 0 fatal) validated all conclusions. The companion Hubble constant result (H₀ = 68.0 ± 0.8) used the same methodology on cosmological data and is published separately.*
+*This work used the SPARC database (Lelli+2016, 175 galaxies), Mistele+2024 weak lensing data, and PySR symbolic regression. Full reproducibility: all code is open source at [github.com/ivan-hernandez/h0-symbolic-regression](https://github.com/ivan-hernandez/h0-symbolic-regression) and archived at [Zenodo](https://zenodo.org/records/20788781). An adversarial debate (2 rounds, 14 challenges, 0 fatal) validated all conclusions. A companion Hubble constant result (H₀ = 68.0 ± 0.8) using the same methodology on cosmological data was published previously.*
