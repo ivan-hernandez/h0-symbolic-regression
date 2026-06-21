@@ -67,3 +67,47 @@ python3 validate_all.py                   # validation checks
 - `pantheon_cov_cache.npz` — Pantheon+ covariance inverse (32 MB download, 5 s invert)
 - `DES_SN5YR_cache.npz` — DES-SN5YR covariance inverse (6 MB download)
 - Both cached at `/tmp/`
+
+---
+
+# Radial Acceleration Relation from Symbolic Regression
+
+**DOI:** [10.5281/zenodo.20788781](https://zenodo.org/records/20788781)
+
+Discover the functional form of the RAR (\(g_{\rm obs} = F(g_{\rm bar})\)) using
+symbolic regression (PySR) on 175 SPARC galaxies (3,391 points) plus
+Mistele+2024 weak-lensing data (6.5 dex dynamic range).
+
+**Result:** \(\log g_{\rm obs} = -17.060 + (-72.71)/\log g_{\rm bar}\) (CPX5).
+Beats all MOND interpolating functions (\(\Delta\)AIC = 88). MOND
+\(\sqrt{g_{\rm bar}}\) asymptote not required by kinematic data
+(\(c = 0.10 \pm 0.15\), \(\Delta\chi^2 = 0.18\), \(p = 0.67\)).
+
+**Paper:** `rotation_curves/paper/paper.pdf`
+
+## Quick Start
+
+```bash
+cd rotation_curves
+python3 rar_analysis.py           # MOND fit + SR comparison
+python3 extend_rar_analysis.py     # EFE + per-galaxy + bootstrap
+python3 test_mond_asymptote.py     # MOND asymptote test
+python3 gas_fraction_analysis.py   # Gas fraction systematic
+python3 joint_sr_lensing.py        # SPARC + lensing joint fit
+```
+
+## Validation
+
+| Check | Result |
+|-------|--------|
+| 3 independent SR seeds | CPX5 identical across all seeds |
+| Bootstrap (200 resamples) | a: ±0.8%, b: ±1.9% |
+| Holdout (10-fold) | Train 0.22 / Test 0.23 dex |
+| M/L grid (16 combinations) | CPX5 varies 7–16%, MOND a₀ varies 580% |
+| Blind MOND recovery | 2/3 MOND forms within 4% of true a₀ |
+| Joint lensing (6.5 dex) | CPX5 score 3.85 vs next best 0.48 |
+| EFE (3D SIMBAD) | ρ = +0.106 (opposite MOND prediction) |
+| Gas fraction | ρ = −0.022 per-galaxy (p = 0.77) — no correlation |
+| MOND asymptote | c = 0.10 ± 0.15 — not required |
+
+See `rotation_curves/README.md` for the full file listing.
