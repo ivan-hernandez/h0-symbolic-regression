@@ -47,10 +47,8 @@ def run_pysr(X, y, output_dir="output", seed=42, n_cycles=100):
         },
         parsimony=0.001,
         procs=8,
-        multithreading=True,
         model_selection="accuracy",
         tempdir=output_dir,
-        extra_julia_deps=["LossFunctions"],
     )
     model.fit(X, y)
     return model
