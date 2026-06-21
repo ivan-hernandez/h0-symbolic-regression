@@ -1,6 +1,6 @@
 # Hubble Constant from Symbolic Regression
 
-**DOI:** [10.5281/zenodo.20778036](https://zenodo.org/records/20778036)
+**DOI:** [10.5281/zenodo.20778035](https://zenodo.org/doi/10.5281/zenodo.20778035) (v3 — adversarially validated)
 
 Discover the cosmic expansion history H(z) using symbolic regression (PySR) on
 CC + BAO + DESI DR1 + Pantheon+ data, with minimal theoretical priors.
