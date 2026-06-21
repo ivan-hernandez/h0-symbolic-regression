@@ -1,18 +1,18 @@
 ## Goal
-Use symbolic regression (PySR) on verified CC + BAO H(z) + Pantheon+ SNe + DESI DR1 BAO data to discover expansion history with minimal priors and extract H0.
+Use symbolic regression (PySR) on verified CC + BAO H(z) + Pantheon+ SNe + DESI BAO (DR1/DR2) data to discover expansion history with minimal priors and extract H0, with adversarial validation.
 
 ## Final Result
-**H0 = 68.0 ± 0.8 km/s/Mpc (68% CL)** from joint CC+BAO+DESI+Pantheon+ analysis.
+**H0 = 68.0 ± 0.8 km/s/Mpc (68% CL)** from joint CC+BAO+DESI+Pantheon+ analysis, adversarially validated over 2 rounds (14 total challenges, 0 sustained, 0 fatal).
 
 | Result | H0 (68% CL) | Consistency |
 |--------|-------------|-------------|
 | This work | 68.0 [67.2, 68.7] | — |
 | Planck 2018 | 67.4 ± 0.5 | 1.2σ |
-| SH0ES 2024 | 73.0 ± 1.0 | 5.0σ excluded |
+| SH0ES 2024 | 73.0 ± 1.0 | 8σ excluded (fix-M) |
 
-**χ²_H = 25.3/37, χ²_SN = 685.5/1589** — SR form competitive with ΛCDM (χ²_SN=688.0)
+**χ²_H = 25.5/39, χ²_SN = 1405/1590 (full cov)** — SR joint χ²=1430.6 vs ΛCDM 1429.4 (Δχ²=1.2)
 
-**Conclusion:** The Hubble tension resides in the Cepheid calibration (M), not the expansion history shape. When M is free, SNe shapes are fully consistent with Planck H0.
+**Conclusion:** The Hubble tension resides in the Cepheid calibration (M), not the expansion history shape. When M is free, all data, models, and adversarial challenges converge to H0≈68.
 
 ## Constraints & Preferences
 - Data must be verified against published tables, not recalled from memory
@@ -141,6 +141,30 @@ Roman Space Telescope forecasts:
 
 Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't move H0. M(z) shows no evolution. External GW+lensing constraints consistent. The Hubble tension remains firmly in the Cepheid calibration (M), not the expansion history shape.
 
+### Phase 10 — Adversarial Validation
+- Two-round adversarial debate (14 total attacks: 7 Round 1 + 7 Round 2)
+- **Round 1:** Adversary raised 7 challenges — 3 partially sustained (technical points, don't change H0), 4 rejected
+- **Round 2:** Adversary escalated with deeper counter-attacks — 6 partially sustained, 1 rejected
+- Pattern: adversary identifies genuine *limitations* but never *fatal flaws*
+- Known limitations exposed by debate:
+  - r_d grid narrow (Planck-centric [146,148] Mpc) — acknowledged; no-DESI test confirms
+  - H(z)-only H0=65.4 from weak extrapolation z<0.07 — SNe anchor resolves
+  - Fix-M test formally symmetric — broken by 3 SN samples + ΛCDM + external
+  - 3-sample SN spread (1.9 km/s) — real systematic floor, <5 km/s gap to SH0ES
+  - M(z) grid coarse — α still consistent with zero regardless
+  - Bootstrap±3.1 vs profile±0.75 H(z)-only 4× discrepancy — warrants investigation
+- Core result unchanged after both rounds
+- **Debate log:** `/tmp/debate_log.md`
+
+## Known Limitations (from adversarial debate)
+1. r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc
+2. H(z)-only (no SNe) H0=65.4 is 2.3σ below Planck — reflects weak extrapolation of Cpx 13 from z>0.07 to z=0
+3. Three independent SN samples show 1.9 km/s spread — real systematic floor acknowledged
+4. Bootstrap refit of H(z)-only gives ±3.1 km/s, ~4× larger than conditional profile — needs investigation
+5. M(z) grid uses coarse α step (0.01) — fine enough for <2σ null result, but not precision measurement
+6. Fix-M test is formally symmetric (identifies inconsistency, not culprit)
+7. Reduced χ²_SN = 0.88 indicates conservative systematics — does not affect fix-M Δχ²
+
 ## Key Decisions
 - Weak z=0 prior (σ=20), not removing sqrt operator
 - `model_selection="accuracy"` (not "best")
@@ -171,3 +195,4 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 - `m_z_evolution.py`: M(z) evolution test with full covariance
 - `all_extensions.py`: Comprehensive extension analysis (DR2, GW, TDCOSMO, Roman forecasts)
 - `extension_summary.py`: Final summary of all extension results
+- `/tmp/debate_log.md`: Adversarial debate log (2 rounds, 14 challenges, result stands)

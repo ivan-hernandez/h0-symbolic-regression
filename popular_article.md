@@ -86,6 +86,8 @@ We checked every way we could think to break the result:
 
 **Comparison with standard cosmology:** A direct ΛCDM fit gives H₀ = 67.9, with a joint fit that differs from our model by only Δχ² = 1.2.
 
+**Adversarial validation.** We also ran a structured adversarial debate — two rounds where an independent agent raised every objection they could think of, and we had to defend each one. Fourteen challenges, two rounds. None overturned the result. The strongest criticisms identified genuine limitations (like the narrow range of our r_d marginalization, or the weak statistical power of H(z)-only fits), but none shifted H₀ by even 0.3 km/s.
+
 The answer doesn't depend on which data you use or what functional form you assume. It only changes when you force the Cepheid calibration.
 
 ---

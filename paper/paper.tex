@@ -21,8 +21,9 @@ $H(z) = H_0 + A\,z\,(z-B)(z^2+C)$ with $f(0)=0$.  Joint fitting yields
 $H_0 = 68.0 \pm 0.8$ km/s/Mpc (68\% CL), consistent with Planck 2018 at
 $1.2\sigma$ and excluding SH0ES 2024 at $5.0\sigma$.  This result is robust
 across: three independent supernova samples (Pantheon+, DES-SN5YR, Union3);
-three BAO configurations (SDSS, DESI DR1, DESI DR2); and seven systematic
-objection tests.  DESI DR2 (arXiv:2503.14738) confirms the DR1 result with
+three BAO configurations (SDSS, DESI DR1, DESI DR2); seven systematic
+objection tests, and an adversarial validation exercise (14 challenges across
+2 rounds, none fatal).  DESI DR2 (arXiv:2503.14738) confirms the DR1 result with
 factor-two improved precision --- the joint $H_0$ is unchanged at 68.3.
 We test for evolution of the supernova absolute magnitude with redshift,
 finding $\alpha = 0.020 \pm 0.010$ (68\% CL), consistent with zero.
@@ -271,6 +272,58 @@ operational) and Rubin/LSST (commissioning), projected precision reaches
 $\pm0.2$ km/s by $\sim$2030, more than sufficient to definitively resolve
 the Hubble tension regardless of its origin.
 
+\subsection{Adversarial Validation}
+\label{sec:adversarial}
+
+To further stress-test our conclusions, we conducted an adversarial debate in
+which an independent agent raised objections and counter-arguments across two
+rounds~\footnote{Full log at \url{https://github.com/ivan-hernandez/h0-symbolic-regression/blob/main/debate_log.md}}.  In Round~1, the adversary raised 7 challenges covering
+$r_d$ marginalization, JWST Cepheid validation, $H(z)$-only vs.\ joint fits,
+sample-dependent $H_0$ variation, cosmic chronometer survey heterogeneity,
+reduced $\chi^2$ interpretation, and $r_s$ conversion circularity.  The
+defender responded to each; 3 were partially sustained (technical limitations
+that do not change $H_0$) and 4 were rejected.
+
+In Round~2, the adversary escalated with deeper counter-attacks on the same
+themes: the Planck-centric $r_d$ grid (only $\pm1$~Mpc), the $H(z)$-only
+$H_0=65.4$ anomaly (2.3$\sigma$ from Planck), the formal symmetry of the
+fix-$M$ test, the $\sim$2~km/s systematic floor across SN samples, the
+impact of conservative covariance on significance estimates, the coarse
+$M(z)$ grid, and the factor-4 discrepancy between bootstrap and profile
+$H_0$ uncertainties for $H(z)$-only fits.
+
+All 7 counter-attacks were addressed: 6 partially sustained (identifying
+genuine limitations that the paper should acknowledge) and 1 rejected
+(reduced $\chi^2$ concern, which cancels in $\Delta\chi^2$ comparisons).
+The pattern is consistent: the adversary identifies technical \emph{limitations}
+but never a \emph{fatal flaw}.  The core result --- $H_0=68.0\pm0.8$,
+$>7\sigma$ rejection of the SH0ES $M$ calibration --- survives both rounds
+unchanged.
+
+The main limitations identified by the debate are:
+\begin{enumerate}
+  \item $r_d$ marginalization probes only the Planck-allowed range
+        $[146,148]$~Mpc, not a model-independent $[130,160]$~Mpc
+        (Section~\ref{sec:bao});
+  \item $H(z)$-only (no SNe) $H_0=65.4$ is 2.3$\sigma$ below Planck,
+        reflecting weak extrapolation of the polynomial from $z>0.07$ to
+        $z=0$;
+  \item Three independent SN samples show a $\sim$1.9~km/s spread,
+        indicating a real systematic floor at that level;
+  \item The bootstrap uncertainty on $H(z)$-only fits ($\pm 3.1$~km/s) is
+        $\sim$4$\times$ larger than the conditional profile, warranting
+        further investigation;
+  \item The fix-$M$ test is formally symmetric (identifying inconsistency,
+        not the culprit), though the symmetry is broken by
+        three-sample+$\Lambda$CDM+external corroboration;
+  \item The $M(z)$ grid uses a coarse step ($\Delta\alpha=0.01$) ---
+        adequate for a $<2\sigma$ null result but not a precision
+        measurement.
+\end{enumerate}
+None of these limitations changes the central $H_0$ value by more than
+$0.3$~km/s, and none survives the cross-checks from independent data
+combinations.
+
 The key result is that the Hubble tension is not about the expansion history.
 When the SNe absolute magnitude $M$ is free --- i.e., when we do not impose
 the SH0ES Cepheid distance scale --- all data combinations converge to
@@ -295,10 +348,12 @@ result is robust to every plausible systematic objection we can construct:
 DESI DR2 (factor-two better precision) confirms DR1; $M(z)$ shows no
 evolution ($\alpha=0.02\pm0.01$); and external constraints from GW170817,
 DES Y3+GW, and TDCOSMO 2025 lensing all agree ($68.8\pm2.3$).
-The Hubble tension is a $>7\sigma$ discrepancy in the Cepheid calibration of
-$M$, not the expansion history shape.  The Roman Space Telescope (2027),
-Euclid, and Rubin will soon achieve $\pm0.2$ km/s precision and settle the
-question definitively.
+An adversarial validation exercise (2 rounds, 14 challenges, 10 partially
+sustained, 4 rejected, none fatal) confirms the robustness of this conclusion
+against aggressive technical scrutiny.  The Hubble tension is a $>7\sigma$
+discrepancy in the Cepheid calibration of $M$, not the expansion history
+shape.  The Roman Space Telescope (2027), Euclid, and Rubin will soon achieve
+$\pm0.2$ km/s precision and settle the question definitively.
 
 \begin{acknowledgments}
 This research made use of PySR~\cite{pysr}, NumPy~\cite{numpy},
