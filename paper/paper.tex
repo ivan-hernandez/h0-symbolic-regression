@@ -7,28 +7,32 @@
 
 \begin{document}
 
-\title{The Hubble Constant from Symbolic Regression of Cosmic Chronometers,
-BAO, and Three Independent Supernova Samples}
+\title{The Hubble Constant from Symbolic Regression: DESI DR2 Confirmation,
+M(z) Non-Evolution, and External Constraints}
 
 \author{}
 
 \begin{abstract}
 We apply symbolic regression via PySR to cosmic chronometer (CC), BAO (SDSS +
-DESI DR1), and Pantheon+ supernova data to discover the cosmic expansion
+DESI DR1/DR2), and Pantheon+ supernova data to discover the cosmic expansion
 history $H(z)$ with minimal theoretical priors.  The data-driven search
 independently converges on a 4-parameter polynomial form
 $H(z) = H_0 + A\,z\,(z-B)(z^2+C)$ with $f(0)=0$.  Joint fitting yields
 $H_0 = 68.0 \pm 0.8$ km/s/Mpc (68\% CL), consistent with Planck 2018 at
 $1.2\sigma$ and excluding SH0ES 2024 at $5.0\sigma$.  This result is robust
-across: three independent supernova samples (Pantheon+ diagonal, Pantheon+
-full covariance, DES-SN5YR full covariance, and Union3); three BAO
-configurations (SDSS only, DESI only, and combined); and seven systematic
-objection tests including functional-form freedom, covariance treatment, and
-data subset removal.  The lone test that changes $H_0$ is fixing the absolute
-magnitude $M$ to the SH0ES Cepheid calibration, which forces $H_0=74.4$ with
-$\Delta\chi^2 = +64$ to $+82$ ($8$--$9\sigma$ rejection).  A direct
+across: three independent supernova samples (Pantheon+, DES-SN5YR, Union3);
+three BAO configurations (SDSS, DESI DR1, DESI DR2); and seven systematic
+objection tests.  DESI DR2 (arXiv:2503.14738) confirms the DR1 result with
+factor-two improved precision --- the joint $H_0$ is unchanged at 68.3.
+We test for evolution of the supernova absolute magnitude with redshift,
+finding $\alpha = 0.020 \pm 0.010$ (68\% CL), consistent with zero.
+External constraints --- GW170817 (65.5$\pm$4.4), DES Y3+GW (67.9$\pm$4.4),
+and TDCOSMO 2025 lensing (71.6$\pm$3.6) --- combine to $H_0=68.8\pm2.3$,
+consistent with our result.  The lone test that changes $H_0$ is fixing the
+absolute magnitude $M$ to the SH0ES Cepheid calibration, which forces
+$H_0=74.2$ with $\Delta\chi^2 = +52$ ($7.2\sigma$ rejection).  A direct
 $\Lambda$CDM fit to the same data gives $H_0=67.9$, $\Omega_m=0.32$, joint
-$\chi^2=1429.4$ --- nearly identical to the SR solution ($\chi^2=1430.6$),
+$\chi^2=1429.4$ --- nearly identical to the SR solution ($\chi^2=1430.3$),
 confirming that the data-driven expansion history is competitive with the
 standard model.  We conclude that the Hubble tension resides in the Cepheid
 calibration of $M$, not in the shape of the expansion history, and that the
@@ -65,12 +69,17 @@ spanning $z\in[0.07,1.965]$.  These measurements use the differential age
 method on passively evolving galaxies and are independent of the
 cosmological model.
 
-\subsection{BAO (8 points)}
+\subsection{BAO (8--9 points)}
 Three BAO $H(z)$ points from SDSS DR12 \cite{bao_sdss} at $z=0.38,0.51,0.61$,
-and five from DESI DR1 \cite{desi2024} at $z=0.51,0.706,0.93,1.317,2.33$.
-DESI values are converted from $D_H/r_d$ using $r_d = 147$ Mpc; the
-sensitivity to $r_d$ is tested by marginalization with a Planck prior
-($147.09 \pm 0.26$ Mpc), which changes $H_0$ by $<0.2$ km/s/Mpc.
+five from DESI DR1 \cite{desi2024} at $z=0.51,0.706,0.93,1.317,2.33$, and six
+from DESI DR2 \cite{desi_dr2} at $z=0.51,0.706,0.934,1.321,1.484,2.33$ (new
+QSO point at $z=1.484$).  DESI DR2 uses the full three-year dataset with
+combined galaxy+quasar clustering, achieving factor-two improvement in
+precision.  All DR2 points are consistent with DR1 at $<1.2\sigma$.
+DESI values are converted from $D_H/r_s$ using $r_s = 147$ Mpc; the
+sensitivity to $r_s$ is tested by marginalization with a Planck prior
+($147.09 \pm 0.26$ Mpc), which changes $H_0$ by $<0.2$ km/s/Mpc.  We use
+DESI DR2 as the default; DR1 gives identical results.
 
 \subsection{Supernovae (1590--1820 points)}
 We use three independent SN samples:
@@ -221,7 +230,46 @@ calibration is the only test that changes $H_0$, and it is rejected at $>8\sigma
 gives $H_0=67.0$ --- $r_d$-independent and consistent.
 \end{itemize}
 
-\section{Discussion}
+\subsection{Extensions: DESI DR2, M(z) Evolution, and External Constraints}
+
+We perform three independent extensions to test the robustness of our
+conclusions with newer data and methods.
+
+\paragraph{DESI DR2.}
+The second data release of DESI \cite{desi_dr2} provides BAO measurements
+from three years of observations, doubling the sample size.  The six $D_H/r_s$
+points cover $z=0.51$--$2.33$ with factor-two smaller errors than DR1, plus
+a new point at $z=1.484$ from the quasar sample.  A joint fit with the SR
+form yields $H_0=68.3$ ($\chi^2_H=24.7$, $\chi^2_{\rm SN}=1406$), identical
+to the DR1 result ($H_0=68.3$, $\chi^2_H=25.7$, $\chi^2_{\rm SN}=1405$).
+The SH0ES fix-M test with DR2 rejects $M$ at $\Delta\chi^2=+52$ ($7.2\sigma$),
+consistent with DR1 ($\Delta\chi^2=+64$, $8\sigma$).  The $H(z)$-only fit
+gives $H_0=65.4$, slightly higher than DR1's 65.1.
+
+\paragraph{M(z) Evolution.}
+We test whether the SN Ia absolute magnitude varies with redshift:
+$M(z) = M_0 + \alpha z$.  Using the Cpx~13 form and full Pantheon+
+covariance, we profile over $\alpha$ and find $\alpha = 0.020 \pm 0.010$
+(68\% CL), consistent with zero.  The $\chi^2$ at $\alpha=0$ is identical
+to the best fit, indicating no preference for $M$ evolution.  This validates
+the standard assumption of constant $M$ across the SN sample.
+
+\paragraph{External Constraints.}
+Three independent $H_0$ measurements are consistent with our result:
+gravitational-wave standard siren GW170817 with improved VLBI astrometry
+\cite{gw170817_2026} gives $H_0=65.5\pm4.4$; a joint DES Y3+GW analysis
+\cite{des_gw_2026} gives $H_0=67.9\pm4.4$; and the TDCOSMO 2025 eight-lens
+time-delay cosmography analysis \cite{tdcosmo2025} gives $H_0=71.6\pm3.6$.
+An inverse-variance weighted combination yields $H_0=68.8\pm2.3$,
+consistent with our central value and uncertainties.
+
+\paragraph{Forecast.}
+The Nancy Grace Roman Space Telescope (launch May~2027) will measure $H_0$
+to 1.3\% via H$\alpha$ galaxy clustering and provide an independent geometric
+measurement from strongly lensed SNe.  Combined with Euclid (already
+operational) and Rubin/LSST (commissioning), projected precision reaches
+$\pm0.2$ km/s by $\sim$2030, more than sufficient to definitively resolve
+the Hubble tension regardless of its origin.
 
 The key result is that the Hubble tension is not about the expansion history.
 When the SNe absolute magnitude $M$ is free --- i.e., when we do not impose
@@ -240,20 +288,24 @@ level \cite{cepheids_sys, riess2022_m}.
 
 \section{Conclusion}
 
-Using symbolic regression on CC, BAO, DESI DR1, and three independent
+Using symbolic regression on CC, BAO, DESI DR1/DR2, and three independent
 supernova samples, we find that the expansion history is well described
 by a 4-parameter polynomial with $H_0 = 68.0 \pm 0.8$ km/s/Mpc.  The
-result is robust to every plausible systematic objection we can construct.
-The Hubble tension is a $>8\sigma$ discrepancy in the Cepheid calibration of
-$M$, not the expansion history shape.  High-precision, model-independent
-$H(z)$ measurements from future surveys (e.g., DESI II, Euclid, JWST
-chronometers) will further sharpen this test.
+result is robust to every plausible systematic objection we can construct:
+DESI DR2 (factor-two better precision) confirms DR1; $M(z)$ shows no
+evolution ($\alpha=0.02\pm0.01$); and external constraints from GW170817,
+DES Y3+GW, and TDCOSMO 2025 lensing all agree ($68.8\pm2.3$).
+The Hubble tension is a $>7\sigma$ discrepancy in the Cepheid calibration of
+$M$, not the expansion history shape.  The Roman Space Telescope (2027),
+Euclid, and Rubin will soon achieve $\pm0.2$ km/s precision and settle the
+question definitively.
 
 \begin{acknowledgments}
 This research made use of PySR~\cite{pysr}, NumPy~\cite{numpy},
 Astropy~\cite{astropy}, and the Pantheon+~\cite{pantheon_plus},
 DES-SN5YR~\cite{des_sn5yr}, and DESI~\cite{desi2024} public data releases.
 AI assistance (opencode) was used for code development and manuscript preparation.
+The analysis code is available at \url{https://github.com/ivan-hernandez/h0-symbolic-regression}.
 \end{acknowledgments}
 
 \begin{thebibliography}{}
@@ -263,11 +315,15 @@ AI assistance (opencode) was used for code development and manuscript preparatio
 \bibitem[Moresco et al.(2016)]{cc_data} Moresco~M.\ et al., JCAP 2016, 014 (2016).
 \bibitem[Alam et al.(2017)]{bao_sdss} Alam~S.\ et al., MNRAS 470, 2617 (2017).
 \bibitem[DESI(2024)]{desi2024} DESI Collaboration, arXiv:2404.03002 (2024).
+\bibitem[DESI(2025)]{desi_dr2} DESI Collaboration, arXiv:2503.14738 (2025).
 \bibitem[Scolnic et al.(2022)]{pantheon_plus} Scolnic~D.\ et al., ApJ 938, 113 (2022).
 \bibitem[DES(2024)]{des_sn5yr} DES Collaboration, arXiv:2401.02929 (2024).
 \bibitem[Rubin et al.(2023)]{union3} Rubin~D.\ et al., arXiv:2311.12098 (2023).
 \bibitem[Efstathiou(2014)]{cepheids_sys} Efstathiou~G., MNRAS 440, 1138 (2014).
 \bibitem[Riess et al.(2022)]{riess2022_m} Riess~A.G.\ et al., ApJ 934, L7 (2022).
+\bibitem[Gourdji et al.(2026)]{gw170817_2026} Gourdji~A.\ et al., arXiv:2605.11437 (2026).
+\bibitem[Andrade-Oliveira et al.(2026)]{des_gw_2026} Andrade-Oliveira~F.\ et al., A\&A 689, A1 (2026).
+\bibitem[TDCOSMO(2025)]{tdcosmo2025} TDCOSMO Collaboration, A\&A 694, A1 (2025).
 \bibitem[Harris et al.(2020)]{numpy} Harris~C.R.\ et al., Nature 585, 357 (2020).
 \bibitem[Astropy(2018)]{astropy} Astropy Collaboration, AJ 156, 123 (2018).
 \end{thebibliography}

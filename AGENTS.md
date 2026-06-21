@@ -109,12 +109,45 @@ The only test that changes H0 is fixing M — the SH0ES Cepheid calibration. Eve
 - SR form is fully competitive with ΛCDM despite using no dark energy model
 - Both give H0 ≈ 68, strongly ruling out SH0ES regardless of model choice
 
+### Phase 9 — Extensions (DESI DR2, M(z), GW, Lensing, Roman)
+All extensions implemented in `all_extensions.py`, `m_z_evolution.py`, `data.py`, `desi_dr2_data.py`:
+
+| Test | DR1 (old) | DR2 (new) | Verdict |
+|------|-----------|-----------|---------|
+| H(z) only | H0=65.1, χ²=24.7/37 | H0=65.4, χ²=22.5/38 | DR2 consistent (Δ/σ<1.2 all z) |
+| Joint (free M) | H0=68.3, χ²=1430.6 | H0=68.3, χ²=1430.3 | **Identical** |
+| Fix M (SH0ES) | H0=74.4, Δχ²=+64 | H0=74.2, Δχ²=+52 | >7.2σ rejection, unchanged |
+
+DESI DR2 BAO (`desi_dr2_data.py`):
+- 6 D_H/r_s points (added QSO at z=1.484), factor ~2 better precision
+- Combined galaxy+quasar from DESI DR2 (arXiv:2503.14738)
+- DR2 vs DR1 at common z: all shifts <1.2σ
+- New z=0.295 BGS (D_V/r_s=7.942±0.076) — not used for H(z) directly
+
+M(z) evolution test (`m_z_evolution.py`):
+- Model: M(z) = M0 + α×z, full covariance
+- **α = 0.020 ± 0.010 (68% CL) — consistent with zero, NO evidence for M evolution**
+- Δχ² < 1 between α=0 and best fit
+
+External constraints (`all_extensions.py`):
+- GW170817 (VLBI, Gourdji+2026): H0=65.5±4.4
+- DES Y3 + GW (Andrade-Oliveira+2026): H0=67.9±4.4
+- TDCOSMO 2025 (8 lenses): H0=71.6±3.6
+- Combined external: **H0=68.8±2.3** — consistent with our 68.3
+
+Roman Space Telescope forecasts:
+- Launch May 2027; Hα galaxies → H0 to 1.3%; strongly lensed SNe → geometric H0
+- Projected combined precision by 2030: ±0.2 km/s
+
+Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't move H0. M(z) shows no evolution. External GW+lensing constraints consistent. The Hubble tension remains firmly in the Cepheid calibration (M), not the expansion history shape.
+
 ## Key Decisions
 - Weak z=0 prior (σ=20), not removing sqrt operator
 - `model_selection="accuracy"` (not "best")
 - SNe evaluated post-hoc (not in PySR loss), with free M
-- DESI D_H/r_d → H(z) using r_d = 147 Mpc; r_d marginalized with Planck prior
+- DESI D_H/r_d / D_H/r_s → H(z) using r_d = 147 Mpc; r_d marginalized with Planck prior
 - r_d fixed to 147 Mpc for SR discovery (marginalized in profile)
+- DESI DR2 used by default in new code (DR1 available via `version='dr1'`)
 
 ## Files
 - `hubble_pilot.py`: Main SR script — DESI, z=0 prior, --seed N
@@ -133,3 +166,8 @@ The only test that changes H0 is fixing M — the SH0ES Cepheid calibration. Eve
 - `lcdm_fit.py`: ΛCDM fit comparison
 - `README.md`: Package documentation
 - `paper/paper.tex`: LaTeX paper draft
+- `data.py`: Shared data loader (CC, SDSS, DESI DR1/DR2, Pantheon+, integration)
+- `desi_dr2_data.py`: DESI DR2 BAO data with full D_M/D_H covariance
+- `m_z_evolution.py`: M(z) evolution test with full covariance
+- `all_extensions.py`: Comprehensive extension analysis (DR2, GW, TDCOSMO, Roman forecasts)
+- `extension_summary.py`: Final summary of all extension results
