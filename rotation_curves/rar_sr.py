@@ -46,8 +46,6 @@ def run_pysr(X, y, output_dir="output", seed=42, n_cycles=100):
             "tanh": 3, "erf": 4,
         },
         parsimony=0.001,
-        elementwise_loss="L2DistLoss()",
-        seed=seed,
         procs=8,
         multithreading=True,
         model_selection="accuracy",
