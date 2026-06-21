@@ -127,6 +127,6 @@ Future measurements — from JWST's higher-resolution Cepheid observations, from
 
 ---
 
-*The full paper with all technical details is available on Zenodo: [10.5281/zenodo.20778036](https://zenodo.org/records/20778036)*
+*The full paper with all technical details is available on Zenodo: [10.5281/zenodo.20778035](https://zenodo.org/doi/10.5281/zenodo.20778035) (v3 — adversarially validated)*
 
 *All analysis code is publicly available on GitHub: [github.com/ivan-hernandez/h0-symbolic-regression](https://github.com/ivan-hernandez/h0-symbolic-regression)*

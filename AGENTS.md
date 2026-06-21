@@ -1,5 +1,7 @@
 ## Goal
-Use symbolic regression (PySR) on verified CC + BAO H(z) + Pantheon+ SNe + DESI BAO (DR1/DR2) data to discover expansion history with minimal priors and extract H0, with adversarial validation.
+- Project 1 (complete): Use symbolic regression (PySR) on CC + BAO H(z) + Pantheon+ SNe + DESI BAO (DR1/DR2) data to discover expansion history with minimal priors, extract H0, adversarially validated.
+- Project 2 (in progress): Use symbolic regression (PySR) on SPARC rotation curves to discover the radial acceleration relation (RAR) functional form from data.
+- Heavy computation runs on remote machine 100.121.64.70 (Tailscale SSH, 12 cores, 15GB RAM), NOT on this machine.
 
 ## Final Result
 **H0 = 68.0 ± 0.8 km/s/Mpc (68% CL)** from joint CC+BAO+DESI+Pantheon+ analysis, adversarially validated over 2 rounds (14 total challenges, 0 sustained, 0 fatal).
