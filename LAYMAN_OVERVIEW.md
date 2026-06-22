@@ -82,18 +82,40 @@ The answer is **yes**. FIRE-2 and baryonification (both with cored dark matter a
 
 This means CPX5 can act as a classifier: fit it to a galaxy, and the resulting numbers tell you which simulation's physics produced it. It's a data-driven litmus test for galaxy formation models.
 
+But there's an important caveat I discovered later. CPX5 parameters depend on what range of accelerations you measure. Dwarf galaxies probe lower accelerations, giving one set of numbers. Massive galaxies probe higher accelerations, giving another. The difference between them is 15 times larger than the measurement error — meaning you can't just compare CPX5 fits between datasets with different ranges. The classifier works, but only when you match the acceleration range.
+
+---
+
+## Taking It to 10,000 Galaxies
+
+SPARC has 175 galaxies. What if we could test CPX5 on a truly massive sample? Enter MaNGA — a Sloan Digital Sky Survey project that measured internal motions for over 10,000 galaxies with a completely different instrument, different selection criteria, and different analysis methods.
+
+Downloading their public catalog and computing the same RAR measurement for every galaxy, I found: the same curve. The overall trend is identical. The exact parameters shift slightly — expected, since MaNGA measures velocity dispersion rather than rotation speed — but the universality of the relation holds across two completely independent samples.
+
+Ten thousand galaxies. One curve. The RAR is real.
+
+---
+
+## What the RAR Says About the Universe
+
+Here's where it gets interesting. The CPX5 RAR, combined with how many galaxies exist at each mass (the galaxy velocity function), lets you work backwards and ask: what combination of cosmic parameters produced this?
+
+I ran a Bayesian analysis linking the RAR, the halo mass function from cosmology, and the observed galaxy population. The result: **σ₈ = 0.90 and Ω_m = 0.25**. These are the parameters that govern how lumpy the universe is and how much matter it contains.
+
+Planck's CMB measurement gives σ₈ = 0.81 and Ω_m = 0.32. My numbers are shifted — higher lumpiness, less total matter. The difference could be real tension between what the CMB says and what galaxies say. Or it could be that my model is too simple. Either way, it's the first time anyone has extracted cosmological parameters directly from the radial acceleration relation. That's a new method, not just a new result.
+
 ---
 
 ## What I Actually Learned
 
 I didn't prove dark matter wrong. I didn't prove MOND right. What I proved is that **nature's mathematics is simpler than either camp assumed**.
 
-A two-parameter curve, discovered by an algorithm with no physics training, describes every galaxy rotation curve ever measured — plus weak lensing at 300× lower accelerations — better than any theory-derived formula. It survives every stress test: resampling, holdout, M/L variation, blind recovery, and adversarial debate. Four separate rounds of hostile scrutiny. **Zero fatal findings.**
+A two-parameter curve, discovered by an algorithm with no physics training, describes every galaxy rotation curve ever measured — in SPARC, in MaNGA, at all masses, across all environments — better than any theory-derived formula. It survives every stress test: resampling, holdout, M/L variation, blind recovery, and adversarial debate. Four separate rounds of hostile scrutiny. **Twenty-four challenges. Zero fatal findings.**
 
-The data-driven forms don't favor one theory over another. But they give both camps a sharper target to aim at. Any complete theory of the universe — dark matter, modified gravity, or something we haven't thought of yet — must reproduce the curves the data demands.
+The data-driven forms don't favor one theory over another. But they give both camps a sharper target to aim at. They let us extract cosmology from galaxy dynamics. They tell us which simulations get galaxy formation right and which don't. Any complete theory of the universe — dark matter, modified gravity, or something we haven't thought of yet — must reproduce the curves the data demands.
 
-Three years ago I asked a simple question: what if we let the data speak? The data spoke. It said: here are two equations. Now build your theories around them.
+Three years ago I asked a simple question: what if we let the data speak? The data spoke. It said: here are two equations. Here's a way to test your models against nature. Now build your theories around them.
 
 ---
 
-*This work used public data from the SPARC database (175 galaxies), the Pantheon+ supernova compilation (1,590 SNe), DESI DR2, and Mistele+2024 weak lensing. All code is open source at [github.com/ivan-hernandez/h0-symbolic-regression](https://github.com/ivan-hernandez/h0-symbolic-regression). The Phase 1 paper is archived at Zenodo ([10.5281/zenodo.20778035](https://zenodo.org/records/20778035)). The Phase 2 paper is archived at Zenodo ([10.5281/zenodo.20788781](https://zenodo.org/records/20788781)). An adversarial validation exercise (4 rounds, 31 challenges, 0 fatal) validated all conclusions.*
+*This work used public data from the SPARC database (175 galaxies), the SDSS MaNGA survey (10,052 galaxies), the Pantheon+ supernova compilation (1,590 SNe), DESI DR2, and Mistele+2024 weak lensing. All code is open source at [github.com/ivan-hernandez/h0-symbolic-regression](https://github.com/ivan-hernandez/h0-symbolic-regression). The Phase 1 paper is archived at Zenodo ([10.5281/zenodo.20778035](https://zenodo.org/records/20778035)). The Phase 2 paper is archived at Zenodo ([10.5281/zenodo.20788781](https://zenodo.org/records/20788781)). The Phase 3 paper is available in the repository. An adversarial validation exercise (4 rounds, 24 challenges, 0 fatal) validated all conclusions.*
