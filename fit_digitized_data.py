@@ -14,7 +14,7 @@ def cpx5_log(x, a, b):
     return a + b / np.maximum(x, -50)
 
 # Load digitized data — format: "x, y" per line
-with open(os.path.expanduser("~/Downloads/Default Dataset.csv")) as f:
+with open(os.path.expanduser("~/Downloads/Default Dataset (1).csv")) as f:
     lines = f.readlines()
 
 points = []
