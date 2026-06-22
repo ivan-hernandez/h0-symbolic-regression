@@ -184,7 +184,7 @@ Use the SR-discovered forms as empirical discriminants between DM models and MON
 
 - **Phase 1 paper:** Zenodo [10.5281/zenodo.20778035](https://zenodo.org/records/20778035) (v3)
 - **Phase 2 paper:** Zenodo [10.5281/zenodo.20788781](https://zenodo.org/records/20788781)
-- **Phase 3 paper:** (upload pending — zip at `phase3_zenodo.zip`)
+- **Phase 3 paper:** Zenodo [10.5281/zenodo.20802850](https://zenodo.org/records/20802850)
 - **Phase 2 Medium article:** [medium.com/@ivanhernandez1](https://medium.com/@ivanhernandez1/the-galaxy-rotation-mystery-what-happens-when-you-let-the-data-speak-94be02db75f7)
 - **All code:** [github.com/ivan-hernandez/h0-symbolic-regression](https://github.com/ivan-hernandez/h0-symbolic-regression)
 - **Debate log:** `/tmp/rar_debate_log.md` (4 rounds, 24 challenges, 0 fatal)
