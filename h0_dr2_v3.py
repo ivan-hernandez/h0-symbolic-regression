@@ -1,3 +1,6 @@
+# ⚠ BUGGY: uses coarse Riemann sum (2000 pts) for D_c(z).
+# Gives H₀≈72 (wrong). Use h0_phase1_method.py instead.
+# Bug traced 2026-06-23: only ~8 pts in [0,0.01], 0.24 mag systematic.
 """H₀ DESI DR2 — with analytic M marginalization.
 
 Fixes the M-H₀ degeneracy by analytically marginalizing over M,
