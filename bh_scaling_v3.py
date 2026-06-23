@@ -118,9 +118,9 @@ DATA = np.array([
     ["UGC 3789",      7.11,0.12,2.00,0.04,10.50,10.30,"M"],
 ])
 
-# M87/NGC4486 appear once as M87=9.79. NGC4486 row is separate but same Σ
-# Fix: remove NGC4486 row since M87 is the primary entry
-mask = DATA[:,0] != "NGC 4486"
+# Remove ALL M/NGC duplicates — keep Messier name as primary
+duplicates_to_remove = ["NGC 221", "NGC 4486", "NGC 4649", "NGC 4374", "NGC 4594", "NGC 3379"]
+mask = ~np.isin(DATA[:,0], duplicates_to_remove)
 DATA = DATA[mask]
 
 columns = ["galaxy","logM","e_logM","logS","e_logS","logMb","logL","method"]
@@ -190,7 +190,7 @@ for i,(label,x,y,xl,yl,ex,ey) in enumerate([
     elif i==1: a,b=odr_b.beta; ax[i].plot(xg,a+b*xg,"r-",lw=2,label=f"ODR: {b:.2f}±{odr_b.sd_beta[1]:.2f}")
     else: a,b=odr_l.beta; ax[i].plot(xg,a+b*xg,"r-",lw=2,label=f"ODR: {b:.2f}±{odr_l.sd_beta[1]:.2f}")
     ax[i].set_xlabel(xl); ax[i].set_ylabel(yl); ax[i].legend(fontsize=8)
-    ax[i].set_title(f"{label}: χ²_red={np.sum((y-(a+b*x))**2/(ex**2+ey**2))/(N-2):.1f}")
+    ax[i].set_title(f"{label}")
 plt.tight_layout(); plt.savefig(f"{OUTDIR}/bh_v3_clean.pdf",dpi=200); plt.savefig(f"{OUTDIR}/bh_v3_clean.png",dpi=150)
 print(f"\nSaved {OUTDIR}/bh_v3_clean.png"); plt.close()
 df.to_csv(f"{OUTDIR}/bh_v3_catalog.csv",index=False)
