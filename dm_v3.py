@@ -4,7 +4,7 @@ Fixes: actually fit Einasto, flag bad fits (χ²_red>20), check c in [1, 100].
 """
 import numpy as np, pandas as pd, matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit; from scipy.special import gammainc
+from scipy.optimize import curve_fit; from scipy.special import gammainc, gamma
 from parse_sparc import parse_mass_models
 import os, warnings; warnings.filterwarnings("ignore")
 OUTDIR="analysis/dm_profiles"; os.makedirs(OUTDIR,exist_ok=True)
@@ -24,7 +24,7 @@ def V_burkert(R,log_rho0,log_r0):
 def V_einasto(R,log_rho0,log_r0,alpha):
     rho0=10**log_rho0; r0=10**log_r0; r=R/r0; n=1/max(alpha,1e-3)
     dn=3*n-1/3+0.0079/n; x=dn*r**alpha; gam=gammainc(3*n,x)
-    M=4*np.pi*rho0*r0**3*n*np.exp(dn)*dn**(-3*n)*gam
+    M=4*np.pi*rho0*r0**3*n*np.exp(dn)*dn**(-3*n)*gam*gamma(3*n)
     return np.sqrt(np.maximum(G_SI*M/(R*kpc_to_m)/1e6,0))
 
 df=parse_mass_models(); df=df[df["R"]>0]
