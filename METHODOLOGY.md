@@ -1,62 +1,128 @@
-# Symbolic Regression in Astrophysics — Reusable Pipeline
+# Data-Driven Astrophysics — The Adversarial SR Method
 
-A battle-tested methodology for applying symbolic regression (PySR) to
-astrophysical problems, validated across 3 published phases, 4 adversarial
-debate rounds, and 24 challenges (0 fatal).
+A battle-tested methodology for applying symbolic regression to astrophysical
+problems, developed and validated across 5 published papers, 8 adversarial debate
+rounds, and 30+ challenges (0 fatal).
+
+**Core principle:** Discover functional forms with minimal theoretical priors,
+then attack every claim with an independent critic before anyone else can.
 
 ---
 
-## Phase Outline
+## The Five Phases
 
-Every project follows this structure:
+### Phase 1: Discovery
 
-### Discovery
-1. Parse public data into `(X, y)` with proper error bars
-2. Run PySR with `model_selection="accuracy"`, ≥3 random seeds
-3. Identify Pareto-optimal forms (CPX3, CPX5, CPX7)
-4. Select the best 2-parameter form by stability across seeds
+**Goal:** Find the simplest mathematical form that describes the data.
 
-### Validation
-1. **Multi-seed** — ≥3 independent SR runs, verify equation convergence
-2. **Bootstrap** — Galaxy/point-wise resampling (≥200), get parameter distributions
-3. **Holdout** — K-fold (≥10), compare train vs test RMS
-4. **M/L sweep** — Grid of mass-to-light assumptions (≥16 combinations)
-5. **Blind test** — Generate mock data from known models, verify recovery
-6. **Per-unit** — Fit the form to each individual data unit (galaxy, etc.)
-7. **Literature** — Direct comparison with published results
+- Parse public data into `(X, y)` with proper errors. Verify against published tables.
+- Run PySR with `model_selection="accuracy"`, ≥3 random seeds, 200 iterations.
+- Identify Pareto-optimal forms by complexity (CPX3, CPX5, CPX7).
+- Select the best 2-parameter form by stability across seeds and AIC.
+- Do NOT extrapolate the discovered form beyond its data range.
 
-### Extension
-1. **Additional data** — Combine with independent samples (lensing, other surveys)
-2. **Cross-sample** — Test form on completely different instruments/telescopes
-3. **Theory tests** — Specific falsifiable predictions (MOND asymptote, EFE, hooks)
-4. **Parameter dependence** — Correlate parameters with physical properties
+**Key decisions:**
+- Log-log space for wide dynamic range problems (avoids high-value domination of MSE)
+- Error model: `sigma = max(e_gobs, 0.1*y)` for intrinsic scatter
+- AIC = χ² + 2k (not n·ln(χ²/n) for known errors)
+- Weak boundary prior to suppress pathological solutions without biasing result
+- Heavy computation on remote machine (≥12 cores, ≥15 GB RAM)
 
-### Synthesis (optional)
-1. **Model discrimination** — Use form as classifier between competing theories
-2. **Joint constraints** — Combine with other forms for multi-dimensional constraints
-3. **Forecast** — Predict when future surveys will distinguish between models
+### Phase 2: Validation
 
-### Adversarial Validation (mandatory)
-1. Round 1: Adversary challenges every claim → Defender responds
-2. Round 2: Adversary escalates deeper counter-attacks
-3. Fixes: Implement adversary's valid critiques
-4. Final round: Re-evaluate fixed results
-5. Document all challenges and resolutions in debate log
+**Goal:** Prove the form is stable and not an artifact of methodology.
 
-### Publication
-1. **Paper** — LaTeX in `aastex631.cls` two-column format
-2. **LaTeX compile** — `tectonic paper.tex` (portable, no texlive needed)
-3. **GitHub** — All code, data, figures, and paper source
-4. **Zenodo** — Zip paper, code, CSVs → upload → get DOI
-5. **OSF** — Create project hub linking GitHub + Zenodo
-6. **Medium** — General public article (if desired)
-7. **RNAAS** — Short notes for novel singular findings
+1. **Multi-seed:** ≥3 independent PySR runs → verify equation convergence
+2. **Bootstrap:** ≥200 resamples → parameter distributions (68% CL)
+3. **Holdout:** ≥10-fold galaxy-wise splits → train vs test RMS
+4. **M/L sweep:** ≥16 mass-to-light grid combinations
+5. **Blind test:** Generate mock data from known models, verify recovery
+6. **Per-unit:** Fit form to each individual data unit (galaxy, etc.)
+7. **Literature:** Direct comparison with published results
+8. **Integration accuracy:** Verify numerical integration converges (<0.01 mag)
 
-### Documentation
-1. **AGENTS.md** — Project state, constraints, progress
-2. **PROPOSAL.md** — Original plan (static, written before work)
-3. **PROGRESS.md** — Living document tracking actual accomplishments
-4. **README.md** — Quick start, file listing, validation summary
+**Red flags:**
+- Parameters depend on dynamic range → not a universal form (caveat required)
+- χ²_red ≪ 1 → errors overestimated
+- χ²_red ≫ 1 → model rejected (add intrinsic scatter)
+- Per-unit parameters span more than measurement range → not independently verifiable
+
+### Phase 3: Extension
+
+**Goal:** Test the form on independent data and against theory predictions.
+
+1. **Cross-sample:** Same form on a completely different instrument/telescope
+2. **Cross-regime:** Extend to higher/lower mass, different environment
+3. **Theory tests:** Specific falsifiable predictions (asymptote, EFE, hooks)
+4. **Parameter dependence:** Correlate form parameters with physical properties
+5. **Forecast:** When will future data distinguish this form from alternatives?
+
+**What NOT to do:**
+- Don't extrapolate polynomials beyond their fit range
+- Don't claim "model-independent" for BAO-derived H(z) (depends on r_s)
+- Don't call synthetic toy curves "simulation data"
+
+### Phase 4: Adversarial Debate (The Novel Part)
+
+**Goal:** Catch every fatal error before publication.
+
+**Protocol:**
+1. Adversary reads ALL project files, data, and code
+2. Adversary challenges EVERY claim — data, method, interpretation
+3. Defender responds point by point, conceding honestly where needed
+4. Challenges categorized: **conceded** | **partially sustained** | **rejected**
+5. Fixes implemented for all sustained challenges
+6. Re-evaluated in subsequent round
+7. Continue until 0 fatal findings remain
+8. Document all challenges and resolutions in debate log
+
+**Adversary's arsenal:**
+- Check data against published tables for duplicates/errors
+- Verify units and dimensional consistency
+- Test sensitivity to arbitrary thresholds and fitting choices
+- Check for extrapolation beyond data range
+- Identify circular reasoning (e.g., RM masses calibrated to M-σ)
+- Question whether synthetic data is being passed off as real simulation
+- Test all "both methods are valid" claims — are they really?
+
+**What the debate has caught (real examples):**
+- M/NGC duplicate pairs with conflicting values (BH catalog)
+- Polynomial integration bug — Riemann sum × Simpson gave 0.24 mag error
+- 28 galaxies with degenerate parametric null (GP null fixed it)
+- Column naming bugs (halfmassrad ≠ vmaxrad)
+- Wrong variable (M*/Re² ≠ surface brightness for FP)
+- Circular inclusion of RM masses calibrated to the relation being measured
+- Aspirational survey factors replaced with SRD-cited numbers
+
+### Phase 5: Publication
+
+**Goal:** Permanent, citable, reproducible.
+
+1. **Write:** LaTeX in `aastex631.cls` two-column format
+2. **Compile:** `tectonic paper.tex` (portable, no texlive needed)
+3. **Publish:** `python3 publish.py "Title" "Description" paper_dir/` (one command)
+4. **Archive:** Zenodo handles DOI registration automatically
+5. **Hub:** OSF component created automatically with DOI links
+6. **Code:** All pushed to GitHub with full commit history
+
+**Publication stack:**
+```
+publish.py → Zenodo (DOI) + OSF (component + wiki) ← GitHub (code)
+```
+
+---
+
+## What Makes Novel Work vs Competent Re-analysis
+
+| Novel | Not Novel |
+|-------|-----------|
+| Discovered form beats existing theories | Re-fit known relation with new data |
+| Falsifiable prediction for future surveys | Confirmed known result with better precision |
+| Methodological contribution (adversarial protocol) | Applied standard method to new dataset |
+| Exposed previously hidden systematic | Found same slope as literature |
+
+**The test:** If the conclusion changes what someone would assume or do, it's novel.
+If it says "consistent with literature," it's practice.
 
 ---
 
@@ -64,102 +130,61 @@ Every project follows this structure:
 
 ```
 project/
-├── AGENTS.md                  # Project state + constraints
-├── PROPOSAL.md                # Original plan (static)
-├── PROGRESS.md                # Accomplishments (living)
-├── README.md                  # Quick start
-├── paper/                     # LaTeX paper
+├── AGENTS.md              # Project state + constraints (living)
+├── PROPOSAL.md             # Original plan (static, written before work)
+├── PROGRESS.md             # Actual accomplishments (living)
+├── METHODOLOGY.md          # This file — the pipeline
+├── README.md               # Quick start + validation summary
+├── publish.py              # One-click Zenodo+OSF publisher
+├── paper/
 │   ├── paper.tex
 │   ├── paper.pdf
-│   ├── aastex631.cls
-│   └── fig1_*.pdf
-├── analysis/                  # Generated outputs
-│   ├── model_comparison.csv
-│   ├── bootstrap_results.csv
-│   ├── holdout_results.csv
-│   └── *.png
-├── data/                      # Input data (if redistributable)
-├── parse_data.py              # Data loader
-├── sr_discovery.py            # PySR search
-├── analysis.py                # Full analysis pipeline
-└── validate.py                # Validation suite
+│   └── fig_*.pdf
+├── analysis/               # Generated outputs (CSVs, figures)
+└── scripts/                # Analysis scripts
 ```
 
 ---
 
-## Key Decisions
+## Remote Compute Protocol
 
-| Decision | Rationale |
-|----------|-----------|
-| `model_selection="accuracy"` | Uses lowest-loss model directly |
-| Weak prior at boundaries | Suppresses pathological solutions without biasing result |
-| Log-log space for RAR | Avoids high-value domination of MSE |
-| `max(e, 0.1*y)` error floor | Captures intrinsic scatter uniformly across models |
-| AIC = χ² + 2k | Correct for known errors (not n·ln(χ²/n)) |
-| M/L range [0.3, 1.0] | Plausible stellar population range |
-| ≥3 SR seeds | Verifies equation convergence (not a lucky draw) |
-| ≥200 bootstrap resamples | Stable parameter uncertainty estimates |
-| ≥10 holdout splits | Reliable train/test comparison |
+- All heavy computation on remote machine (Tailscale SSH, 12 cores, 15 GB)
+- Lightweight scripts (<5 min runtime) can run locally
+- Always `scp` scripts to remote, never run heavy computation locally
+- Remote path: `100.121.64.70:~/h0-sr/`
 
 ---
 
-## Adversarial Debate Protocol
+## API Tokens
 
-1. Adversary reads ALL project files, challenges every claim
-2. Defender responds point by point, conceding honestly where needed
-3. Challenges categorized: conceded, partially sustained, rejected
-4. Fixes implemented for sustained challenges
-5. Re-evaluated in subsequent round
-6. Target: 0 fatal findings across all rounds
+Stored in `publish.py`:
+- **Zenodo:** Deposit creation, file upload, publishing
+- **OSF:** Component creation, wiki editing
 
----
-
-## Tool Dependency Notes
-
-- **PySR** — Heavy (Julia runtime). Run on remote machine.
-- **emcee** — Lightweight MCMC. Can run locally for 2-3D.
-- **scikit-learn** — Gaussian Processes for null tests.
-- **astropy** — FITS file handling.
-- **tectonic** — Portable LaTeX. Download binary, no texlive needed.
-- **WebPlotDigitizer** — Manual digitization of published figures (when digital tables unavailable).
+To use: copy `publish.py` to any project. No additional configuration needed.
 
 ---
 
-## Publishing Checklist
+## Debate Log Archive
 
-- [ ] Paper compiled (0 errors, 0 overfull boxes)
-- [ ] All numbers verified against CSV outputs
-- [ ] GitHub pushed with full history
-- [ ] Zenodo: zip source files + paper PDF → upload → publish → get DOI
-- [ ] OSF: create project hub, link GitHub + Zenodo
-- [ ] Medium: general public article (if desired)
-- [ ] RNAAS: short note for novel singular findings (if applicable)
-- [ ] Debate log updated with all rounds
-- [ ] PROGRESS.md updated with final results
-- [ ] README.md updated with quick start and validation summary
+All debate rounds documented at `/tmp/rar_debate_log.md` (8 rounds, 30+ challenges).
+Each round identifies which claims were conceded, partially sustained, or rejected,
+and what fixes were implemented before the next round.
 
 ---
 
-## Zenodo Fields Template
+## Lessons Learned
 
-| Field | Value |
-|-------|-------|
-| **Title** | [Descriptive title with key result] |
-| **Description** | [Abstract + methods summary + validation summary] |
-| **Keywords** | [5-8 relevant terms] |
-| **License** | MIT |
-| **Resource type** | Preprint |
-| **Related identifiers** | GitHub URL (is supplemented by) |
-
----
-
-## Medium Article Structure
-
-1. Hook (Vera Rubin moment, big question)
-2. Background (what's the problem, why it matters)
-3. Method (symbolic regression in simple terms)
-4. Discovery (the form found, with numbers)
-5. Stress tests (all the validation, in plain English)
-6. Critical tests (specific predictions tested)
-7. What it means (neither camp wins, both have sharper target)
-8. Footer (data sources, GitHub, Zenodo DOIs, debate count)
+1. **The debate catches errors you cannot see.** An independent critic looking at
+   your code will find mistakes you've been blind to for weeks.
+2. **"Both methods are valid" for a 7 km/s shift is never valid.** If methodology
+   changes the answer by more than the error bar, you haven't converged.
+3. **"Consistent with literature" is the most dangerous phrase in science.**
+   It usually means "I haven't found anything wrong yet," not "this is correct."
+4. **Synthetic toy models are not simulations.** Don't call them simulations.
+5. **The Riemann sum is not good enough at low z.** Use Simpson's rule for
+   cosmological distance integrals.
+6. **Hard-code data once, then verify it.** Raw data tables from papers contain
+   duplicates and errors. Trust nothing until checked.
+7. **Every "universal" constant should be tested per-unit.** a₀ couldn't be
+   measured per galaxy, despite being called "universal" for 40 years.
