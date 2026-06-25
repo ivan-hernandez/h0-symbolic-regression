@@ -1,0 +1,35 @@
+#!/bin/bash
+# Pre-commit hook: block commits containing hardcoded credentials.
+# Activate: git config core.hooksPath .githooks
+
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Block .env files from being committed
+env_files=$(git diff --cached --name-only --diff-filter=A | grep -i '\.env')
+if [ -n "$env_files" ]; then
+  echo -e "${RED}BLOCKED: .env files should not be committed:${NC}"
+  echo "$env_files"
+  exit 1
+fi
+
+# Patterns matching hardcoded tokens/keys
+patterns=(
+  '(TOKEN|API_KEY|API_SECRET|SECRET|PASSWORD|ACCESS_KEY|AUTH_TOKEN)\s*[=:]\s*["'"'"'][A-Za-z0-9_\-]{20,}["'"'"']'
+)
+
+result=0
+while IFS= read -r file; do
+  mime=$(file --mime-type "$file" 2>/dev/null)
+  if [[ "$mime" =~ binary ]]; then continue; fi
+
+  for pat in "${patterns[@]}"; do
+    if grep -qE "$pat" "$file" 2>/dev/null; then
+      echo -e "${RED}BLOCKED: possible hardcoded credential in $file:${NC}"
+      grep -nE "$pat" "$file"
+      result=1
+    fi
+  done
+done < <(git diff --cached --name-only --diff-filter=ACM)
+
+exit $result
