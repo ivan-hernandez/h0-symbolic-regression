@@ -1,6 +1,7 @@
 ## Goal
-- Project 1 (complete): Use symbolic regression (PySR) on CC + BAO H(z) + Pantheon+ SNe + DESI BAO (DR1/DR2) data to discover expansion history with minimal priors, extract H0, adversarially validated.
-- Project 2 (in progress): Use symbolic regression (PySR) on SPARC rotation curves to discover the radial acceleration relation (RAR) functional form from data.
+- **Template:** METHODOLOGY.md — the 5-phase adversarial SR pipeline (Discovery → Validation → Extension → Debate → Publication). All future projects follow this exactly.
+- Project 1 (H0 paper): Currently at Phase 4/5 audit gap closure. Don't publish yet.
+- Project 2 (RAR): COMPLETE (Phases 1-3 papers published).
 - Heavy computation runs on remote machine 100.121.64.70 (Tailscale SSH, 12 cores, 15GB RAM), NOT on this machine.
 
 ## Final Result
@@ -22,6 +23,16 @@
 - Parameterization must enforce physical boundary condition H(0) = H0
 - Favor minimal theoretical priors; let data drive the functional form
 - Reproducible and falsifiable
+
+## Internal Decision Rule: Crap-or-Worthwhile Test
+Before committing to any new research project, apply this test:
+> If the conclusion changes what someone would assume or do, it's novel.
+> If it says "consistent with literature," it's practice.
+If the answer is "practice" (not novel), do NOT proceed as a standalone project.
+Either find a novel angle or kill it. This rule applies to research, not
+necessarily to what we publish — some practice papers are worth writing as
+methods demonstrations or educational resources, but they shouldn't consume
+the same resources as novel discovery work.
 
 ## Progress Summary
 ### Phase 1 — Pipeline construction
@@ -158,6 +169,18 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 - Core result unchanged after both rounds
 - **Debate log:** `/tmp/debate_log.md`
 
+### Phase 11 — Cepheid PL Relation SR Discovery (completed Jun 2026)
+- SR discovery on SH0ES NIR F160W Wesenheit PL relation: 1799 Cepheids, 22 hosts
+- Baseline linear: W = -3.108·logP - 0.445·VI + 0.125·metal (R²=0.74, RMSE=0.39 mag)
+- Optical (I-band Wesenheit): W = -2.865·logP + 0.407·VI - 0.347·metal (R²=0.79, RMSE=0.29 mag)
+- NIR SR (1000 iter, 20 pop): **NO non-linear form found** — 10-fold CV improvement 0.18% over linear
+- Optical SR (500 iter, 15 pop): Same — linear dominates at all complexity levels
+- Bootstrap (200 resamples): logP slope -3.115 [-3.160, -3.078], VI -0.504 [-0.547, -0.452]
+- Full distance ladder (y/L/C fits, 3492 pts, 47 params): H0 = 73.0 ± 1.0 km/s/Mpc — matches SH0ES
+- χ²/dof = 3552.8/3445 = 1.031 for full ladder fit
+- **Conclusion: Cepheid PL IS linear — no hidden complexity. The Hubble tension is NOT resolvable through the PL functional form. It lies in the anchor calibration (M).**
+- Code: `ceph_pl_sr.py`, `ceph_pl_validate.py`, `ladder_h0.py`, `ceph_pl_summary.py`
+
 ## Known Limitations (from adversarial debate)
 1. r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc
 2. H(z)-only (no SNe) H0=65.4 is 2.3σ below Planck — reflects weak extrapolation of Cpx 13 from z>0.07 to z=0
@@ -166,6 +189,13 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 5. M(z) grid uses coarse α step (0.01) — fine enough for <2σ null result, but not precision measurement
 6. Fix-M test is formally symmetric (identifies inconsistency, not culprit)
 7. Reduced χ²_SN = 0.88 indicates conservative systematics — does not affect fix-M Δχ²
+
+## Security Policy
+- **NEVER hardcode API keys, tokens, or secrets in source files.** Read from environment variables only.
+- Pre-commit hook (`.githooks/pre-commit`) blocks commits containing credential patterns.
+- Activate locally: `git config core.hooksPath .githooks`
+- `.gitignore` excludes `.env*`, `*secret*`, `*credential*`, `*.pem`, `*.key`.
+- If a credential is committed even briefly, revoke it immediately — git history is forever.
 
 ## Key Decisions
 - Weak z=0 prior (σ=20), not removing sqrt operator
@@ -198,3 +228,7 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 - `all_extensions.py`: Comprehensive extension analysis (DR2, GW, TDCOSMO, Roman forecasts)
 - `extension_summary.py`: Final summary of all extension results
 - `/tmp/debate_log.md`: Adversarial debate log (2 rounds, 14 challenges, result stands)
+- `ceph_pl_sr.py`: SR discovery on SH0ES NIR Cepheid PL relation (F160W Wesenheit)
+- `ceph_pl_validate.py`: Optical SR + bootstrap + 10-fold CV validation
+- `ladder_h0.py`: Full distance ladder fit (y, L, C fits files) — H0=73.0±1.0
+- `ceph_pl_summary.py`: Final summary figure and comparison
