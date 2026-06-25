@@ -79,7 +79,8 @@ two debate rounds with zero fatal findings.}
 \label{sec:protocol}
 
 The protocol has 5 phases, executed sequentially
-(Figure~\ref{fig:pipeline}):
+(Figure~\ref{fig:pipeline}), with a compulsory human
+review of the compiled PDF before submission:
 
 \subsection{Phase 1: Discovery}
 The researcher completes a standard analysis: parse public data with
@@ -129,24 +130,29 @@ the updated analysis.  The protocol terminates when zero fatal findings
 remain.
 
 The adversarial prompt template is:
-\begin{verbatim}
-You are an adversarial reviewer auditing a research project.
-Read ALL files: data, code, and the manuscript.
-Then systematically challenge every claim you find.
-Categories:
-1) Data integrity
-2) Methodology
-3) Interpretation
-4) Presentation
-For each challenge, cite specific line numbers or file paths.
-Be aggressive -- your job is to find problems.
-The defender will respond; errors will be fixed before the next round.
-\end{verbatim}
+{\footnotesize\ttfamily
+\noindent You are an adversarial reviewer\\
+auditing a research project.\\
+Read ALL files: data, code, and the manuscript.\\
+Then systematically challenge every claim.\\
+Categories: 1) Data integrity 2) Methodology\\
+3) Interpretation 4) Presentation\\
+For each challenge, cite specific line numbers\\
+or file paths.  Be aggressive -- your job is\\
+to find problems.  The defender will respond;\\
+errors will be fixed before the next round.}
 
 \subsection{Phase 5: Publication}
 The final result is reported alongside all acknowledged limitations,
 the complete debate log, and the code and data needed to reproduce
 every figure and table.
+
+\paragraph{Human review.} Before submission, the compiled PDF is
+checked page-by-page for formatting issues --- equations or code
+blocks crossing columns, overfull boxes, figure placement, and
+readability on both screen and print.  LLM-written LaTeX routinely
+produces aesthetic flaws that do not affect scientific content but
+harm readability; a human pass catches these.
 
 \section{Data}
 \label{sec:data}
@@ -213,11 +219,13 @@ where $M$ is marginalized analytically via weighted mean:
 \hat{M} = \frac{\mathbf{1}^\mathsf{T}\mathbf{C}^{-1}
 (\boldsymbol{\mu}_{\rm obs}-\boldsymbol{\mu}_{\rm model})}
 {\mathbf{1}^\mathsf{T}\mathbf{C}^{-1}\mathbf{1}},
-\qquad
-\chi^2_{\rm SN} = (\boldsymbol{\mu}_{\rm obs}-\boldsymbol{\mu}_{\rm model})^\mathsf{T}
-\mathbf{C}^{-1}(\boldsymbol{\mu}_{\rm obs}-\boldsymbol{\mu}_{\rm model})
+\]
+\[
+\chi^2_{\rm SN} =
+\mathbf{r}^\mathsf{T}\mathbf{C}^{-1}\mathbf{r}
 - \hat{M}^2\,\mathbf{1}^\mathsf{T}\mathbf{C}^{-1}\mathbf{1},
 \]
+where $\mathbf{r} = \boldsymbol{\mu}_{\rm obs}-\boldsymbol{\mu}_{\rm model}$.
 with $\mathbf{C}$ the full covariance matrix.  The joint statistic is
 $\chi^2_{\rm joint}=\chi^2_H+\chi^2_{\rm SN}$.
 
@@ -308,7 +316,9 @@ Pantheon+ full covariance with DESI DR1 (the $\Lambda$CDM code uses
 DR1; DR2 gives consistent results as shown by the joint SR fit):
 \[
 H_0=67.91,\quad \Omega_m=0.321,\quad
-\chi^2_H=25.5\ (39\ \text{dof}),\quad
+\chi^2_H=25.5\ (39\ \text{dof}),
+\]
+\[
 \chi^2_{\rm SN}=1404.0\ (1589\ \text{dof}),
 \]
 joint $\chi^2=1429.4$.  This is nearly identical to the SR solution on
