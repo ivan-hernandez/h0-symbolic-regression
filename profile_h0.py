@@ -4,9 +4,9 @@
 import numpy as np
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from joint_rank import load_data, fetch_pantheon, mu_from_H
+from data import load_hz, fetch_pantheon, mu_from_H
 
-hz = load_data()
+hz = load_hz(version='dr2')
 z_h, H_h, e_h = hz[:, 0], hz[:, 1], hz[:, 2]
 z_sn, mu_sn, e_sn = fetch_pantheon()
 
@@ -57,7 +57,7 @@ def fit_Hz_fixed_H0_C(H0, C):
     chi2 = np.nansum(w * (y - (p*v + q*u))**2)
     return A, B, chi2
 
-def fit_Hz_fixed_H0(H0, C_grid=np.linspace(-5, 10, 301)):
+def fit_Hz_fixed_H0(H0, C_grid=np.linspace(-0.5, 3.0, 80)):
     """Find best A,B,C for a given H0 by scanning C."""
     best_chi2 = np.inf
     best_ABC = None
@@ -129,7 +129,8 @@ print(f"\n{'='*60}")
 print(f"  RESULTS")
 print(f"{'='*60}")
 print(f"  Cpx 13 form: H(z) = H0 + A*z*(z-B)*(z\u00b2+C)")
-print(f"  Fit to CC+BAO (36 pts, 4 params, dof=32)")
+n_pts = len(hz)
+print(f"  Fit to H(z) ({n_pts} pts, 4 params, dof={n_pts-4})")
 print(f"")
 print(f"  H0   = {h0_ml:.1f} km/s/Mpc")
 if lo1: print(f"  68%  = [{lo1:.1f}, {hi1:.1f}]")
