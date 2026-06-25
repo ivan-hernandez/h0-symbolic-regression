@@ -88,7 +88,7 @@ pub = zenodo_request("POST", f"https://zenodo.org/api/deposit/depositions/{dep_i
 doi = pub.get("doi", pub.get("metadata", {}).get("prereserve_doi", {}).get("doi", pre_doi))
 print(f"  Published: https://doi.org/{doi}")
 
-# ── 4. Create OSF component ──
+# ── 4. Create OSF component (public, with DOI wiki) ──
 print("=== 4. Creating OSF component ===")
 comp = osf_request("POST", "https://api.osf.io/v2/nodes/", json.dumps({
     "data": {
@@ -97,6 +97,7 @@ comp = osf_request("POST", "https://api.osf.io/v2/nodes/", json.dumps({
             "title": TITLE,
             "description": DESC[:300],
             "category": "project",
+            "public": True,
             "tags": ["symbolic-regression", "astrophysics"]
         }
     }
