@@ -11,7 +11,7 @@ from scipy.optimize import curve_fit
 import urllib.request, json, os, time, warnings
 warnings.filterwarnings("ignore")
 
-API_KEY = "db00fee61d74132e765c6a286c9cdcae"
+API_KEY = os.environ.get("TNG_API_KEY", "")
 BASE = "https://www.tng-project.org/api/"
 OUTDIR = "analysis/tng"
 os.makedirs(OUTDIR, exist_ok=True)

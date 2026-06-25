@@ -10,9 +10,11 @@ Sets:
 """
 import os, sys, json, subprocess
 
-# ── Config ──
-ZENODO_TOKEN = "qckmOeKwcrRPxx2klpKugqxwsIAgPBFRcbnUcfKjJW3PmqX1UBIoS9f9YH4I"
-OSF_TOKEN = "e6pZrbZffnKlcuI02N1PUP3h6Rqxbo4i8mHIkrJlkwLhth33rBiYIcqjwYmImUnPgGHh6l"
+# ── Config (set via env vars; never hardcode tokens) ──
+ZENODO_TOKEN = os.environ.get("ZENODO_TOKEN")
+OSF_TOKEN = os.environ.get("OSF_TOKEN")
+if not ZENODO_TOKEN or not OSF_TOKEN:
+    sys.exit("ERROR: Set ZENODO_TOKEN and OSF_TOKEN env vars")
 OSF_PARENT = "j9a7u"  # Parent OSF project
 GITHUB_REPO = "https://github.com/ivan-hernandez/h0-symbolic-regression"
 

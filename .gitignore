@@ -7,3 +7,8 @@ paper/*.log
 paper/*.out
 paper/missfont.log
 *.fits
+.env*
+*secret*
+*credential*
+*.pem
+*.key
