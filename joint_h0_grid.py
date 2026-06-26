@@ -4,9 +4,9 @@
 import numpy as np
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from joint_rank import load_data, fetch_pantheon, mu_from_H
+from data import load_hz, fetch_pantheon, mu_from_H
 
-hz = load_data()
+hz = load_hz(version='dr2')
 z_h, H_h, e_h = hz[:, 0], hz[:, 1], hz[:, 2]
 z_sn, mu_sn, e_sn = fetch_pantheon()
 

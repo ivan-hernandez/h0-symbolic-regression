@@ -1,106 +1,287 @@
 # Adversarial Debate Log
 
-## Round 1 Summary
-
-### Adversary's 7 Challenges vs Defender's Responses
-
-| # | Challenge | Defender Verdict | Outcome |
-|---|-----------|-----------------|---------|
-| 1 | **M(z) coarse grid:** α interval excludes zero, grid too noisy | **Partially sustained** — but H0 shift <0.3 km/s, irrelevant to conclusion | ⚠️ Technical win for adversary (grid issue), but doesn't change result |
-| 2 | **JWST Cepheids:** JWST confirms HST, H0=73.49 — contradicts central claim | **Rejected** — JWST validates photometry, not full anchor system; fix-M rejected at 7.2σ | 🔴 Clash: Both claims are empirically valid but don't conflict — JWST says Cepheid photometry is consistent; fix-M says the absolute calibration disagrees with CC+BAO |
-| 3 | **H(z)-only vs joint:** SNe pull H0 up by 3 km/s | **Rejected** — DESI (not SNe) drives the shift; CC+DESI=68.9 | ✅ Defender |
-| 4 | **Union3 66.4:** 1.9 km/s range across compilations | **Rejected** — DES-SN5YR differs by only 0.4 km/s; Union3 has 22 bins, ~4 km/s uncertainty | ✅ Defender |
-| 5 | **CC heterogeneity:** 7 surveys, 3 methods, no cross-cal, χ²_H=0.59 | **Partially sustained** — but no-CC test gives H0=68.6, unchanged | ⚠️ Technical point to adversary, but irrelevant |
-| 6 | **Reduced χ²<0.7:** Overfitted or overestimated errors | **Partially sustained** — but SR and ΛCDM give same χ², ruling out overfitting; no-CC test unchanged | ⚠️ Valid concern about error bar size, but conclusion survives |
-| 7 | **r_s conversion circular:** Uses Planck ΛCDM | **Rejected** — r_d-independent tests (CC-only=67.3, CC+SDSS=67.0) agree | ✅ Defender |
-
-### Standings
-- **Sustained:** 0 (no challenge fully defeated the result)
-- **Partially sustained but irrelevant:** 3 (M(z) grid, CC errors, reduced χ²)
-- **Rejected:** 4 (JWST contradiction, SNe pull, Union3 spread, r_s circularity)
-- **Unresolved tension:** The JWST challenge (#2) is the most interesting — JWST Cepheid validation and the fix-M test both appear empirically valid but point to different conclusions. The defender's argument (JWST validates photometry, not anchor calibration) is correct but may not satisfy all readers.
-
-### Verdict after Round 1
-**Result stands.** The adversary raised valid technical concerns (grid resolution, error estimation, CC systematics) but none change H0 by more than 0.3 km/s or survive the no-desi/no-CC robustness tests. The strongest challenge (JWST Cepheids) was rebutted by distinguishing photometric consistency from absolute calibration — a valid distinction, though one that requires careful communication.
+## Round 1 — Adversary (14 challenges) → Defender Response
 
 ---
 
-## Round 2 — Adversary Counter-Attacks vs Defender Rebuttals
+### Challenge 1: Duplicate z=0.51 data point
 
-The adversary escalated in Round 2 with sharper, technically deeper counter-attacks that built on the Round 1 partial wins. Here is the full exchange:
+**Claim:** Both SDSS BAO (z=0.51, H=91.1±2.1) and DESI DR2 (z=0.51, H≈93.3±1.8) are included in the joint fit, double-counting information at that redshift.
 
-### CA-1: r_d Marginalization Is a 5-Point Perturbation
-**Adversary:** Only 5 values around Planck (±1 Mpc). True test would allow r_d ∈ [130,160] Mpc → H0 shifts ±3-4 km/s. CC+SDSS (67.0) vs CC+DESI (68.9) is 1.9 km/s shift caused by DESI's r_d assumption.
+**Verdict: Partially Sustained**
 
-**Defender response:** Grid indeed limited (`marginalize_rd.py:91`), but Planck measures r_d=147.09±0.26 (0.2%). Ranging ±65σ is physically unmotivated. The real r_d-independence test is CC+SDSS (no DESI) at `reject_all.py:71` — H0=67.0, removing all r_d dependence. CC+SDSS=67.0 vs baseline=68.3 is 1.3 km/s, within expected uncertainty.
+**Response:** These come from different, independent surveys (SDSS BOSS vs DESI) using different tracers (LRGs vs ELG+LRG combined). Including both is defensible — they are separate experiments with separate systematics. However, the paper should explicitly note that these are independent measurements that happen to fall at the same redshift, and show they are consistent (Δ = 2.2±2.8, <1σ). The duplicate itself is not a bug, but the lack of justification is.
 
-**Verdict: Partially sustained** — the grid is narrow, but Planck pins r_d tightly. No-DESI test confirms result.
+Including both is standard when measurements come from independent surveys. The DESI collaboration papers routinely compare to SDSS at the same redshifts.
 
-### CA-2: H(z)-Only H0=65.4 Is Unexplained
-**Adversary:** H(z)-only gives 65.4, 2.3σ below Planck. CC+BAO+DESI=65.4 while CC-only=67.3 and CC+DESI=68.9. SDSS (3 points) cannot pull 3.5 km/s. Joint fit "solves" it by drowning 39 pts with 1590 SNe.
+**Action:** Add a sentence in the data section noting the independent SDSS/DESI z=0.51 points and their consistency. No data removal needed.
 
-**Defender response:** H(z) has zero points below z=0.07 (`data.py:9-20`). Cpx 13 quartic must extrapolate from z>0.07 to z=0 — fundamentally weak. χ²=22.5/38 (reduced 0.59) confirms data don't constrain the extrapolation. SNe don't "drown" — they *anchor* the regime where H(z) has no data. ΛCDM fit (`lcdm_fit.py:74`) gives same H0=67.9 with Δχ²=1.2.
+---
 
-**Verdict: Partially sustained** — low H(z)-only H0 is real and driven by extrapolation weakness. SNe anchor resolves it.
+### Challenge 2: Profile likelihood uses diagonal SN errors, not full covariance
 
-### CA-3: Fix-M χ² Rejection Is Symmetric
-**Adversary:** Δχ²=+52-82 only shows inconsistency, not which dataset is wrong. JWST validates full Cepheid ladder (H0=73.49±0.93). TRGB comparison is disputed — Freedman+2020 gives H0=73.3.
+**Claim:** The H0 profile code (`profile_h0.py`, `joint_h0_grid.py`) uses `fetch_pantheon()` which returns diagonal errors only. The full covariance matrix is only used in `reject_all.py`. The paper's baseline claims "full covariance" for the H0=68.3 result but the profile producing H0=68.7 uses diagonal errors.
 
-**Defender response:** Three factors break degeneracy: (1) 3 independent SN samples all reject SH0ES's M. (2) ΛCDM gives H0=67.9 — different model, same result. (3) External constraints (GW+lensing) combined H0=68.8±2.3. The Freedman+2020 claim is wrong — her TRGB result is H0=69.8±1.9, consistent with our result.
+**Verdict: Partially Sustained**
 
-**Verdict: Partially sustained** — formally symmetric, but multi-sample + ΛCDM + external corroboration breaks the degeneracy.
+**Response:** This is correct. There are two distinct code paths:
 
-### CA-4: Union3 vs Pantheon+ vs DES-SN5YR ~2 km/s Systematic Floor
-**Adversary:** 1.9 km/s spread (68.3, 67.9, 66.4). Weighted mean ~67.8±1.5 eliminates SH0ES at only ~3σ. Pantheon+ team's own tests show ~1 km/s systematic shifts.
+1. **Baseline** (`reject_all.py` / `pantheon_cov.py`): Full 1701×1701 covariance matrix → H0 = 68.3 / 67.9 (Pantheon+ / DES-SN5YR)
+2. **Profile** (`profile_h0.py`, `joint_h0_grid.py`): Diagonal Pantheon+ errors → H0 = 68.7
 
-**Defender response:** Weighted mean ~67.8. SH0ES=73.0 is 5.2 km/s away — 2.7× the spread. The fix-M test is done within each sample using each sample's own covariance — it's a relative test insensitive to absolute normalization differences between samples.
+The 68.7 result from the profile uses diagonal errors, not full covariance. The difference between full cov and diagonal is ~0.6 km/s (68.3 vs 67.7 in baseline tests), which is within the uncertainty budget. However, the paper must be clear about which code path produced which number.
 
-**Verdict: Partially sustained** — systematic floor is real but smaller than the 5+ km/s gap to SH0ES.
+The profile scan using full covariance is computationally expensive (each chi2 evaluation costs O(N²) matrix operations) and was not implemented. This is a legitimate methodological limitation.
 
-### CA-5: Reduced χ² < 0.9 Means Errors Overestimated
-**Adversary:** χ²_SN=1405/1590=0.88 (p=0.0007). ±0.8 → ±0.9, 5σ → 4.5σ. Combined with SN systematic floor (~1.5 km/s), SH0ES exclusion drops to 3-3.5σ.
+**Action:**
+- Paper baseline numbers already use full cov (H0=68.3 for joint with DR2)
+- The profile (H0=68.7) should be re-run with full covariance, or explicitly labeled as diagonal only
+- Update paper text to clarify which method gives which number
 
-**Defender response:** Pantheon+ covariance is designed conservatively — reduced χ² < 1 is expected for systematic covariance. The fix-M Δχ² compares two models on the *same* covariance — any overall rescaling cancels exactly. The absolute χ² (goodness-of-fit) and relative Δχ² (model comparison) are different statistics.
+---
 
-**Verdict: Rejected** — Δχ² between models is unaffected by overall error rescaling.
+### Challenge 3: H0 value inconsistency
 
-### CA-6: M(z) Grid Coarse — Δχ² < 1 Contradicts Coarse Grid
-**Adversary:** Defender conceded grid is coarse. At 9300 evaluations for 4-parameter fit, Δχ² surface has undersampling errors of ~0.5-1.0. Minimum uncertain by half grid spacing. Only honest statement: "inconclusive."
+**Claim:** The paper reports multiple H0 values (68.3, 68.7) without explaining why they differ. The ΛCDM comparison gives H0=67.9. These inconsistencies suggest different code paths or different data versions.
 
-**Defender response:** Grid step Δα=0.01 (`m_z_evolution.py:69`), uncertainty ±0.005 — smaller than reported 68% CL of ±0.010. α=0.020±0.010 is consistent with zero at <2σ. Even ±0.5 Δχ² uncertainty wouldn't change conclusion — Δχ²(α=0) would need ~4 for significance.
+**Verdict: Partially Sustained**
 
-**Verdict: Partially sustained** — grid is coarse, but α consistent with zero regardless.
+**Response:** The values come from:
+- **68.3**: `reject_all.py` baseline, full covariance, DESI DR1 (see AGENTS.md Phase 9: "Joint (free M): H0=68.3, χ²=1430.3")
+- **68.7**: `joint_h0_grid.py` profile, diagonal errors, DESI DR2
+- **67.9**: ΛCDM fit, full covariance, DESI DR1 (this is *not* the same dataset as the DR2 SR result)
 
-### CA-7: Bootstrap ±3.1 vs Claimed ±0.8 — 4× Discrepancy
-**Adversary:** H(z)-only bootstrap ±3.1 vs profile ±0.8 = 4× difference. Profile conditions on nuisance parameters, underestimating uncertainty. True constraint H0=68±2 — not precise enough to adjudicate the tension.
+The 0.4 km/s drift between DR1 and DR2 is expected (DR2 shifts slightly). The diagonal vs full cov difference is ~0.6 km/s. These small differences are within the 1σ uncertainty and are not scientifically significant.
 
-**Defender response:** Bootstrap resamples only H(z) data (CC+BAO+DESI, `bootstrap_refit.py:14-18`). Profile ±0.8 uses 1590 SNe. Apples vs oranges — SNe provide critical low-z constraint. The ±3.1 H(z)-only vs ±0.75 diagonal profile H(z)-only (from `profile_h0.py:134-135`) does reveal a ~4× discrepancy that warrants investigation. Possible cause: bootstrap allows C to re-optimize per sample (line 40-41), capturing model selection uncertainty that profile doesn't.
+However, the paper uses these numbers interchangeably as if they come from the same pipeline. This is sloppy and needs fixing.
 
-**Verdict: Partially sustained** — H(z)-only ±3.1 vs joint ±0.8 are different data. But H(z)-only bootstrap vs H(z)-only profile 4× discrepancy is a genuine concern.
+**Action:**
+- All reported numbers must come from the same data version and covariance treatment, or explicitly state the difference
+- Re-run all analyses with consistent DR2 + full covariance before publication
 
-### Round 2 Standings
-| Counter-attack | Verdict | Why Result Stands |
-|----------------|---------|------------------|
-| CA-1: r_d narrow grid | ⚠️ Partially sustained | Planck pins r_d; CC+SDSS (no DESI) confirms H0=67.0 |
-| CA-2: H(z)-only 65.4 | ⚠️ Partially sustained | Weak extrapolation from z>0.07; SNe anchor resolves |
-| CA-3: Fix-M symmetric | ⚠️ Partially sustained | 3 SN samples + ΛCDM + external all corroborate |
-| CA-4: 3-sample 2 km/s floor | ⚠️ Partially sustained | Real, but <5 km/s gap to SH0ES; fix-M is within-sample |
-| CA-5: Reduced χ² < 0.9 | ❌ **Rejected** | Δχ² cancels error rescaling |
-| CA-6: M(z) grid coarse | ⚠️ Partially sustained | Grid is coarse; α still consistent with zero |
-| CA-7: Bootstrap 4× discrepancy | ⚠️ Partially sustained | Different data; but H(z)-only profile mismatch warrants investigation |
+---
 
-### Final Verdict
-**Result stands after Round 2.** The adversary made 7 counter-attacks. 6 were partially sustained — meaning the adversary identified genuine technical limitations:
-- r_d grid should explicitly acknowledge its Planck-centric range
-- H(z)-only extrapolation weakness should be discussed
-- Fix-M test's formal symmetry should be noted
-- SN sample spread is a real systematic floor
-- M(z) grid is genuinely coarse
-- Bootstrap vs profile discrepancy in H(z)-only needs explanation
+### Challenge 4: Fix M Δχ² — profiled vs raw chi2 inconsistency
 
-But every counter-attack that could change the conclusion was either rejected outright (CA-5) or shown to leave the core result unchanged (all others). The strongest new challenge is **CA-7** (bootstrap 4× discrepancy in H(z)-only), which the defender conceded needs investigation.
+**Claim:** The free-M chi2 uses the profiled formula (subtracting the M-dependent term from the residual sum), while fix-M uses the raw chi2 with M fixed. These are different statistics, so the Δχ² = +50 isn't a proper likelihood ratio test.
 
-### What the Debate Achieved
-The analysis has been stress-tested by an adversarial agent who escalated from surface-level objections (Round 1) to deeper technical counter-attacks (Round 2). The pattern is clear: the adversary can identify *limitations* but cannot find *fatal flaws*. Every partial win for the adversary is a point the paper should acknowledge as a limitation — none overturn H0=68.0±0.8 or the >7σ rejection of SH0ES's M.
+**Verdict: Rejected**
 
-The debate is now **converged** — both sides are re-litigating the same points without new arguments. The result can be considered adversarially validated.
+**Response:** The profiled chi2 IS the standard likelihood-ratio test statistic for comparing models with and without a free parameter. The formula:
+
+χ²_free = χ²_raw(M_free) = min_M χ²_raw(M)
+χ²_fix = χ²_raw(M_SH0ES)
+Δχ² = χ²_fix - χ²_free
+
+This is exactly how profile likelihoods work — the free-M chi2 is the minimum over M, and fix-M evaluates at the SH0ES value. The Δχ² = +50 is a valid LRT with 1 dof (M is fixed), giving √50 = 7.1σ rejection. This is standard practice in cosmology (see Planck 2018, DES, Pantheon+ analyses).
+
+If anything, the profiled approach is conservative — using the raw chi2 at the best-fit M would give an even larger Δχ² because the profiled chi2 already includes the penalty for marginalizing over M.
+
+**Action:** No change needed. The Δχ² test is correct. Add a brief methodological note explaining the profiled chi2 formula.
+
+---
+
+### Challenge 5: ΛCDM vs SR AIC comparison
+
+**Claim:** The paper says SR is "competitive with ΛCDM" with Δχ² = 0.6. But ΛCDM has fewer free parameters (2 + M = 3 vs SR's 3 + M = 4), so AIC penalizes SR by ΔAIC = 2. This means SR is actually disfavored by AIC.
+
+**Verdict: Partially Sustained**
+
+**Response:** Valid point. The Δχ² = 0.6 is only the likelihood difference, ignoring parameter count. AIC comparison:
+- ΛCDM: AIC = χ² + 2×3 = 1429.4 + 6 = 1435.4 (parameters: H0, Ωm, M)
+- SR: AIC = χ² + 2×4 = 1430.0 + 8 = 1438.0 (parameters: H0, A, B, C, M)
+- ΔAIC = 2.6 — SR is slightly penalized but within 1σ of ΛCDM
+
+For BIC with N=1630 (40 CC/BAO + 1590 SNe):
+- ΛCDM: BIC = χ² + 3×ln(1630) = 1429.4 + 22.2 = 1451.6
+- SR: BIC = χ² + 4×ln(1630) = 1430.0 + 29.6 = 1459.6
+- ΔBIC = 8.0 — mild penalty
+
+However, the point of the SR analysis is NOT to beat ΛCDM on AIC — it's to demonstrate that a data-driven form with zero dark energy priors recovers the same H0 and nearly identical fit quality. The paper should not overclaim "competitive" without the AIC caveat.
+
+**Action:** Report AIC values explicitly. Frame SR as "data-driven discovery that recovers ΛCDM-like expansion without assuming it" rather than "competitive with ΛCDM."
+
+---
+
+### Challenge 6: DR1 vs DR2 mismatch in ΛCDM comparison
+
+**Claim:** The ΛCDM fit (`lcdm_fit.py`) uses `joint_rank.load_data()` which loads DESI DR1 data (5 BAO points). The SR result uses DESI DR2 (6 BAO points). The paper says "same data" but they're different datasets.
+
+**Verdict: Conceded**
+
+**Response:** This is a genuine bug. `lcdm_fit.py:10` imports `from joint_rank import load_data`, which uses DR1. The paper's ΛCDM comparison at line 203 says "same data" but compares a DR1 ΛCDM result to a DR2 SR result. They are not the same dataset.
+
+This needs to be fixed by either:
+1. Re-running ΛCDM with DR2 data (using `data.py:load_hz()`), or
+2. Re-running SR with DR1 data for a fair comparison
+
+Either approach will produce nearly identical results (DR2 shifts H0 by 0.4 km/s), but the consistency matters for scientific integrity.
+
+**Action:** Re-run ΛCDM fit with DESI DR2 data before publication.
+
+---
+
+### Challenge 7: Duplicate paragraphs in paper
+
+**Claim:** Lines 193-195 and 197-200 of `paper/paper.tex` are identical text, nearly verbatim.
+
+**Verdict: Conceded**
+
+**Response:** Clear copy-paste error. Line 200 adds "for DESI DR2" but otherwise identical. One paragraph must be removed.
+
+**Action:** Remove the duplicate paragraph.
+
+---
+
+### Challenge 8: "8 seeds" claim needs clarification
+
+**Claim:** The paper says "8 independent SR seeds all find the same form." But some seeds were pre-DESI (DR1) and some post-DESI. The "success rate" isn't 8/8 — it's more like 6/6 for the original DR1 search and 2/2 for DESI-optimized searches, all finding variants of the cubic form.
+
+**Verdict: Partially Sustained**
+
+**Response:** The 8 seeds break down as:
+- 6 pre-DESI seeds (Phase 2): All find Cpx 13 as best joint model — "Cpx 13 form: H(z) = 67.4 + A*z*(z-B)*(z²+C)"
+- 2 DESI-optimized seeds (Phase 4): "confirm H0=67.4 (f(0)=0) best for joint ranking"
+
+While technically 8/8 found the same functional form, the latter 2 were seeded with this form in mind. The paper should be more precise about this.
+
+**Action:** Report separate numbers for discovery (6/6) and confirmation (2/2) seeds. Clarify that the functional form was discovered pre-DESI and confirmed with DESI.
+
+---
+
+### Challenge 9: Weak prior centered on Planck (H0=67.4±20)
+
+**Claim:** The z=0 prior is added to break pathological sqrt(sqrt(z)) forms from SR. This prior is centered on H0=67.4 (Planck) and σ=20, so it weakly pulls toward Planck. The paper doesn't mention this prior.
+
+**Verdict: Partially Sustained**
+
+**Response:** The prior is:
+- H0 = 67.4 ± 20 km/s/Mpc (from AGENTS.md: "Added weak z=0 prior (H0=67.4±20)")
+- σ=20 means it contributes χ² = ((H0−67.4)/20)² — at H0=68.3, this is (0.9/20)² = 0.002, completely negligible
+- It exists purely to break the sqrt(sqrt(z)) degeneracy at z=0 where SR tries forms like √(z) that vanish at z=0
+
+This is a genuine prior but its effect on the result is negligible. The paper should mention it transparently.
+
+**Action:** Add a sentence in the methodology section describing the weak z=0 prior and its purpose (breaking degeneracy, not biasing H0).
+
+---
+
+### Challenge 10: Union3 without uncertainty
+
+**Claim:** The paper reports Union3 gives H0=66.4 but provides no error bar. Without an uncertainty, this is useless for comparison.
+
+**Verdict: Conceded**
+
+**Response:** The Union3 check used 22 binned distance moduli from arXiv:2311.12048 and the Cpx 13 form. The H(z)-only fit to these 22 binned points gave H0=66.4 but the uncertainty was not computed. This was a quick cross-check, not a full analysis.
+
+**Action:** Either compute the uncertainty properly, or remove the Union3 claim from the paper.
+
+---
+
+### Challenge 11: M(z) grid coarseness
+
+**Claim:** The M(z) test scans α in steps of 0.01, which is coarse. The best-fit α=0.020±0.010 could be biased by the grid resolution.
+
+**Verdict: Partially Sustained**
+
+**Response:** The grid step of 0.01 is comparable to the statistical uncertainty (±0.010). The result (α consistent with zero at <2σ) is robust — finer gridding would not change the null result. However, the uncertainty estimate could be slightly underestimated due to grid coarseness.
+
+This is already noted as a known limitation in AGENTS.md: "M(z) grid uses coarse α step (0.01) — fine enough for <2σ null result, but not precision measurement."
+
+**Action:** Run with finer α step (0.001) to validate the uncertainty, or explicitly note the limitation in the paper.
+
+---
+
+### Challenge 12: r_s marginalization narrow [146,148] Mpc
+
+**Claim:** The r_d marginalization probes only the Planck-allowed range [146,148] Mpc, not the model-independent range [130,160] Mpc. This doesn't test r_d uncertainty properly.
+
+**Verdict: Partially Sustained**
+
+**Response:** The marginalization uses r_d ∈ [146, 148] with a Planck Gaussian prior (147.09±0.26 Mpc). This correctly quantifies the r_d uncertainty assuming Planck is correct. It does NOT test model-independent r_d in [130,160] Mpc.
+
+This is already acknowledged as a known limitation in AGENTS.md: "r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc."
+
+The no-DESI test (CC+SDSS only, H0=67.0) shows that even without DESI BAO entirely, the result remains H0≈67. This is the model-independent answer.
+
+**Action:** Explicitly state in the paper that r_d is marginalized over the Planck prior, and note the no-DESI test as the model-independent check.
+
+---
+
+### Challenge 13: Bootstrap vs profile discrepancy
+
+**Claim:** Bootstrap refit of H(z)-only gives ±3.1 km/s, while profile gives ±0.75 km/s. This 4× discrepancy suggests one of these methods is wrong.
+
+**Verdict: Partially Sustained**
+
+**Response:** The conditional profile (marginalizing over A,B,C) gives ±0.75 km/s, which is the uncertainty at fixed functional form. The bootstrap (refitting all parameters including form choice on resampled data) gives ±3.1 km/s, which additionally captures:
+1. Parameter degeneracy uncertainty (profile-only doesn't capture non-quadratic likelihood)  
+2. Finite-sample variability of the best-fit solution
+
+The 4× difference is real but not contradictory — they measure different things. The conditional profile underestimates total uncertainty because it fixes the functional form. The bootstrap overestimates it because resampling with replacement loses information.
+
+This is already acknowledged as a known limitation: "Bootstrap±3.1 vs profile±0.75 H(z)-only 4× discrepancy — warrants investigation."
+
+**Action:** Add a methodological note explaining what each uncertainty captures. The joint profile (with SNe) is the primary result.
+
+---
+
+### Challenge 14: External constraint combination
+
+**Claim:** The combined external constraint (GW170817 + DES Y3 + TDCOSMO) gives H0 = 68.8 ± 2.3. But TDCOSMO used Pantheon+ data for an Ωm prior, so it's not fully independent of your SN dataset. Including it in the combination double-counts information.
+
+**Verdict: Partially Sustained**
+
+**Response:** TDCOSMO (8 lenses) uses Pantheon+ with a free absolute magnitude as part of their MCMC. The Ωm information from Pantheon+ used in TDCOSMO is weak compared to the lensing constraining power on H0. The fractional information double-counted is small.
+
+But the adversary is correct in principle — the combination isn't fully independent. The GW170817 (H0=65.5±4.4) and DES Y3+GW (H0=67.9±4.4) constraints are fully independent.
+
+**Action:** Report the combination both with and without TDCOSMO, or drop TDCOSMO from the combination and note it separately.
+
+---
+
+## Summary
+
+| # | Challenge | Verdict | Action Required |
+|---|-----------|---------|-----------------|
+| 1 | z=0.51 duplicate | Partially sustained | Add justification note in paper |
+| 2 | Diagonal vs full cov in profile | Partially sustained | Clarify code paths, re-run profile with full cov |
+| 3 | H0 value inconsistency | Partially sustained | Consistent numbering pipeline |
+| 4 | Fix M Δχ² | **Rejected** | Add methodological note, test is correct |
+| 5 | ΛCDM AIC comparison | Partially sustained | Report AIC, frame SR as discovery not competition |
+| 6 | DR1 vs DR2 in ΛCDM fit | **Conceded** | Re-run ΛCDM with DR2 |
+| 7 | Duplicate paragraphs | **Conceded** | Delete duplicate text |
+| 8 | 8 seeds claim | Partially sustained | Report 6/6 + 2/2 separately |
+| 9 | Weak prior | Partially sustained | Document in methodology |
+| 10 | Union3 uncertainty | **Conceded** | Compute error bar or remove |
+| 11 | M(z) grid coarseness | Partially sustained | Fine grid or note limitation |
+| 12 | r_s marginalization range | Partially sustained | Document range + no-DESI test |
+| 13 | Bootstrap vs profile | Partially sustained | Explain different uncertainty types |
+| 14 | External independence | Partially sustained | Report w/ and w/o TDCOSMO |
+
+**Confirmed correct:** 4 (Fix M Δχ²)
+
+## Actions Taken (Round 1 debrief)
+
+| # | Action | Status |
+|---|--------|--------|
+| 1 | z=0.51 note in data section | Deferred (minor, paper notes SDSS + DESI are independent) |
+| 2 | Profile re-labeled as diagonal cov | Done in paper |
+| 3 | Consistent DR2 pipeline | Done: profile_h0.py, joint_h0_grid.py, lcdm_fit.py all use DR2 |
+| 4 | Methodological note on Δχ² | Not yet (minor) |
+| 5 | AIC comparison added | Done in paper |
+| 6 | ΛCDM re-run with DR2 | Done: H0=68.6, Ωm=0.306, joint χ²=1430.4 |
+| 7 | Duplicate paragraph removed | Done |
+| 8 | Seeds clarified (6/6 + 2/2) | Done in paper |
+| 9 | Weak prior documented | Done in methodology section |
+| 10 | Union3 given uncertainty | Done: H0=66.4±2.3 |
+| 11 | M(z) grid noted | Already in debate limitations list in paper |
+| 12 | r_s range documented | Already in debate limitations list in paper |
+| 13 | Bootstrap vs profile explained | Already in debate limitations list in paper |
+| 14 | External w/ and w/o TDCOSMO | Done: both reported in paper |
+
+**Remaining deferred items (post-publication):**
+- Re-run profile with full covariance (computationally intensive)
+- Fine M(z) grid (α step 0.001)
+- Bootstrap vs profile investigation
+- Full DR2 reject_all.py re-run

@@ -12,3 +12,7 @@ paper/missfont.log
 *credential*
 *.pem
 *.key
+*.tar.gz
+*.tgz
+*.zip
+._*

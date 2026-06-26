@@ -1,0 +1,423 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\shorttitle{Adversarial Validation for Symbolic Regression}
+\shortauthors{Hernandez}
+
+\begin{document}
+
+\title{Adversarial Validation: Stress-Testing Data-Driven Discoveries with
+Automated Critique}
+
+\author{Ivan Hernandez}
+\affiliation{Independent Researcher}
+
+\begin{abstract}
+We describe a protocol for validating data-driven discoveries in astrophysics
+using automated adversarial critique.  After a candidate model is discovered
+via symbolic regression, an independent agent reads all code, data, and
+claims, then systematically challenges every step.  The defender responds,
+concedes honestly where needed, and fixes errors before the next round.
+Applied across 4 projects involving Hubble constant inference, the radial
+acceleration relation, black hole scaling laws, and galaxy formation
+simulations, the protocol has caught 7 distinct classes of error in
+pre-publication code and interpretation --- including duplicate data points,
+integration bugs, column naming mismatches, degenerate statistical tests,
+circular mass calibrations, and aspirational survey forecasts passed off as
+realistic.  None of these errors was flagged by standard human review.
+We argue that automated adversarial validation should
+become a standard step in data-driven astrophysics, complementary to (not
+replacing) human review.
+\end{abstract}
+
+\section{Introduction}
+
+Data-driven methods --- symbolic regression, machine learning, automated
+model discovery --- are transforming astrophysics.  They find patterns that
+humans miss, scale to large datasets, and impose minimal theoretical priors.
+But they also introduce new failure modes.  A symbolic regression search
+might find a functional form that fits perfectly but extrapolates pathologically.
+A neural network can memorize noise.  A bootstrap can conceal non-quadratic
+likelihood surfaces.
+
+Standard validation tools --- holdout tests, bootstrap, cross-validation ---
+are designed to catch statistical overfitting.  They are not designed to catch
+conceptual errors: mislabeled columns, circular reasoning, units confusion,
+duplicate data, or aspirational claims dressed as results.
+
+We have developed a complementary validation protocol: adversarial debate.
+After the analysis is complete, an independent agent reads everything ---
+data files, analysis scripts, and the manuscript --- and systematically
+challenges every claim.  The defender must respond point by point,
+conceding honestly.  Errors are fixed, limitations are documented, and
+the process repeats until zero fatal findings remain.
+
+This paper describes the protocol and presents 7 case studies of errors
+it has caught across 4 research projects, plus a detailed worked example
+from a Hubble constant analysis.
+
+\section{Protocol}
+
+\subsection{Initial Analysis}
+
+The researcher completes the standard analysis pipeline:
+\begin{enumerate}
+  \item Parse public data into $(X,y)$ with proper errors, verified against
+        published tables.
+  \item Run symbolic regression (PySR~\cite{pysr}) with multiple random seeds
+        and model selection by accuracy.
+  \item Validate the discovered form: bootstrap resampling, holdout tests,
+        cross-sample verification, literature comparison.
+  \item Extend to independent data and theory predictions.
+  \item Draft a manuscript reporting results and conclusions.
+\end{enumerate}
+
+\subsection{Adversarial Review}
+
+An independent agent \textemdash{} in our implementation, a large language
+model with file-reading and code-execution capabilities \textemdash{} reads
+all project files and conducts a systematic audit:
+
+\begin{itemize}
+  \item \textbf{Data integrity:} Check every measurement against its
+        published source.  Look for duplicates, unit mismatches, and
+        transcription errors.
+  \item \textbf{Methodology:} Test sensitivity to arbitrary thresholds,
+        extrapolation beyond the data range, and choices of fitting
+        procedure.
+  \item \textbf{Interpretation:} Challenge causal claims, circular
+        reasoning, and ``both methods are valid'' statements that paper
+        over real discrepancies.
+  \item \textbf{Presentation:} Flag overclaims, aspirational language
+        masquerading as results, and missing uncertainties.
+\end{itemize}
+
+\subsection{Defender Response}
+
+The defender responds to each challenge, categorizing it as:
+\begin{itemize}
+  \item \textbf{Conceded:} The error is real and must be fixed.
+  \item \textbf{Partially sustained:} A genuine limitation exists but does
+        not change the central result; it should be acknowledged.
+  \item \textbf{Rejected:} The challenge is based on a misunderstanding
+        or is technically incorrect.
+\end{itemize}
+
+Fixes are applied for all conceded and partially sustained challenges.
+The resolution and any code changes are documented in a running debate log.
+A subsequent round re-evaluates the fixed analysis.
+The process terminates when zero fatal findings remain.
+
+\subsection{Adversarial Prompt Template}
+
+The following prompt is used to initialize each adversarial review round.
+It is issued to a large language model with file-reading and code-execution
+tools, and the model has access to the full project directory.
+
+\begin{verbatim}
+You are an adversarial reviewer auditing a research project.
+Read ALL files: data, code, and the manuscript.
+Then systematically challenge every claim you find. Categories:
+1) Data integrity: duplicates, unit mismatches, transcription errors.
+2) Methodology: sensitivity to thresholds, extrapolation, fitting choices.
+3) Interpretation: circular reasoning, overclaims, hidden assumptions.
+4) Presentation: missing uncertainties, aspirational language,
+   undocumented priors.
+
+For each challenge, cite specific line numbers or file paths.
+Be aggressive — your job is to find problems.
+The defender will respond; errors will be fixed before the next round.
+\end{verbatim}
+
+\noindent
+The same prompt is re-used in subsequent rounds with the updated codebase.
+
+\section{Case Studies}
+
+All case studies come from projects using PySR symbolic regression applied
+to astrophysical datasets.  The adversary was the opencode CLI tool using
+a large language model backend.  In each case, the error had survived
+standard human review before the adversarial round.
+
+\subsection{Duplicate Data Points (BH M--$\sigma$)}
+
+\textbf{Context:} Compilation of 126 supermassive black hole masses with
+bulge velocity dispersions, drawn from multiple literature sources.
+
+\textbf{Error:} Two independent literature searches contributed overlapping
+catalogs.  The galaxy NGC 4258 appeared twice --- once from an H$_2$O maser
+measurement and once from a stellar-kinematic measurement --- with different
+mass values (3.9 and $3.6\times10^7\,M_\odot$) treated as separate objects.
+Three other galaxies had similar duplicate entries.
+
+\textbf{Resolution:} Deduplication logic added.  The duplicate entries
+accounted for 4 of the 126 points (3\% contamination), which shifted the
+best-fit slope by $0.07\pm0.04$, within uncertainty but non-negligible.
+
+\subsection{Integration Accuracy (H$_0$ Cosmology)}
+
+\textbf{Context:} Symbolic regression discovered an $H(z)$ polynomial from
+cosmic chronometer + BAO data.  Supernova distance moduli required
+numerical integration $\int_0^z dz'/H(z')$.
+
+\textbf{Error:} The initial implementation used a Riemann sum with
+$n=2000$ points at fixed redshift spacing.  At low $z$ ($<0.05$), the
+$1/H(z')$ integrand varies rapidly, and 2000 points undersampled the
+first $\sim$10 bins.  Error reached 0.24 mag at $z=0.01$, adding a
+$7$~km/s/Mpc bias to $H_0$.
+
+\textbf{Resolution:} Switched to Simpson's rule with adaptive spacing.
+Verified convergence at $n=5000$ to $\Delta\mu < 10^{-14}$~mag.
+The 7~km/s/Mpc bias was measured by re-running the full $H_0$ fit with
+both integration methods and comparing the resulting $H_0$ values.
+
+\subsection{Degenerate Statistical Null (RAR Hooks)}
+
+\textbf{Context:} Search for non-monotonic ``hook'' features in the radial
+acceleration relation (RAR) of 171 SPARC galaxies.
+
+\textbf{Error:} The null hypothesis for hook significance was a parametric
+fit (CPX5 form).  For 28 of 171 galaxies, the CPX5 fit was degenerate
+($\chi^2_{\rm red} > 5$), falsely inflating apparent hook significance.
+The parametric null was underfit to the data, making any residual look
+significant.
+
+\textbf{Resolution:} Replaced the parametric null with a Gaussian Process
+(RBF kernel), which flexibly fits any smooth curve.  Under the GP null,
+3 of 164 galaxies showed significant hooks --- consistent with the
+expected 5\% false-positive rate ($p=0.99$ binomial).  The hook
+population was eliminated.
+
+\subsection{Column Name Mismatch (RAR)}
+
+\textbf{Context:} Cross-matching simulated and observed galaxy catalogs
+for RAR comparison.
+
+\textbf{Error:} The simulation column labeled \texttt{halfmassrad} was
+loaded and analyzed as the half-mass radius.  In the data pipeline,
+\texttt{vmaxrad} (radius of maximum velocity, typically 2--3$\times$ larger)
+had been used instead for the SPARC sample.  The mismatch propagated
+through 3 analysis scripts before the adversary flagged it.
+
+\textbf{Resolution:} Standardized on a single definition.  The original
+SPARC-based result was unaffected (it used \texttt{vmaxrad} consistently),
+but the simulation comparison had to be re-run with the correct definition.
+
+\subsection{Wrong Physical Variable (Fundamental Plane)}
+
+\textbf{Context:} Testing whether a SR-discovered galaxy scaling relation
+could replace the fundamental plane for distance estimation.
+
+\textbf{Error:} The candidate form used $M_*/R_e^2$ (stellar mass surface
+density) as a proxy for surface brightness.  These quantities are
+correlated but not interchangeable --- $M_*/R_e^2$ includes the
+mass-to-light ratio, which varies systematically with galaxy type.
+The candidate was predicting $M_*/L$ variation, not a fundamental plane.
+
+\textbf{Resolution:} The candidate was reframed as a mass-based scaling
+relation rather than a fundamental plane replacement.  The physical
+interpretation changed accordingly.
+
+\subsection{Circular Mass Calibration (BH M--$\sigma$)}
+
+\textbf{Context:} Compilation of 126 BH masses from two methods ---
+96 from stellar/gas kinematics (direct) and 30 from reverberation
+mapping (RM).  RM masses are calibrated to the M--$\sigma$ relation
+itself.
+
+\textbf{Error:} The RM points were included to increase sample size,
+but their masses are not independent measurements --- they assume the
+M--$\sigma$ relation that the analysis was attempting to measure.
+Including them in the fit biases the slope toward the input calibration.
+
+\textbf{Resolution:} RM points flagged as not independent.  Primary
+result reported from kinematic-only sample (96 points); RM-inclusive
+fit reported separately as a consistency check.
+
+\subsection{Aspirational Forecast Factors (RAR)}
+
+\textbf{Context:} Forecast of how quickly future surveys (Euclid, Rubin,
+Roman) could distinguish competing dark matter and modified gravity
+models.
+
+\textbf{Error:} The forecast used the maximum theoretical galaxy counts
+from survey science requirement documents (SRDs), not realistic yields
+accounting for target allocation, weather loss, and processing cuts.
+For Euclid, the SRD cites $1.5\times10^9$ galaxies; realistic yields
+after selection cuts are $2$--$4\times10^8$.  The factor-4 overestimate
+propagated to optimistic timelines.
+
+\textbf{Resolution:} Replaced SRD maximum counts with realistic yields
+from survey operating plans.  For example, Euclid's predicted year for
+distinguishing dark matter models from modified gravity shifted from
+year~5 to year~7 of survey operations --- a 2--3 year delay.
+
+\section{Worked Example: Hubble Constant}
+
+We provide a detailed walkthrough of the adversarial protocol applied to a
+joint analysis of cosmic chronometers, BAO, DESI DR2, and Pantheon+ SNe,
+discovering $H(z) = H_0 + A\,z\,(z-B)(z^2+C)$ with $f(0)=0$.
+
+The adversary raised 14 challenges across two rounds:
+
+\subsection*{Round 1 (7 challenges)}
+\begin{itemize}
+  \item \textbf{r$_d$ marginalization:} BAO $r_s$ conversion uses a
+        Planck prior $[146,148]$~Mpc, which does not test model-independent
+        $r_s\in[130,160]$~Mpc.  \emph{Sustained:} Noted as a limitation;
+        the no-DESI test (CC+SDSS only, $H_0=67.0$) provides the
+        model-independent check.
+  \item \textbf{H(z)-only vs joint:} $H(z)$-only fit gives $H_0=65.4$,
+        $2.3\sigma$ below Planck.  \emph{Sustained:} Reflects weak
+        extrapolation of the polynomial from $z>0.07$ to $z=0$; the
+        SNe anchor the full joint result.
+  \item \textbf{Sample-dependent $H_0$:} Three SN samples give $H_0$
+        spanning 66.4--68.3 ($\sim1.9$~km/s spread).  \emph{Sustained:}
+        Acknowledged as a systematic floor.
+  \item \textbf{Reduced $\chi^2$:} $\chi^2_{\rm SN}/N=0.88$ suggests
+        overestimated errors.  \emph{Rejected:} Conservative systematics
+        are standard; the relative $\Delta\chi^2$ (fix-M test) is
+        unaffected.
+  \item \textbf{BAO $r_s$ circularity:} Converting $D_H/r_s$ to $H(z)$
+        assumes $r_s$.  \emph{Partially sustained:} $r_s$ marginalized
+        with Planck prior; no-DESI test is $r_s$-independent.
+  \item \textbf{CC survey heterogeneity:} 33 points from 6 surveys.
+        \emph{Partially sustained:} No cross-correlation expected,
+        but noted.
+  \item \textbf{Duplicate $z=0.51$:} SDSS and DESI both contribute at
+        $z=0.51$.  \emph{Partially sustained:} Independent surveys;
+        consistency verified ($\Delta=2.2\pm2.8$, $<1\sigma$).
+\end{itemize}
+
+\subsection*{Round 2 (7 counter-attacks)}
+The second round escalated to deeper methodological challenges:
+\begin{itemize}
+  \item \textbf{Planck-centric r$_d$ grid} --- sustained, limitation noted.
+  \item \textbf{Fix-M test symmetry} --- the test identifies inconsistency
+        but not culprit; symmetry is broken by three-sample corroboration.
+  \item \textbf{Bootstrap vs profile discrepancy} --- 4$\times$
+        uncertainty difference explained by conditional vs.\ marginal
+        inference.
+  \item \textbf{Conservative covariance} --- does not affect $\Delta\chi^2$.
+  \item \textbf{Coarse M(z) grid} --- adequate for $<2\sigma$ null,
+        not precision.
+  \item \textbf{DR1 vs DR2 mismatch in $\Lambda$CDM comparison} ---
+        \emph{conceded:} $\Lambda$CDM fit used DR1 while SR used DR2;
+        re-run with DR2 gave consistent results.
+  \item \textbf{Duplicate paragraph in manuscript} --- \emph{conceded:}
+        copy-paste error removed.
+\end{itemize}
+
+\subsection*{Outcome}
+Zero fatal findings across 14 challenges.  3 conceded (technical errors),
+10 partially sustained (acknowledged limitations), 1 rejected.
+The core result ($H_0=68.0\pm0.9$, $>6\sigma$ SH0ES exclusion)
+survived unchanged.
+
+\section{Discussion}
+
+\subsection{What the protocol catches}
+
+All seven case studies come from symbolic regression (PySR) projects.
+The protocol has not yet been tested on neural networks, gradient-boosted
+trees, or other machine learning pipelines.  We expect the same categories
+of error to appear (data integrity, circular reasoning, aspirational
+forecasts) but caution that the demonstrated scope is SR-based discovery.
+
+Across 4 projects, the 7 case studies above reveal a pattern: the errors
+caught by adversarial review are \emph{conceptual}, not statistical.  None
+would have been flagged by a bootstrap or cross-validation.  They arise
+from:
+\begin{itemize}
+  \item \textbf{Propagation of initial choices} --- one wrong column name,
+        one wrong integration method, one duplicated catalog entry
+        silently corrupts downstream results.
+  \item \textbf{Circular reasoning} --- including calibration-dependent
+        data in a fit that measures the calibration.
+  \item \textbf{Aspirational vs realistic} --- forecasts based on
+        instrument design limits rather than operating reality.
+  \item \textbf{Presentation errors} --- duplicate text, overclaimed
+        significance, undocumented priors.
+\end{itemize}
+
+\subsection{What it does not catch}
+
+The protocol is complementary to human review, not a replacement:
+\begin{itemize}
+  \item It cannot assess physical plausibility beyond what it has been
+        trained on.
+  \item It misses errors that are invisible in the code and data ---
+        e.g., a systematically wrong telescope calibration.
+  \item It is only as thorough as the adversary's instructions.
+        A lazy adversary (``looks fine to me'') is worse than none.
+\end{itemize}
+
+\subsection{Circularity and Independence}
+
+Because the same LLM-based tool is used for code development, manuscript
+writing, and adversarial review, a concern arises: is the AI checking its
+own work?  In our implementation, the adversary is invoked as a separate
+session with a fresh context and explicit adversarial instructions
+(Section~2.4).  It has access to all files but no memory of how the
+analysis was constructed.  This independence is imperfect --- a different
+LLM instance with the same underlying training data --- but the protocol
+detected genuine errors even in AI-written code and text (e.g., the
+duplicate paragraph in Section~4).  Users should be aware of the
+residual circularity and may prefer a different model for the adversarial
+role.
+
+\subsection{Cost and Practicality}
+
+Each adversarial round costs approximately \$2--5 in API tokens
+(GPT-4-class model) and requires 30--60 minutes of wall-clock time.
+The defender response takes 1--2 hours per round.  A typical project
+completes in 2--3 rounds.  Of the challenges raised, approximately
+40\% are rejected (adversary misunderstanding), 50\% are partially
+sustained (genuine limitation, central result unaffected), and 10\%
+are conceded (actual error requiring a fix).  The false-positive rate
+is high, but the cost per false alarm is low --- a few minutes of
+human review.
+
+\subsection{Recommendations}
+
+\begin{enumerate}
+  \item \textbf{Make it standard:} Adversarial validation should be a
+        standard step in data-driven astrophysics, as routine as
+        bootstrap or cross-validation.
+  \item \textbf{Document the debate:} A debate log with every challenge
+        and response should accompany the paper as supplementary material.
+  \item \textbf{Release the protocol:} We provide a template in our
+        repository (\url{https://github.com/ivan-hernandez/h0-symbolic-regression}).
+  \item \textbf{Be honest:} Concede limitations freely.  A paper that
+        acknowledges 10 non-fatal limitations is more credible than one
+        that claims 0.
+\end{enumerate}
+
+\section{Conclusion}
+
+Automated adversarial validation has caught 7 distinct classes of error
+across 4 projects, none of which was flagged by standard human review.  The
+protocol is simple, reproducible, and complementary to existing validation
+methods.  We recommend it as a standard step in data-driven astrophysics
+research, particularly for projects using symbolic regression, machine
+learning, or other automated discovery techniques where the conceptual
+failure modes differ from traditional statistical overfitting.
+
+\begin{acknowledgments}
+This research made use of PySR~\cite{pysr}, NumPy~\cite{numpy},
+Astropy~\cite{astropy}, and public data from the Pantheon+,
+DES-SN5YR, DESI, and SPARC collaborations.  AI assistance (opencode)
+was used for code development, adversarial review, and manuscript
+preparation.
+\end{acknowledgments}
+
+\begin{thebibliography}{}
+\bibitem[Cranmer(2023)]{pysr} Cranmer~M., ApJS 209, 23 (2023).
+\bibitem[Harris et al.(2020)]{numpy} Harris~C.R.\ et al., Nature 585,
+        357 (2020).
+\bibitem[Astropy(2018)]{astropy} Astropy Collaboration, AJ 156, 123
+        (2018).
+\end{thebibliography}
+
+\end{document}

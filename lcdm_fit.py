@@ -7,7 +7,7 @@ Scan Ωm, precompute I(z) for all SNe at once via cumulative integration.
 
 import numpy as np, sys, time
 sys.path.insert(0, '.')
-from joint_rank import load_data
+from data import load_hz
 from pantheon_cov import load_cov
 
 C = 299792.458
@@ -15,7 +15,7 @@ CONST = 5 * np.log10(C) + 25
 
 t0 = time.time()
 print("Loading data...")
-hz = load_data()
+hz = load_hz(version='dr2')
 z_h, H_h, e_h = hz[:,0], hz[:,1], hz[:,2]
 z_sn, mu_sn, Cinv, s = load_cov()
 n_sn = len(z_sn)
@@ -89,11 +89,12 @@ print(f"  Final: Ωm={Om_b:.3f} H0={H0_b:.2f}")
 print(f"  χ²_H = {ch_b:.1f}  χ²_SN = {cs_b:.1f}  joint = {ch_b+cs_b:.1f}")
 print(f"  M = {M_eff_b + 5*np.log10(H0_b):.3f} mag")
 
-# SR comparison
+# SR comparison (DR2 profile, diagonal SN)
 print(f"\n{'─'*60}")
-print("SR (Cpx 13, Pantheon+ full cov):")
-print("  H0 = 68.3  χ²_H = 25.3  χ²_SN = 1405.3  joint = 1430.6")
+print("SR (Cpx 13, DR2 profile, diagonal SN):")
+print("  H0 = 68.0  χ²_H = 24.4  χ²_SN = 685.7  joint ≈ 710")
 print(f"ΛCDM:          H0 = {H0_b:.1f}  χ²_H = {ch_b:.1f}  χ²_SN = {cs_b:.1f}  joint = {ch_b+cs_b:.1f}")
-print(f"Δjoint (ΛCDM - SR) = {ch_b+cs_b-1430.6:+.1f}")
+print(f"(ΛCDM uses full SN cov; SR uses diagonal — χ² values not directly comparable)")
+print(f"H0 difference: ΛCDM - SR = {H0_b-68.0:+.1f} km/s")
 
 print(f"\n({time.time()-t0:.0f}s)")

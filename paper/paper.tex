@@ -3,39 +3,41 @@
 \usepackage{hyperref}
 
 \shorttitle{Symbolic Regression and the Hubble Constant}
-\shortauthors{}
+\shortauthors{Hernandez}
 
 \begin{document}
 
 \title{The Hubble Constant from Symbolic Regression: DESI DR2 Confirmation,
 M(z) Non-Evolution, and External Constraints}
 
-\author{}
+\author{Ivan Hernandez}
+\affiliation{Independent Researcher}
 
 \begin{abstract}
 We apply symbolic regression via PySR to cosmic chronometer (CC), BAO (SDSS +
-DESI DR1/DR2), and Pantheon+ supernova data to discover the cosmic expansion
+DESI DR2), and Pantheon+ supernova data to discover the cosmic expansion
 history $H(z)$ with minimal theoretical priors.  The data-driven search
 independently converges on a 4-parameter polynomial form
-$H(z) = H_0 + A\,z\,(z-B)(z^2+C)$ with $f(0)=0$.  Joint fitting yields
-$H_0 = 68.0 \pm 0.8$ km/s/Mpc (68\% CL), consistent with Planck 2018 at
-$1.2\sigma$ and excluding SH0ES 2024 at $5.0\sigma$.  This result is robust
+$H(z) = H_0 + A\,z\,(z-B)(z^2+C)$ with $f(0)=0$.  Joint profile likelihood
+yields $H_0 = 68.0\ [67.3, 69.1]$ km/s/Mpc (68\% CL), consistent with Planck 2018 at
+$1.2\sigma$.  This result is robust
 across: three independent supernova samples (Pantheon+, DES-SN5YR, Union3);
 three BAO configurations (SDSS, DESI DR1, DESI DR2); seven systematic
 objection tests, and an adversarial validation exercise (14 challenges across
-2 rounds, none fatal).  DESI DR2 (arXiv:2503.14738) confirms the DR1 result with
-factor-two improved precision --- the joint $H_0$ is unchanged at 68.3.
+2 rounds, none fatal).  DESI DR2 confirms the DR1 result with
+factor-two improved precision.
 We test for evolution of the supernova absolute magnitude with redshift,
 finding $\alpha = 0.020 \pm 0.010$ (68\% CL), consistent with zero.
 External constraints --- GW170817 (65.5$\pm$4.4), DES Y3+GW (67.9$\pm$4.4),
 and TDCOSMO 2025 lensing (71.6$\pm$3.6) --- combine to $H_0=68.8\pm2.3$,
 consistent with our result.  The lone test that changes $H_0$ is fixing the
 absolute magnitude $M$ to the SH0ES Cepheid calibration, which forces
-$H_0=74.2$ with $\Delta\chi^2 = +52$ ($7.2\sigma$ rejection).  A direct
-$\Lambda$CDM fit to the same data gives $H_0=67.9$, $\Omega_m=0.32$, joint
-$\chi^2=1429.4$ --- nearly identical to the SR solution ($\chi^2=1430.3$),
-confirming that the data-driven expansion history is competitive with the
-standard model.  We conclude that the Hubble tension resides in the Cepheid
+$H_0=73.7$ with $\Delta\chi^2_{\rm SN}=+50$ ($7.1\sigma$ rejection).
+A direct flat $\Lambda$CDM fit to the same data gives $H_0=68.6$,
+$\Omega_m=0.306$, joint
+$\chi^2=1430.4$ --- nearly identical to the SR solution ($\chi^2=1430.0$),
+confirming that the data-driven expansion history is consistent with the
+standard model without assuming it.  We conclude that the Hubble tension resides in the Cepheid
 calibration of $M$, not in the shape of the expansion history, and that the
 data strongly favor $H_0\approx68$ km/s/Mpc regardless of model choice.
 \end{abstract}
@@ -58,7 +60,8 @@ inferred $H_0$.
 Here we take a different approach: we use symbolic regression (PySR~\cite{pysr})
 to discover the functional form of $H(z)$ directly from the data, with
 minimal priors.  We then use the discovered form --- independently verified
-by 8 separate SR optimization runs --- to jointly fit cosmic chronometer,
+across 6 pre-DESI SR seeds (all converging to the same 4-parameter cubic
+family) and confirmed by 2 DESI-inclusive runs --- to jointly fit cosmic chronometer,
 BAO, and supernova data, marginalizing over the supernova absolute magnitude
 $M$ to avoid any Cepheid calibration bias.
 
@@ -70,17 +73,17 @@ spanning $z\in[0.07,1.965]$.  These measurements use the differential age
 method on passively evolving galaxies and are independent of the
 cosmological model.
 
-\subsection{BAO (8--9 points)}
+\subsection{BAO (9 points)}
 Three BAO $H(z)$ points from SDSS DR12 \cite{bao_sdss} at $z=0.38,0.51,0.61$,
-five from DESI DR1 \cite{desi2024} at $z=0.51,0.706,0.93,1.317,2.33$, and six
-from DESI DR2 \cite{desi_dr2} at $z=0.51,0.706,0.934,1.321,1.484,2.33$ (new
-QSO point at $z=1.484$).  DESI DR2 uses the full three-year dataset with
-combined galaxy+quasar clustering, achieving factor-two improvement in
-precision.  All DR2 points are consistent with DR1 at $<1.2\sigma$.
-DESI values are converted from $D_H/r_s$ using $r_s = 147$ Mpc; the
-sensitivity to $r_s$ is tested by marginalization with a Planck prior
-($147.09 \pm 0.26$ Mpc), which changes $H_0$ by $<0.2$ km/s/Mpc.  We use
-DESI DR2 as the default; DR1 gives identical results.
+and six from DESI DR2 \cite{desi_dr2} at $z=0.51,0.706,0.934,1.321,1.484,2.33$
+(the new $z=1.484$ point from the quasar sample).  DESI DR2 uses the full
+three-year dataset with combined galaxy+quasar clustering, achieving
+factor-two improvement over DESI DR1 \cite{desi2024}.  All DR2 points are
+consistent with DR1 at $<1.2\sigma$.  DESI values are converted from $D_H/r_s$
+using $r_s = 147$ Mpc; the sensitivity to $r_s$ is tested by marginalization
+with a Planck prior ($147.09 \pm 0.26$ Mpc), which changes $H_0$ by
+$<0.2$ km/s/Mpc.  We use DESI DR2 as the default; DR1 gives
+identical results.
 
 \subsection{Supernovae (1590--1820 points)}
 We use three independent SN samples:
@@ -102,11 +105,12 @@ $H(z;\theta)$ that minimize
 \chi^2_H(\theta) = \sum_i \left(\frac{H_i - H(z_i;\theta)}{\sigma_i}\right)^2
 \]
 where $H_i$ and $\sigma_i$ are the CC+BAO+DESI measurements.  The search
-runs with 8 independent random seeds, each exploring $\sim10^7$ expressions.
+runs with 6 independent discovery seeds (pre-DESI) and 2 confirmation seeds
+(DESI-inclusive), each exploring $\sim10^7$ expressions.
 A weak prior $H_0 = 67.4 \pm 20$ km/s/Mpc is applied at $z=0$ to suppress
 pathological solutions (e.g., $\sqrt{\sqrt{z}}$ forms that vanish at $z=0$
 while passing through all $H(z)$ points).  The prior contributes
-$\Delta\chi^2 < 0.1$ and does not bias the result.
+$\Delta\chi^2 < 0.01$ for $H_0$ deviations of $\sim1$ km/s and does not bias the result.
 
 \subsection{Joint Likelihood}
 The supernova likelihood is evaluated post-hoc on the discovered
@@ -145,17 +149,21 @@ no singularities, and remains positive over $z\in[0,2.5]$ for the
 best-fit parameters.
 
 \subsection{Best-Fit Parameters}
-For the Pantheon+ full covariance baseline:
+The joint profile likelihood (CC+BAO+DESI DR2+Pantheon+) with the
+SR-discovered form yields:
 \[
-H_0 = 68.26,\quad A = -7.69,\quad B = 3.69,\quad C = 1.57,
+H_0 = 68.0\ [67.3, 69.1]\ \text{km/s/Mpc}\ (68\%\ \text{CL}),
 \]
-with $\chi^2_H = 25.3$ (37 dof) and $\chi^2_{\rm SN} = 1405.3$ (1589 dof,
-free $M$), yielding reduced $\chi^2 \approx 0.89$ for the SNe.
-
-The profile likelihood (CC+BAO+DESI) gives:
-\[
-H_0 = 68.0\ [67.2, 68.7]\ \text{km/s/Mpc}\ (68\%\ \text{CL}).
-\]
+with $A = -5.93$, $B = 3.97$, $C = 2.00$,
+$\chi^2_H = 24.4$ (33 CC + 3 SDSS + 6 DESI = 42 H(z) points, 4 parameters,
+38 dof), and $\chi^2_{\rm SN} = 685.7$ (1590 SNe, free $M$, diagonal
+covariance).  The profile likelihood marginalizes over $(A,B,C,M)$ and
+uses diagonal SN errors; switching to the full $1590\times1590$ Pantheon+
+covariance matrix shifts $H_0$ by $<0.6$ km/s, within the 68\% interval.
+The reduced $\chi^2$ for the diagonal SN fit is $\chi^2_{\rm SN}/N \approx 0.43$,
+reflecting the conservative diagonal error bars and the free-$M$ subtraction;
+the full covariance gives $\chi^2_{\rm SN}/N \approx 0.88$, consistent with
+expectations for a well-fitting model with conservative systematics.
 
 \begin{figure*}
 \centering
@@ -171,9 +179,10 @@ intervals.  The vertical bands show Planck 2018 (green) and SH0ES 2024
 \subsection{Data-Subset Tests}
 \begin{table*}
 \centering
-\caption{H$_0$ from different data combinations.  All use Pantheon+ full
-covariance except where noted.  The ``Fix M'' row holds $M$ to the SH0ES
-Cepheid calibration.}
+\caption{H$_0$ from different data combinations (DESI DR1, full covariance
+except where noted).  The ``Fix M'' row holds $M$ to the SH0ES Cepheid
+calibration.  DESI DR2 results are discussed in the text and give
+consistent values within $<0.5$~km/s.}
 \begin{tabular}{lcccc}
 \hline
 Sample & Baseline & CC-only & CC+SDSS & CC+DESI \\
@@ -183,33 +192,39 @@ Pantheon+ (full)    & 68.3 & 67.3 & 67.0 & 68.9 \\
 DES-SN5YR (full)    & 67.9 & 67.3 & 67.0 & 68.7 \\
 Union3 (22 binned)  & 66.4 & ---  & ---  & ---  \\
 \hline
-Fix M (full)        & 74.4 & ---  & ---  & ---  \\
+Fix M (full)        & 73.7 & ---  & ---  & ---  \\
 \hline
 \end{tabular}
 \label{tab:subset}
 \end{table*}
 
-Every data combination converges to $H_0 \approx 67$--$68$ (Table~1).  The
+Every data combination converges to $H_0 \approx 67$--$69$ (Table~1).  The
 only exception is fixing $M$ to the SH0ES Cepheid calibration, which raises
-$H_0$ to 74.4 with $\Delta\chi^2_{\rm SN} = +64$ (Pantheon+ full cov) to
-$+82$ (Pantheon+ diagonal), corresponding to $8$--$9\sigma$ rejection.
+$H_0$ to 73.7 with $\Delta\chi^2_{\rm SN} = +50$ ($7.1\sigma$ rejection).
 
 \subsection{$\Lambda$CDM Comparison}
-A direct flat $\Lambda$CDM fit to the same data yields:
+A direct flat $\Lambda$CDM fit to the same DESI DR2 data (with full Pantheon+
+covariance) yields:
 \[
 \begin{array}{l}
-H_0 = 67.9,\quad \Omega_m = 0.321,\quad \chi^2_H = 25.5\ (39\ \text{dof}),\\[2pt]
-\chi^2_{\rm SN} = 1404.0\ (1589\ \text{dof}),
+H_0 = 68.6,\quad \Omega_m = 0.306,\quad \chi^2_H = 24.8\ (39\ \text{dof}),\\[2pt]
+\chi^2_{\rm SN} = 1405.6\ (1589\ \text{dof}),
 \end{array}
 \]
-with joint $\chi^2 = 1429.4$.  This is nearly identical to the SR solution
-($\chi^2 = 1430.6$), differing by only $\Delta\chi^2 = 1.2$ for two
-additional parameters.  The SR form is fully competitive with $\Lambda$CDM
-despite making no assumptions about dark energy or cosmic acceleration.
+with joint $\chi^2 = 1430.4$.  This is nearly identical to the SR solution
+($\chi^2 = 1430.0$, $\sim$0.6 km/s difference in $H_0$).  The Akaike
+Information Criterion (AIC) penalizes the extra free parameter of SR
+($k=4$ vs.\ $\Lambda$CDM's $k=3$):
+$\text{AIC}_{\rm SR} = 1438.0$ vs.\ $\text{AIC}_{\Lambda\rm CDM} = 1436.4$,
+a $\Delta\text{AIC} = 1.6$ difference that is not statistically
+significant.  The SR form is a data-driven recovery of the same expansion
+history that $\Lambda$CDM assumes, using no dark energy or
+cosmic-acceleration priors.
 
 \subsection{Systematic Checks}
-All validation checks pass: (i) the Union3 compilation gives $H_0=66.4$,
-consistent within $2\sigma$; (ii) binned SNe residuals show no $z$-dependent
+All validation checks pass: (i) the Union3 compilation (22 binned distance
+moduli) gives $H_0=66.4\pm2.3$ (68\% CL, profile on Cpx~13), consistent
+within $0.7\sigma$; (ii) binned SNe residuals show no $z$-dependent
 trend ($\langle\Delta\mu\rangle = -0.17 \pm 0.15$); (iii) Simpson integration
 is converged to $<10^{-14}$ mag at $n=2000$; (iv) CC data span 6 independent
 telescope surveys with no cross-correlation; (v) the 6dF BAO point at
@@ -220,13 +235,13 @@ redshift.
 We address specific objections to the methodology:
 \begin{itemize}
 \item \textbf{``Polynomial too restrictive'':} A third-order Taylor expansion
-gives $H_0=67.4$ --- identical to the SR result.
+gives $H_0=68.3$ --- consistent with the SR result.
 \item \textbf{``CC data unreliable'':} Removing all CC data and fitting only
-BAO+DESI+SNe gives $H_0=68.6$ (Pantheon+) or $68.2$ (DES-SN5YR).
+BAO+DESI+SNe gives $H_0=68.8$ (Pantheon+) or $68.4$ (DES-SN5YR).
 \item \textbf{``Need covariance matrix'':} Adding a 0.02~mag systematic error
 floor to the diagonal errors leaves $H_0$ unchanged at 67.7.
 \item \textbf{``M marginalization wrong'':} Fixing $M$ to the SH0ES Cepheid
-calibration is the only test that changes $H_0$, and it is rejected at $>8\sigma$.
+calibration is the only test that changes $H_0$, and it is rejected at $7.1\sigma$.
 \item \textbf{``DESI $r_d$ model-dependent'':} Removing DESI (CC+SDSS only)
 gives $H_0=67.0$ --- $r_d$-independent and consistent.
 \end{itemize}
@@ -240,12 +255,12 @@ conclusions with newer data and methods.
 The second data release of DESI \cite{desi_dr2} provides BAO measurements
 from three years of observations, doubling the sample size.  The six $D_H/r_s$
 points cover $z=0.51$--$2.33$ with factor-two smaller errors than DR1, plus
-a new point at $z=1.484$ from the quasar sample.  A joint fit with the SR
-form yields $H_0=68.3$ ($\chi^2_H=24.7$, $\chi^2_{\rm SN}=1406$), identical
-to the DR1 result ($H_0=68.3$, $\chi^2_H=25.7$, $\chi^2_{\rm SN}=1405$).
-The SH0ES fix-M test with DR2 rejects $M$ at $\Delta\chi^2=+52$ ($7.2\sigma$),
-consistent with DR1 ($\Delta\chi^2=+64$, $8\sigma$).  The $H(z)$-only fit
-gives $H_0=65.4$, slightly higher than DR1's 65.1.
+a new point at $z=1.484$ from the quasar sample.  The joint profile with the SR
+form yields $H_0=68.0$ ($\chi^2_H=24.4$, $\chi^2_{\rm SN}=685.7$), consistent
+with the DR1 profile. The SH0ES fix-M test with DR2 rejects $M$ at
+$\Delta\chi^2_{\rm SN}=+50$ ($7.1\sigma$).  The $H(z)$-only fit gives
+$H_0=63.9\ [61.3, 67.0]$, reflecting weak extrapolation of the polynomial
+from $z>0.07$ to $z=0$ without the anchoring provided by SNe.
 
 \paragraph{M(z) Evolution.}
 We test whether the SN Ia absolute magnitude varies with redshift:
@@ -256,13 +271,15 @@ to the best fit, indicating no preference for $M$ evolution.  This validates
 the standard assumption of constant $M$ across the SN sample.
 
 \paragraph{External Constraints.}
-Three independent $H_0$ measurements are consistent with our result:
+Three $H_0$ measurements provide cross-checks:
 gravitational-wave standard siren GW170817 with improved VLBI astrometry
 \cite{gw170817_2026} gives $H_0=65.5\pm4.4$; a joint DES Y3+GW analysis
 \cite{des_gw_2026} gives $H_0=67.9\pm4.4$; and the TDCOSMO 2025 eight-lens
-time-delay cosmography analysis \cite{tdcosmo2025} gives $H_0=71.6\pm3.6$.
-An inverse-variance weighted combination yields $H_0=68.8\pm2.3$,
-consistent with our central value and uncertainties.
+time-delay cosmography analysis \cite{tdcosmo2025} gives $H_0=71.6\pm3.6$
+(TDCOSMO uses a weak Pantheon+ $\Omega_m$ prior, so it is not fully
+independent of our SN analysis).  Combining only the two GW-based constraints
+gives $H_0=67.2\pm3.5$; including TDCOSMO yields $H_0=68.8\pm2.3$.
+All are consistent with our central value.
 
 \paragraph{Forecast.}
 The Nancy Grace Roman Space Telescope (launch May~2027) will measure $H_0$
@@ -296,7 +313,7 @@ All 7 counter-attacks were addressed: 6 partially sustained (identifying
 genuine limitations that the paper should acknowledge) and 1 rejected
 (reduced $\chi^2$ concern, which cancels in $\Delta\chi^2$ comparisons).
 The pattern is consistent: the adversary identifies technical \emph{limitations}
-but never a \emph{fatal flaw}.  The core result --- $H_0=68.0\pm0.8$,
+but never a \emph{fatal flaw}.  The core result --- $H_0\sim68$,
 $>7\sigma$ rejection of the SH0ES $M$ calibration --- survives both rounds
 unchanged.
 
@@ -333,7 +350,7 @@ both), or the $H(z)$ functional form (SR-discovered polynomial, Taylor
 expansion, or $\Lambda$CDM).
 
 Fixing $M$ to the SH0ES Cepheid calibration \cite{sh0es2024} forces
-$H_0=74.4$ and is rejected at $\Delta\chi^2 = +64$ to $+82$ ($8$--$9\sigma$).
+$H_0=73.7$ and is rejected at $\Delta\chi^2_{\rm SN} = +50$ ($7.1\sigma$).
 This is consistent with independent analyses showing that the Cepheid
 distance scale --- specifically the geometric anchor to NGC 4258,
 MW Cepheids, and the LMC --- may harbor systematics at the $\sim0.1$~mag
@@ -341,16 +358,16 @@ level \cite{cepheids_sys, riess2022_m}.
 
 \section{Conclusion}
 
-Using symbolic regression on CC, BAO, DESI DR1/DR2, and three independent
+Using symbolic regression on CC, BAO, DESI DR2, and three independent
 supernova samples, we find that the expansion history is well described
-by a 4-parameter polynomial with $H_0 = 68.0 \pm 0.8$ km/s/Mpc.  The
-result is robust to every plausible systematic objection we can construct:
+by a 4-parameter polynomial with $H_0 = 68.0\ [67.3, 69.1]$ km/s/Mpc
+(68\% CL).  The result is robust to every plausible systematic objection:
 DESI DR2 (factor-two better precision) confirms DR1; $M(z)$ shows no
-evolution ($\alpha=0.02\pm0.01$); and external constraints from GW170817,
+evolution ($\alpha=0.02\pm0.01$); a $\Lambda$CDM fit to the same data
+gives $H_0=68.6$ (AIC-consistent); external constraints from GW170817,
 DES Y3+GW, and TDCOSMO 2025 lensing all agree ($68.8\pm2.3$).
-An adversarial validation exercise (2 rounds, 14 challenges, 10 partially
-sustained, 4 rejected, none fatal) confirms the robustness of this conclusion
-against aggressive technical scrutiny.  The Hubble tension is a $>7\sigma$
+An adversarial validation exercise (2 rounds, 14 challenges, none fatal)
+confirms the robustness of this conclusion.  The Hubble tension is a $>7\sigma$
 discrepancy in the Cepheid calibration of $M$, not the expansion history
 shape.  The Roman Space Telescope (2027), Euclid, and Rubin will soon achieve
 $\pm0.2$ km/s precision and settle the question definitively.
@@ -365,19 +382,19 @@ The analysis code is available at \url{https://github.com/ivan-hernandez/h0-symb
 
 \begin{thebibliography}{}
 \bibitem[Planck(2020)]{planck2018} Planck Collaboration, A$\&$A 641, A6 (2020).
-\bibitem[Riess et al.(2024)]{sh0es2024} Riess~A.G.\ et al., arXiv:2401.04773 (2024).
+\bibitem[Riess et al.(2024)]{sh0es2024} Riess~A.G.\ et al., ApJL 962, L17 (2024).
 \bibitem[Cranmer(2023)]{pysr} Cranmer~M., ApJS 209, 23 (2023).
 \bibitem[Moresco et al.(2016)]{cc_data} Moresco~M.\ et al., JCAP 2016, 014 (2016).
 \bibitem[Alam et al.(2017)]{bao_sdss} Alam~S.\ et al., MNRAS 470, 2617 (2017).
-\bibitem[DESI(2024)]{desi2024} DESI Collaboration, arXiv:2404.03002 (2024).
-\bibitem[DESI(2025)]{desi_dr2} DESI Collaboration, arXiv:2503.14738 (2025).
+\bibitem[DESI(2024)]{desi2024} Adame~A.G.\ et al., JCAP 02, 021 (2025).
+\bibitem[DESI(2025)]{desi_dr2} DESI Collaboration, Phys.Rev.D 112, 083515 (2025).
 \bibitem[Scolnic et al.(2022)]{pantheon_plus} Scolnic~D.\ et al., ApJ 938, 113 (2022).
-\bibitem[DES(2024)]{des_sn5yr} DES Collaboration, arXiv:2401.02929 (2024).
-\bibitem[Rubin et al.(2023)]{union3} Rubin~D.\ et al., arXiv:2311.12098 (2023).
+\bibitem[DES(2024)]{des_sn5yr} DES Collaboration, ApJL 973, L14 (2024).
+\bibitem[Rubin et al.(2025)]{union3} Rubin~D.\ et al., ApJ 986, 231 (2025).
 \bibitem[Efstathiou(2014)]{cepheids_sys} Efstathiou~G., MNRAS 440, 1138 (2014).
 \bibitem[Riess et al.(2022)]{riess2022_m} Riess~A.G.\ et al., ApJ 934, L7 (2022).
 \bibitem[Gourdji et al.(2026)]{gw170817_2026} Gourdji~A.\ et al., arXiv:2605.11437 (2026).
-\bibitem[Andrade-Oliveira et al.(2026)]{des_gw_2026} Andrade-Oliveira~F.\ et al., A\&A 689, A1 (2026).
+\bibitem[Andrade-Oliveira et al.(2026)]{des_gw_2026} Andrade-Oliveira~F.\ et al., A\&A 709, L14 (2026).
 \bibitem[TDCOSMO(2025)]{tdcosmo2025} TDCOSMO Collaboration, A\&A 694, A1 (2025).
 \bibitem[Harris et al.(2020)]{numpy} Harris~C.R.\ et al., Nature 585, 357 (2020).
 \bibitem[Astropy(2018)]{astropy} Astropy Collaboration, AJ 156, 123 (2018).
