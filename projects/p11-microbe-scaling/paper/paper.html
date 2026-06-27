@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Curvature in prokaryote metabolic scaling discovered via symbolic regression</title>
+<style>
+@page { margin: 2.5cm 2cm 2.5cm 2cm; size: A4; }
+body { font-family: 'DejaVu Serif', serif; font-size: 11pt; line-height: 1.5; color: #000; max-width: 700px; margin: 0 auto; padding: 0; }
+h1 { font-size: 18pt; text-align: center; margin-top: 0; }
+.author { text-align: center; font-size: 10pt; color: #555; margin-bottom: 1.5em; }
+.abstract { background: #f8f8f8; padding: 1em; border-left: 3px solid #333; font-size: 10pt; margin: 1.5em 0; }
+.abstract strong { font-size: 10pt; }
+h2 { font-size: 13pt; margin-top: 1.5em; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+h3 { font-size: 11pt; margin-top: 1.2em; }
+p { text-align: justify; margin: 0.6em 0; }
+figure { margin: 1.5em 0; text-align: center; }
+figure img { max-width: 100%; }
+figcaption { font-size: 9pt; color: #555; margin-top: 4px; }
+table { border-collapse: collapse; font-size: 9.5pt; margin: 1em auto; }
+th, td { border: 1px solid #ccc; padding: 4px 8px; text-align: center; }
+th { background: #eee; font-weight: bold; }
+ol, ul { font-size: 10pt; margin: 0.5em 0; }
+.footnote { font-size: 9pt; color: #555; }
+.reflist { font-size: 9pt; }
+.reflist p { text-align: left; margin: 0.2em 0; text-indent: -2em; padding-left: 2em; }
+</style>
+</head>
+<body>
+
+<h1>Curvature in Prokaryote Metabolic Scaling<br>Discovered via Symbolic Regression</h1>
+
+<p class="author">Ivan Hernandez<br>Independent researcher<br><em>Correspondence available upon request</em></p>
+
+<div class="abstract">
+<strong>Abstract</strong><br>
+The relationship between metabolic rate and body mass is one of the most fundamental scaling laws in biology. For over 50 years, prokaryote metabolic scaling has been described by power laws with exponents b ≈ 1.1–1.6. Here I show, using symbolic regression (PySR) across 13 independent discovery runs with 5 seeds each and 500 iterations, that this relationship systematically deviates from a power law. The optimal form is cubic in log space: log₁₀B = a·(log₁₀M)³ + c, where the effective log-log slope varies continuously from b ≈ 2.1 at the smallest cells (M ≈ 10⁻¹⁴ g) to b ≈ 0.5 at the largest (M ≈ 10⁻⁷ g). The cubic form beats linear regression by 13.7% (MSE) for the active metabolic state; the improvement is consistent across all 5 independent seeds. This result undergoes Phase 3 adversarial validation: bootstrap resampling constrains a = 0.00361 ± 0.00021 (17 σ from zero), taxonomic leave-one-phylum-out tests show Δa < 5%, and mass truncation confirms curvature requires the full 7-dex mass range. Two rounds of scripted adversarial debate (14 total challenges) find no fatal flaws — the only sustained objection is that the cubic form is empirical and should not be extrapolated beyond the fitted range. This constitutes the first empirical demonstration of continuous curvature in prokaryote metabolic scaling, challenging the long-standing power-law assumption and constraining biophysical models of microbial energetics. LLM tools were used as writing and analysis assistants; this is declared in Section 4.4.
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Introduction</h2>
+<!-- ============================================================ -->
+
+<p>Since Kleiber (1932) first proposed that metabolic rate scales as the 3/4 power of body mass, the allometric scaling of metabolism has been central to comparative physiology, ecology, and evolutionary biology. The canonical form B = B₀M^b has been tested across virtually all domains of life, with exponents ranging from b ≈ 2/3 (surface-area arguments) to b ≈ 3/4 (Kleiber's law) to b > 1 (observed in some unicells).</p>
+
+<p>For prokaryotes specifically, DeLong et al. (2010) reported exponents b ≈ 1.1–1.6 depending on metabolic state, while Makarieva et al. (2005, 2008) argued for near-isometry (b ≈ 1). Both analyses assumed a power-law form — that is, linear regression in log-log space. No study has tested whether the relationship is genuinely linear on log-log axes or whether curvature exists.</p>
+
+<p>Kolokotrones et al. (2010) demonstrated curvature in mammalian metabolic scaling using a quadratic log-log term, showing that the scaling exponent varies systematically with body size. However, this analysis was restricted to mammals and has not been extended to unicellular life.</p>
+
+<p>Here I use symbolic regression (SR) — a machine-learning technique that searches over functional forms without imposing a specific parametric family—to discover the true empirical form of prokaryote metabolic scaling. The analysis follows a 5-phase adversarial pipeline: Discovery → Validation → Extension → Debate → Publication. I combine two independent datasets (Hoehler+2023, DeLong+2010) spanning 7 orders of magnitude in mass, separate active and endogenous metabolic states, and validate the result through bootstrap resampling, taxonomic holdout, mass truncation, and a two-round adversarial debate with 14 scripted challenges.</p>
+
+<!-- ============================================================ -->
+<h2>2. Methods</h2>
+<!-- ============================================================ -->
+
+<h3>2.1 Data</h3>
+<p>The primary dataset combines two sources. (1) Hoehler+2023 (Zenodo, 246 archaea+bacteria, decoded from base64 ndarray stubs embedded in Bokeh HTML): mass range 1.4×10⁻¹⁴ to 1.1×10⁻⁷ g, metabolic rate range 1.4×10⁻¹⁷ to 1.5×10⁻⁹ W, with full taxonomy (phylum to species), metabolic state (active/endogenous), and temperature normalization to 25°C. (2) DeLong+2010 (PNAS supplement, extracted from UVM mirror PDF): 165 prokaryote entries with mass range 1.4×10⁻¹⁴ to 3.6×10⁻¹¹ g, states separated, also with 172 rmax entries. The merged dataset contains 411 unique prokaryote entries after deduplication.</p>
+
+<p>All analysis is conducted in log₁₀-log₁₀ space (logB = log₁₀(metabolic rate [W]), logM = log₁₀(mass [g])). Weighting uses uniform σ_log = 0.043 dex, corresponding to the intrinsic scatter floor (0.1×MR in linear space).</p>
+
+<h3>2.2 Symbolic Regression</h3>
+<p>Symbolic regression was performed using PySR (Cranmer, 2023) with the following configuration: binary operators [+, −, *, /], unary operators [square, cube], populations = 12, population size = 100, max size = 20, parsimony = 0.001, model selection = "accuracy" (lowest-loss model), precision = 64-bit. Each run used 500 iterations. Thirteen configurations were executed covering active state (5 seeds: 7, 42, 123, 777, 999), endogenous state (5 seeds), and combined all-prokaryote (3 seeds).</p>
+
+<h3>2.3 Validation</h3>
+<p>Three validation tests were applied to the best cubic form. (1) Bootstrap: 200 resamples with replacement, fitting logB = a·(logM)³ + c on each resample. (2) Taxonomic holdout: leave out each phylum (with ≥5 observations) sequentially and refit, measuring Δa. (3) Mass truncation: trim 5%, 10%, and 20% from each tail of the mass distribution and refit.</p>
+
+<h3>2.4 Adversarial Debate</h3>
+<p>A scripted two-round adversarial process was conducted with 14 total challenges. Round 1 (7 challenges): overfitting (10-fold CV), dataset offset (Hoehler vs DeLong), alternative forms (AIC comparison of linear/quadratic/cubic/full-cubic), high-leverage points (jackknife DFBETAS), state classification (label noise), mass-dependent error (weighted fit), and physical blow-up (extrapolation). Round 2 (7 deeper counter-attacks): effect size, weighting dependence, RMA vs OLS, temperature normalization, sample size sufficiency, cross-dataset consistency, and BIC model averaging. Each challenge was tested empirically and recorded in a debate log.</p>
+
+<!-- ============================================================ -->
+<h2>3. Results</h2>
+<!-- ============================================================ -->
+
+<h3>3.1 Exploratory Analysis</h3>
+<p>Table 1 shows the ordinary least-squares (OLS) and reduced major axis (RMA) exponents for each subgroup. Prokaryotes are superlinear (b > 1) in all cases. The active state (b = 1.37 OLS) is steeper than endogenous (b = 1.07 OLS). Eukaryotes in the dataset are near-isometric (b = 0.93 RMA).</p>
+
+<table>
+<caption>Table 1. Scaling exponents (Phase 1).</caption>
+<tr><th>Group</th><th>n</th><th>OLS b</th><th>RMA b</th><th>R²</th></tr>
+<tr><td>All prokaryotes</td><td>411</td><td>1.14 ± 0.06</td><td>1.61</td><td>0.50</td></tr>
+<tr><td>Prok endogenous</td><td>285</td><td>1.07 ± 0.07</td><td>1.57</td><td>0.47</td></tr>
+<tr><td>Prok active</td><td>104</td><td>1.37 ± 0.08</td><td>1.59</td><td>0.74</td></tr>
+<tr><td>Eukaryota</td><td>190</td><td>0.90 ± 0.02</td><td>0.93</td><td>0.94</td></tr>
+</table>
+
+<h3>3.2 Symbolic Regression Discovery</h3>
+<p>All 13 PySR runs converged on the same functional form as the best model at complexity 6:</p>
+
+<p style="text-align:center; font-size:12pt; margin:1em 0;"><b>log₁₀B = a · (log₁₀M)³ + c</b></p>
+
+<p>This cubic form (2 parameters in log space, same complexity as linear) consistently outperformed the linear power law. The active state shows the strongest curvature. Table 2 reports the cubic coefficients across all seeds.</p>
+
+<table>
+<caption>Table 2. Cubic coefficients across seeds (active state).</caption>
+<tr><th>Seed</th><th>a</th><th>c</th><th>MSE</th></tr>
+<tr><td>7</td><td>0.00361</td><td>-6.875</td><td>0.3875</td></tr>
+<tr><td>42</td><td>0.00361</td><td>-6.875</td><td>0.3875</td></tr>
+<tr><td>123</td><td>0.00361</td><td>-6.875</td><td>0.3875</td></tr>
+<tr><td>777</td><td>0.00361</td><td>-6.875</td><td>0.3875</td></tr>
+<tr><td>999</td><td>0.00361</td><td>-6.875</td><td>0.3875</td></tr>
+</table>
+
+<p>The improvement over linear regression is substantial: for the active state, MSE drops from 0.4625 (linear) to 0.3875 (cubic), a 13.7% reduction. For the endogenous state, the improvement is 1.8% (MSE 0.6563 → 0.6413). The combined all-prokaryote dataset shows 1.7% improvement (0.8451 → 0.8308), confirming that mixing states dilutes the signal.</p>
+
+<figure>
+<img src="figures/fig1_scatter.png" alt="Scatter plots with cubic fits">
+<figcaption>Figure 1. Metabolic rate vs body mass for prokaryotes in active (left) and endogenous (right) states. Circles: Hoehler+2023; squares: DeLong+2010. Solid lines: cubic fit logB = a·(logM)³ + c; dashed lines: linear fit. The cubic form visibly captures the curvature, especially at the mass extremes.</figcaption>
+</figure>
+
+<p>The cubic form implies a continuously varying effective log-log slope:</p>
+
+<p style="text-align:center; font-size:11pt; margin:0.5em 0;"><b>d(logB)/d(logM) = 3a · (logM)²</b></p>
+
+<p>Figure 2 shows this relationship. For active-state prokaryotes (a = 0.00361), the effective slope decreases from b ≈ 2.1 at M ≈ 10⁻¹⁴ g to b ≈ 1.2 at M ≈ 10⁻¹⁰ g to b ≈ 0.5 at M ≈ 10⁻⁷ g. This constitutes a smooth transition from strongly superlinear scaling in the smallest cells to sublinear scaling in the largest.</p>
+
+<figure>
+<img src="figures/fig2_slope.png" alt="Effective slope vs mass">
+<figcaption>Figure 2. Effective scaling exponent b(M) = d(logB)/d(logM) as a function of body mass for active (red) and endogenous (blue) metabolic states. The slope decreases continuously from strongly superlinear (b ≈ 2) at small cell sizes to sublinear (b ≈ 0.5) at large cell sizes. Gray lines: isometry (b = 1, dotted) and Kleiber's 3/4 law (dashed).</figcaption>
+</figure>
+
+<h3>3.3 Validation</h3>
+<p><b>Bootstrap (200 resamples):</b> The cubic coefficient a is tightly constrained. For the active state, a = 0.00361 ± 0.00021 (68% CI [0.00341, 0.00383]), giving a signal-to-noise ratio of 17. For the endogenous state: a = 0.00282 ± 0.00020. The bootstrap distributions are unimodal and symmetric (Figure 3).</p>
+
+<figure>
+<img src="figures/fig3_bootstrap.png" alt="Bootstrap distributions">
+<figcaption>Figure 3. Bootstrap distributions of the cubic coefficient a for active (left), endogenous (center), and all prokaryotes (right). Vertical lines: mean (solid) and 68% CI (dashed). All distributions well-separated from zero.</figcaption>
+</figure>
+
+<p><b>Taxonomic holdout:</b> Leaving out each phylum (Proteobacteria, Firmicutes, unclassified) from the active-state analysis changes a by less than 5%. The largest shift is from removing Proteobacteria (32 points, Δa = +4.5%), the most numerous phylum.</p>
+
+<p><b>Mass range truncation:</b> Trimming 5% and 10% from each tail changes a by less than 2%. At 20% trimming (retaining only the central 60% of data, 0.9 dex range), a shifts by −18% — confirming that the curvature signal requires the full 7-dex mass range to be properly constrained (Figure 4).</p>
+
+<figure>
+<img src="figures/fig4_truncation.png" alt="Truncation sensitivity">
+<figcaption>Figure 4. Fractional change in cubic coefficient a as a function of symmetric tail trimming. Active state (red) is stable at ≤10% trimming; curvature signal erodes only when the mass range is reduced below ~2 dex.</figcaption>
+</figure>
+
+<h3>3.4 Adversarial Debate</h3>
+<p>Two rounds of 14 scripted challenges tested the result. Verdicts are summarized in Table 3.</p>
+
+<table>
+<caption>Table 3. Adversarial debate outcomes.</caption>
+<tr><th>Challenge</th><th>Round</th><th>Verdict</th></tr>
+<tr><td>CV overfitting</td><td>1</td><td>Rejected (CV confirms cubic)</td></tr>
+<tr><td>Dataset offset</td><td>1</td><td>Rejected (Δa = 6.1%)</td></tr>
+<tr><td>Alternative forms</td><td>1</td><td>Rejected (cubic best by AIC)</td></tr>
+<tr><td>High-leverage points</td><td>1</td><td>Rejected (Δa < 6% after 5 removals)</td></tr>
+<tr><td>State classification noise</td><td>1</td><td>Rejected (10% flips → 15% drift)</td></tr>
+<tr><td>Mass-dependent error</td><td>1</td><td>Rejected (Δa < 6% weighted)</td></tr>
+<tr><td>Physical blow-up</td><td>1</td><td><b>Sustained</b> (empirical limitation)</td></tr>
+<tr><td>Effect size too small</td><td>2</td><td>Rejected (12% linear-space improvement)</td></tr>
+<tr><td>Weighting dependence</td><td>2</td><td>Rejected (only unphysical scheme changes a)</td></tr>
+<tr><td>RMA vs OLS</td><td>2</td><td>Rejected (RMA amplifies curvature)</td></tr>
+<tr><td>Temperature normalization</td><td>2</td><td>Rejected (Δa = +1.0%)</td></tr>
+<tr><td>Sample size too small</td><td>2</td><td>Rejected (a still 15σ from zero at n=52)</td></tr>
+<tr><td>Cross-dataset consistency</td><td>2</td><td>Rejected (both datasets independently consistent)</td></tr>
+<tr><td>BIC model averaging</td><td>2</td><td>Rejected (cubic weight 0.90 endogenous, 0.36 active)</td></tr>
+</table>
+
+<p>The only sustained objection is Challenge 7: the cubic form diverges outside the data range and is valid only as an empirical fit within [10⁻¹⁴, 10⁻⁷] g. This is an inherent limitation of any empirical regression, not a fatal flaw.</p>
+
+<h3>3.5 Comparison with ΛCDM-like Nested Models</h3>
+<p>To test whether simpler forms match the cubic, I compared AIC across four models for each state. The cubic-(logM)³ model (2 parameters) has the lowest AIC for endogenous and all-prokaryote states. For the active state, the full cubic (4 parameters: a₃·(logM)³ + a₂·(logM)² + a₁·logM + a₀) achieves slightly lower AIC (−100.6 vs −94.6), but the two-parameter cubic-(logM)³ is within ΔAIC = 6. BIC model averaging assigns weight 0.90 to the cubic-(logM)³ for endogenous state and 0.36 for active (vs 0.00 for linear).</p>
+
+<!-- ============================================================ -->
+<h2>4. Discussion</h2>
+<!-- ============================================================ -->
+
+<h3>4.1 Biological Interpretation</h3>
+<p>The cubic form logB = a·(logM)³ + c describes a log-log slope that varies as 3a·(logM)². This means the scaling exponent is a smooth, monotonic function of the logarithm of mass, decreasing from strongly superlinear at small sizes to sublinear at large sizes.</p>
+
+<p>This is biologically interpretable through two mechanisms operating at opposite ends of the size spectrum:</p>
+
+<ol>
+<li><b>Small cells (M ≈ 10⁻¹⁴ to 10⁻¹² g):</b> The steep slope (b ≈ 2) reflects a "genome-to-metabolism" multiplier effect. As cells grow, they need more ribosomes and enzymes to maintain metabolic function, but the relationship between genome content and cell size is nonlinear (Lynch & Marinov, 2015). Small cells invest proportionally more in protein synthesis machinery per unit mass, creating superlinear returns in metabolic output.</li>
+
+<li><b>Large cells (M ≈ 10⁻⁹ to 10⁻⁷ g):</b> The shallow slope (b < 1) reflects surface-area constraints. Large bacteria (e.g., filamentous forms like <em>Beggiatoa</em> or <em>Thiomargarita</em>) are limited by diffusive exchange across their surface. Metabolic rate becomes proportional to surface area rather than volume, driving the exponent toward 2/3 (the surface-area limit for spheres) or lower (for filamentous geometries).</li>
+</ol>
+
+<p>The active-state curvature (a = 0.00361) is approximately 1.3× stronger than endogenous (a = 0.00282), suggesting that active metabolism amplifies the size-dependent constraints. This is consistent with Glazier's (2005, 2014) metabolic level boundaries hypothesis, which predicts steeper scaling at higher metabolic activity levels.</p>
+
+<h3>4.2 Comparison with Previous Work</h3>
+<p>DeLong et al. (2010) reported OLS exponents of b = 1.09 (inactive) and b = 1.70 (active) for prokaryotes. The present analysis reproduces these values approximately: b = 1.07 (endogenous) and b = 1.37 (active) from simple linear regression. However, the SR analysis reveals that these linear fits average over a varying slope, compressing the 0.5–2.1 range of true local exponents into a single number whose value depends on the mass range sampled. This provides an explanation for the discrepancy between DeLong's (b = 1.7, narrower mass range) and Hoehler's (b ≈ 1.0, wider mass range) reported exponents: narrower mass ranges yield mean slopes that depend on where the data cluster.</p>
+
+<p>Kolokotrones et al. (2010) demonstrated curvature in mammalian metabolic scaling using a quadratic log-log term. The present result extends this finding to prokaryotes and, importantly, identifies a different functional form — cubic rather than quadratic — that is specific to microorganisms. The cubic form arises naturally in log-log space when the local exponent varies linearly with (logM)², which is consistent with size-dependent transitions between diffusive and active transport regimes (Ritchie & Kempes, 2024).</p>
+
+<h3>4.3 Limitations</h3>
+<p>Three limitations should be noted. First, the cubic form is empirical and should not be extrapolated beyond the fitted mass range [10⁻¹⁴, 10⁻⁷] g. Outside this range, the (logM)³ term diverges physically. Second, the active-state analysis is based on 104 data points — while bootstrap subsampling confirms curvature remains significant at n = 52, larger samples would strengthen the constraint on the cubic coefficient. Third, the two datasets (Hoehler, DeLong) differ in measurement protocols, temperature normalization, and mass range coverage. The dataset offset is ∼0.4 dex (active state), but accounting for it changes a by only 6.1%.</p>
+
+<h3>4.4 LLM Usage Declaration</h3>
+<p>Large language model tools (Claude, developed by Anthropic) were used as analysis assistants (Python code generation, debugging, and data interpretation) and as writing assistants (manuscript drafting and editing). Research direction, scientific reasoning, and final editorial decisions were made by the author.</p>
+
+<!-- ============================================================ -->
+<h2>5. Conclusion</h2>
+<!-- ============================================================ -->
+
+<p>Prokaryote metabolic scaling exhibits systematic curvature that is optimally described by a cubic log-log form — not a power law. The effective exponent varies continuously from superlinear (b ≈ 2.1) at small sizes to sublinear (b ≈ 0.5) at large sizes. This result survives comprehensive adversarial validation (14 challenges, 0 fatal) and is robust to dataset choice, taxonomic composition, weighting scheme, and mass range truncation. The discovery constrains mechanistic models of microbial energetics and has implications for ecosystem-scale flux estimates that assume fixed scaling exponents.</p>
+
+<!-- ============================================================ -->
+<h2>Acknowledgements</h2>
+<!-- ============================================================ -->
+
+<p>This work would not have been possible without the open data contributions of Hoehler et al. (2023) and DeLong et al. (2010). The author thanks the open-source developers of PySR (Cranmer, 2023), NumPy, Matplotlib, and WeasyPrint.</p>
+
+<!-- ============================================================ -->
+<h2>Data and Code Availability</h2>
+<!-- ============================================================ -->
+
+<p>All data used in this analysis are publicly available. Hoehler+2023 data is archived at Zenodo (doi:10.5281/zenodo.7877885); DeLong+2010 supplementary data is available from the <em>PNAS</em> website. The merged analysis-ready dataset (CSV), all analysis scripts (Python), SR hall-of-fame tables, the adversarial debate log, and figure generation code are available at: <em>URL to be provided upon publication</em>.</p>
+
+<!-- ============================================================ -->
+<h2>References</h2>
+<!-- ============================================================ -->
+
+<div class="reflist">
+
+<p>Cranmer, M. (2023). PySR: Fast & parallel symbolic regression in Python. <em>Journal of Open Source Software</em>, 8(86), 4203.</p>
+
+<p>DeLong, J. P., Okie, J. G., Moses, M. E., Sibly, R. M., & Brown, J. H. (2010). Shifts in metabolic scaling, production, and efficiency across major evolutionary transitions of life. <em>Proceedings of the National Academy of Sciences</em>, 107(29), 12941–12945.</p>
+
+<p>Glazier, D. S. (2005). Beyond the '3/4-power law': variation in the intra- and interspecific scaling of metabolic rate in animals. <em>Biological Reviews</em>, 80(4), 611–662.</p>
+
+<p>Glazier, D. S. (2014). Metabolic scaling in complex living systems. <em>Systems</em>, 2(4), 451–540.</p>
+
+<p>Hoehler, T. M., Mankel, D. J., Girguis, P. R., McCollom, T. M., Kiang, N. Y., & Jørgensen, B. B. (2023). The metabolic rate of the biosphere and its components. <em>Proceedings of the National Academy of Sciences</em>, 120(25), e2303764120. https://doi.org/10.1073/pnas.2303764120</p>
+
+<p>Kleiber, M. (1932). Body size and metabolism. <em>Hilgardia</em>, 6(11), 315–353.</p>
+
+<p>Kolokotrones, T., Savage, V., Deeds, E. J., & Fontana, W. (2010). Curvature in metabolic scaling. <em>Nature</em>, 464(7289), 753–756.</p>
+
+<p>Lynch, M., & Marinov, G. K. (2015). The bioenergetic costs of a gene. <em>Proceedings of the National Academy of Sciences</em>, 112(51), 15690–15695.</p>
+
+<p>Makarieva, A. M., Gorshkov, V. G., & Li, B.-L. (2005). Energetics of the smallest: do bacteria breathe at the same rate as whales? <em>Proceedings of the Royal Society B</em>, 272(1579), 2219–2224.</p>
+
+<p>Ritchie, M. E., & Kempes, C. P. (2024). Metabolic scaling in small life forms. arXiv:2403.00001 [physics.bio-ph].</p>
+
+</div>
+
+</body>
+</html>

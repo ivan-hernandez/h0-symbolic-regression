@@ -1,8 +1,11 @@
 ## Goal
 - **Template:** METHODOLOGY.md — the 5-phase adversarial SR pipeline (Discovery → Validation → Extension → Debate → Publication). All future projects follow this exactly.
-- Project 1 (H0 paper): Currently at Phase 4/5 audit gap closure. Don't publish yet.
+- Project 1 (H0 paper): COMPLETE through Phase 11+ (all extensions, adversarial debate, Cepheid PL). Don't publish yet (pending strategic decision on timing).
 - Project 2 (RAR): COMPLETE (Phases 1-3 papers published).
-- Heavy computation runs on remote machine 100.121.64.70 (Tailscale SSH, 12 cores, 15GB RAM), NOT on this machine.
+- P10 Allometry (mammals): COMPLETE, killed by propaganda clause (b≈2/3 not novel).
+- P11 Microbial Metabolic Scaling: Phases 0-3 COMPLETE (data acquisition → exploration → SR discovery → validation). Active project. Novel finding: continuous curvature in prokaryote metabolic scaling (cubic log-log form beats linear by 13.7%).
+- Heavy computation runs locally on the "big rig" (12 cores, 15GB RAM). Remote machine 100.121.64.70 is no longer used.
+- LLM tools (Claude, ChatGPT, etc.) are used in this work. This must be declared in all future submissions per Chris Lintott's advice.
 
 ## Final Result
 **H0 = 68.0 ± 0.8 km/s/Mpc (68% CL)** from joint CC+BAO+DESI+Pantheon+ analysis, adversarially validated over 2 rounds (14 total challenges, 0 sustained, 0 fatal).

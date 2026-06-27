@@ -1,0 +1,87 @@
+group,state,species,mass_g,metabolic_rate_W
+metazoan,endogenous,Asterias rubens,10.0,0.00223
+metazoan,active,Acartia clausi,4.01e-05,4.63e-06
+metazoan,endogenous,Parastichopus japonicus,50.0,0.0014
+metazoan,active,Asellus aquaticus,0.0168,4.42e-05
+metazoan,endogenous,Homarus americanus,500.0,0.067
+metazoan,active,Bathycalanus sp.,0.138,0.00334
+metazoan,endogenous,Pachygrapsus crassipes,10.0,0.0024
+metazoan,active,Bosmina longirostris,7.69e-06,7e-08
+metazoan,endogenous,Uca pugilator,0.784,0.000352
+metazoan,active,Brachionus calyciflorus,1.54e-06,2.16e-08
+metazoan,endogenous,Erpobdella octoculata,0.03,2.23e-05
+metazoan,active,Brachionus plicatilis,3.08e-06,3.31e-08
+metazoan,endogenous,Glossiphonia complanata,0.03,2.76e-05
+metazoan,active,(megalops),0.009,1.14e-05
+metazoan,endogenous,Arenicola marina,1.0,0.000346
+metazoan,active,kugenumaensis,0.0996,1.06e-05
+metazoan,endogenous,Clymenella torquata,0.1,0.00011
+metazoan,active,Calanoides carinatus,0.001,3.7e-06
+metazoan,endogenous,Mercenaria mercenaria,1.0,0.000592
+metazoan,active,Calanus finmarchicus,0.00178,6.53e-05
+metazoan,endogenous,Mytilus edulis,1.0,0.000427
+metazoan,active,Calanus gracilis,0.00415,3.97e-06
+metazoan,endogenous,Crepidula fornicata,1.0,0.000152
+metazoan,active,Calanus hyperboreus,0.0199,7.82e-05
+metazoan,endogenous,Helix pomatia,0.1,0.000151
+metazoan,active,Calanus pacificus (F),0.00138,5.03e-06
+metazoan,endogenous,Crenobia alpina,0.01,6.7e-06
+metazoan,active,Calanus pacificus (II),7.69e-05,3.75e-07
+metazoan,endogenous,Polycelis felina,0.01,9.49e-06
+metazoan,active,Calanus pacificus (IV),0.0002,7.33e-07
+metazoan,endogenous,Calanus pacificus (N1),7.69e-06,3.41e-07
+metazoan,endogenous,Calanus pacificus (V),0.000338,2.21e-06
+metazoan,endogenous,Calanus sp.,0.0122,1.37e-05
+metazoan,endogenous,Candacia spp.,0.00192,3.61e-06
+metazoan,endogenous,Cavolinia inflexa,0.01,7.34e-06
+metazoan,endogenous,Centropages hamatus,7.01e-05,1.07e-06
+metazoan,endogenous,Centropages typicus,6.63e-05,1.34e-06
+metazoan,endogenous,Daphnia ambigua,3.54e-05,3.88e-07
+metazoan,endogenous,Daphnia carinata,0.000482,9.22e-07
+metazoan,endogenous,Daphnia galeata,9.23e-05,7.3e-07
+metazoan,endogenous,Daphnia magna,0.000939,5.17e-06
+metazoan,endogenous,Daphnia pulex,0.000462,1.95e-06
+metazoan,endogenous,Diacria trispinosa,0.117,5.16e-05
+metazoan,endogenous,Epilabidocera amphitrites,0.00385,0.000692
+metazoan,endogenous,Euchaeta spp.,0.00623,5.9e-06
+metazoan,endogenous,Euchirella rostrata,0.00594,0.000159
+metazoan,endogenous,Euclio pyramidata,0.0231,4.78e-05
+metazoan,endogenous,Euphausia pacifica,0.152,0.000313
+metazoan,endogenous,Eurytemora herdmani,4.94e-05,7.24e-07
+metazoan,endogenous,Euthemisto compressa,0.0364,0.0019
+metazoan,endogenous,Gammarus fossarum,0.0419,6.9e-05
+metazoan,endogenous,Gammarus lacustris,0.151,9.56e-05
+metazoan,endogenous,Gammarus pulex,0.0658,0.000175
+metazoan,endogenous,Gammarus roeseli,0.0992,0.000138
+metazoan,endogenous,Homarus americanus,218.0,0.0439
+metazoan,endogenous,Hyas araneus,13.0,0.000643
+metazoan,endogenous,Hyperia galba,0.051,0.00155
+metazoan,endogenous,Jasus edwardsii,700.0,0.0248
+metazoan,endogenous,Libinia emarginata,123.0,0.0243
+metazoan,endogenous,Limacina helicoides,0.0131,5.48e-06
+metazoan,endogenous,Meganyctiphanes norvegica,0.258,0.000497
+metazoan,endogenous,Nematoscelis atlantica,0.007,3.74e-05
+metazoan,endogenous,Niphargus sphagnicolus,0.0059,2.72e-05
+metazoan,endogenous,Oithona similus,7.46e-06,5.07e-08
+metazoan,endogenous,Oncaea sp.,3.08e-05,1.76e-07
+metazoan,endogenous,Pagrus major,0.02,0.00123
+metazoan,endogenous,Palaemon peringueyi,0.146,0.000414
+metazoan,endogenous,Paraeuchaeta norvegica,0.0315,0.000648
+metazoan,endogenous,Parathemisto pacifica,0.0127,3.27e-05
+metazoan,endogenous,Phronima sedentaria,0.305,0.000733
+metazoan,endogenous,Pleurobrachia bacheii,0.0877,2.22e-05
+metazoan,endogenous,Pleuromamma gracilis,0.00308,4.13e-06
+metazoan,endogenous,Pleuromamma robusta,0.00218,0.000271
+metazoan,endogenous,Pleuroncodes planipes,3.32,0.000804
+metazoan,endogenous,Pseudocalanus minutus,6.32e-05,8.33e-07
+metazoan,endogenous,Rhincalanus nasutus,0.0075,0.000259
+metazoan,endogenous,Sagitta elegana,0.011,1.41e-05
+metazoan,endogenous,Sergestes sp.,0.529,0.000748
+metazoan,endogenous,Simocephalus vetulus,0.000396,4.22e-07
+metazoan,endogenous,Solea senegalensis,70.0,0.00231
+metazoan,endogenous,Systellaspis debilis,0.369,0.000572
+metazoan,endogenous,Temora longicornis,6.17e-05,1.25e-06
+metazoan,endogenous,Themisto sp.,0.0615,0.000221
+metazoan,endogenous,Tomopteris septentrionalis,0.0432,9.66e-05
+metazoan,endogenous,Tortanus discaudalus,8.9e-05,2.08e-06
+metazoan,endogenous,Triops longicaudatus,0.364,0.00085

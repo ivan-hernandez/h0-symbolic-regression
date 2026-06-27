@@ -1,0 +1,247 @@
+Class,Domain,Family,Genus,Kingdom,Mean_Carbon_Mass,Mean_Dry_Mass,Mean_Mass,Mean_Mass_Specific,Mean_Mass_Specific_25,Mean_Mass_Specific_Carbon,Mean_Mass_Specific_Carbon_25,Mean_Mass_Specific_Dry,Mean_Mass_Specific_Dry_25,Mean_Metabolic_Rate,Mean_Metabolic_Rate_25,Number,Order,Phylum,Rate,Species,Type,index
+Thermoprotei,Archaea,Sulfolobaceae,Sulfolobus,Archaea,,,,,,,,,,,,232,Sulfolobales,Crenarchaeota,Endogenous,Sulfolobus acidocalcadareus,Archaea,231
+Thermoprotei,Archaea,Sulfolobaceae,Sulfolobus,Archaea,,,,,,,,,,,,233,Sulfolobales,Crenarchaeota,Endogenous,Sulfolobus sp. 1,Archaea,232
+Halobacteria,Archaea,Halobacteriaceae,Halobacterium,Archaea,,,,,,,,,,,,234,Halobacteriales,Euryarchaeota,Endogenous,Halobacterium salinarum,Archaea,233
+Methanobacteria,Archaea,Methanobacteriaceae,Methanobacterium,Archaea,,,,,,,,,,,,235,Methanobacteriales,Euryarchaeota,Maintenance,Methanobacterium formicicum,Archaea,234
+Methanobacteria,Archaea,Methanobacteriaceae,Methanobacterium,Archaea,,,,,,,,,,,,236,Methanobacteriales,Euryarchaeota,Maximum,Methanothermobacter thermautotrophicus,Archaea,235
+Methanobacteria,Archaea,Methanobacteriaceae,Methanothermobacter,Archaea,,,,,,,,,,,,237,Methanobacteriales,Euryarchaeota,Maintenance,Methanothermobacter thermautotrophicus,Archaea,236
+Thermoplasmata,Archaea,Picrophilaceae,Picrophilus,Archaea,,,,,,,,,,,,238,Thermoplasmatales,Euryarchaeota,Endogenous,Picrophilus oshimae,Archaea,237
+Thermoplasmata,Archaea,Picrophilaceae,Picrophilus,Archaea,,,,,,,,,,,,239,Thermoplasmatales,Euryarchaeota,Growing,Picrophilus oshimae,Archaea,238
+Methanomicrobia,Archaea,Methanospirillaceae,Methanospirillum,Archaea,,,,,,,,,,,,240,Methanomicrobiales,Euryarchaeota,"Maintenance, flushed chemostat",Methanospirillum hungatei,Bacteria,239
+Methanomicrobia,Archaea,Methanospirillaceae,Methanospirillum,Archaea,,,,,,,,,,,,241,Methanomicrobiales,Euryarchaeota,"Maintenance, nonflushed chemostat",Methanospirillum hungatei,Bacteria,240
+Actinobacteria,Bacteria,Corynebacteriaceae,Corynebacterium,Bacteria,,,,,,,,,,,,242,Actinomycetales,Actinobacteria,Growing,Corynebacterium sp. 2,Bacteria,241
+Actinobacteria,Bacteria,Micrococcaceae,Arthrobacter,Bacteria,,,,,,,,,,,,243,Actinomycetales,Actinobacteria,Endogenous,Arthrobacter crystallopoietes,Bacteria,242
+Actinobacteria,Bacteria,Micrococcaceae,Arthrobacter,Bacteria,,,,,,,,,,,,244,Actinomycetales,Actinobacteria,Endogenous,Arthrobacter globiformis,Bacteria,243
+Actinobacteria,Bacteria,Micrococcaceae,Arthrobacter,Bacteria,,,,,,,,,,,,245,Actinomycetales,Actinobacteria,Endogenous,Arthrobacter sp. 1,Bacteria,244
+Actinobacteria,Bacteria,Micrococcaceae,Arthrobacter,Bacteria,,,,,,,,,,,,246,Actinomycetales,Actinobacteria,Endogenous,Arthrobacter sp. 2,Bacteria,245
+Actinobacteria,Bacteria,Micrococcaceae,Micrococcus,Bacteria,,,,,,,,,,,,247,Actinomycetales,Actinobacteria,Endogenous,Micrococcus luteus,Bacteria,246
+Actinobacteria,Bacteria,Mycobacteriaceae,Mycobacterium,Bacteria,,,,,,,,,,,,248,Actinomycetales,Actinobacteria,Endogenous,Mycobacterium phlei,Bacteria,247
+Actinobacteria,Bacteria,Mycobacteriaceae,Mycobacterium,Bacteria,,,,,,,,,,,,249,Actinomycetales,Actinobacteria,Growing,Mycobacterium phlei,Bacteria,248
+Actinobacteria,Bacteria,Mycobacteriaceae,Mycobacterium,Bacteria,,,,,,,,,,,,250,Actinomycetales,Actinobacteria,Endogenous,Mycobacterium tuberculosis,Bacteria,249
+Actinobacteria,Bacteria,Nocardiaceae,Nocardia,Bacteria,,,,,,,,,,,,251,Actinomycetales,Actinobacteria,Endogenous,Nocardia corallina,Bacteria,250
+Actinobacteria,Bacteria,Nocardiaceae,Nocardia,Bacteria,,,,,,,,,,,,252,Actinomycetales,Actinobacteria,Endogenous,Nocardia farcinica,Bacteria,251
+Chlorobea,Bacteria,Chlorobiaceae,Chlorobium,Bacteria,,,,,,,,,,,,253,Chlorobiales,Chlorobi,Maintenance,Chlorobium BS-1,Bacteria,252
+Bacilli,Bacteria,Alicyclobacillaceae,Alicyclobacillus,Bacteria,,,,,,,,,,,,254,Bacillales,Firmicutes,Maintenance,Alicyclobacillus acidocaldarius,Bacteria,253
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,255,Bacillales,Firmicutes,Endogenous,Bacillus cereus,Bacteria,254
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,256,Bacillales,Firmicutes,Growing,Bacillus cereus,Bacteria,255
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,257,Bacillales,Firmicutes,Endogenous,Bacillus firmus,Bacteria,256
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,258,Bacillales,Firmicutes,Growing,Bacillus licheniformis,Bacteria,257
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,259,Bacillales,Firmicutes,Maintenance,Bacillus licheniformis,Bacteria,258
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,260,Bacillales,Firmicutes,Endogenous,Bacillus megaterium,Bacteria,259
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,261,Bacillales,Firmicutes,Maintenance,Bacillus megaterium d440,Bacteria,260
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,262,Bacillales,Firmicutes,Endogenous,Bacillus pumilus,Bacteria,261
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,263,Bacillales,Firmicutes,Maintenance,Bacillus stearothermphilus,Bacteria,262
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,264,Bacillales,Firmicutes,Endogenous,Bacillus subtilis,Bacteria,263
+Bacilli,Bacteria,Bacillaceae,Bacillus,Bacteria,,,,,,,,,,,,265,Bacillales,Firmicutes,Growing,Bacillus subtilis,Bacteria,264
+Bacilli,Bacteria,Bacillaceae,Geobacillus,Bacteria,,,,,,,,,,,,266,Bacillales,Firmicutes,Maximum,Geobacillus L300,Bacteria,265
+Bacilli,Bacteria,Bacillaceae,Geobacillus,Bacteria,,,,,,,,,,,,267,Bacillales,Firmicutes,Endogenous,Geobacillus stearothermophilus,Bacteria,266
+Bacilli,Bacteria,Bacillaceae,Parageobacillus,Bacteria,,,,,,,,,,,,268,Bacillales,Firmicutes,Maximum,Parageobacillus thermoglucosidasus,Bacteria,267
+Bacilli,Bacteria,Listeriaceae,Brochothrix,Bacteria,,,,,,,,,,,,269,Bacillales,Firmicutes,Maintenance,Brochothrix thermosphacta,Bacteria,268
+Bacilli,Bacteria,Paenibacillaceae,Paenibacillus,Bacteria,,,,,,,,,,,,270,Bacillales,Firmicutes,Growing,Paenibacillus macerans,Bacteria,269
+Bacilli,Bacteria,Paenibacillaceae,Paenibacillus,Bacteria,,,,,,,,,,,,271,Bacillales,Firmicutes,Maintenance,Paenibacillus polymyxa,Bacteria,270
+Bacilli,Bacteria,Paenibacillaceae,Paenibacillus,Bacteria,,,,,,,,,,,,272,Bacillales,Firmicutes,Endogenous,Paenibacillus popilliae,Bacteria,271
+Bacilli,Bacteria,Planococcaceae,Sporosarcina,Bacteria,,,,,,,,,,,,273,Bacillales,Firmicutes,Endogenous,Sporosarcina ureae,Bacteria,272
+Bacilli,Bacteria,Staphylococcaceae,Staphylococcus,Bacteria,,,,,,,,,,,,274,Bacillales,Firmicutes,Endogenous,Staphylococcus aureus,Bacteria,273
+Bacilli,Bacteria,Staphylococcaceae,Staphylococcus,Bacteria,,,,,,,,,,,,275,Bacillales,Firmicutes,Endogenous,Staphylococcus epidermidis,Bacteria,274
+Bacilli,Bacteria,Staphylococcaceae,Staphylococcus,Bacteria,,,,,,,,,,,,276,Bacillales,Firmicutes,Growing,Staphylococcus epidermidis,Bacteria,275
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,277,Lactobacillales,Firmicutes,Endogenous,Enterococcus cecorum,Bacteria,276
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,278,Lactobacillales,Firmicutes,Growing,Enterococcus cecorum,Bacteria,277
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,279,Lactobacillales,Firmicutes,Endogenous,Enterococcus faecalis,Bacteria,278
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,280,Lactobacillales,Firmicutes,Growing,Enterococcus faecalis,Bacteria,279
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,281,Lactobacillales,Firmicutes,Endogenous,Enterococcus sp. 1,Bacteria,280
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,282,Lactobacillales,Firmicutes,Growing,Enterococcus sp. RfL5,Bacteria,281
+Bacilli,Bacteria,Enterococcaceae,Enterococcus,Bacteria,,,,,,,,,,,,283,Lactobacillales,Firmicutes,Endogenous,Enterococcus sp. RfL6,Bacteria,282
+Bacilli,Bacteria,Lactobacillaceae,Lactobacillus,Bacteria,,,,,,,,,,,,284,Lactobacillales,Firmicutes,Endogenous,Lactobacillus brevis,Bacteria,283
+Bacilli,Bacteria,Lactobacillaceae,Lactobacillus,Bacteria,,,,,,,,,,,,285,Lactobacillales,Firmicutes,Growing,Lactobacillus casei,Bacteria,284
+Bacilli,Bacteria,Lactobacillaceae,Lactobacillus,Bacteria,,,,,,,,,,,,286,Lactobacillales,Firmicutes,Growing,Lactobacillus delbrueckii bulgaricus,Bacteria,285
+Bacilli,Bacteria,Lactobacillaceae,Lactobacillus,Bacteria,,,,,,,,,,,,287,Lactobacillales,Firmicutes,Growing,Lactobacillus plantarum,Bacteria,286
+Bacilli,Bacteria,Lactobacillaceae,Pediococcus,Bacteria,,,,,,,,,,,,288,Lactobacillales,Firmicutes,Endogenous,Pediococcus acidilactici,Bacteria,287
+Bacilli,Bacteria,Streptococcaceae,Lactococcus,Bacteria,,,,,,,,,,,,289,Lactobacillales,Firmicutes,Endogenous,Lactococcus lactis,Bacteria,288
+Bacilli,Bacteria,Streptococcaceae,Lactococcus,Bacteria,,,,,,,,,,,,290,Lactobacillales,Firmicutes,Growing,Lactococcus lactis,Bacteria,289
+Bacilli,Bacteria,Streptococcaceae,Lactococcus,Bacteria,,,,,,,,,,,,291,Lactobacillales,Firmicutes,Endogenous,Lactococcus sp. 1,Bacteria,290
+Bacilli,Bacteria,Streptococcaceae,Lactococcus,Bacteria,,,,,,,,,,,,292,Lactobacillales,Firmicutes,Growing,Lactococcus sp. TmLO4,Bacteria,291
+Bacilli,Bacteria,Streptococcaceae,Lactococcus,Bacteria,,,,,,,,,,,,293,Lactobacillales,Firmicutes,Endogenous,Lactococcus sp. TmLO5,Bacteria,292
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,294,Lactobacillales,Firmicutes,Endogenous,Streptococcus agalactiae,Bacteria,293
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,295,Lactobacillales,Firmicutes,Growing,Streptococcus agalactiae,Bacteria,294
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,296,Lactobacillales,Firmicutes,Endogenous,Streptococcus pneumoniae,Bacteria,295
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,297,Lactobacillales,Firmicutes,Growing,Streptococcus pneumoniae,Bacteria,296
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,298,Lactobacillales,Firmicutes,Endogenous,Streptococcus pyogenes,Bacteria,297
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,299,Lactobacillales,Firmicutes,Growing,Streptococcus pyogenes,Bacteria,298
+Bacilli,Bacteria,Streptococcaceae,Streptococcus,Bacteria,,,,,,,,,,,,300,Lactobacillales,Firmicutes,Growing,Streptococcus thermophilus,Bacteria,299
+Clostridia,Bacteria,Thermoanaerobacteraceae,Thermoanaerobacter,Bacteria,,,,,,,,,,,,301,Thermoanaerobacterales,Firmicutes,Maintenance,Thermoanaerobacter kivui,Bacteria,300
+Alphaproteobacteria,Bacteria,Bradyrhizobiaceae,Bradyrhizobium,Bacteria,,,,,,,,,,,,302,Rhizobiales,Proteobacteria,Endogenous,Bradyrhizobium japonicum,Bacteria,301
+Alphaproteobacteria,Bacteria,Bradyrhizobiaceae,Bradyrhizobium,Bacteria,,,,,,,,,,,,303,Rhizobiales,Proteobacteria,Growing,Bradyrhizobium sp. 1,Bacteria,302
+Alphaproteobacteria,Bacteria,Bradyrhizobiaceae,Nitrobacter,Bacteria,,,,,,,,,,,,304,Rhizobiales,Proteobacteria,Endogenous,Nitrobacter winogradskyi,Bacteria,303
+Alphaproteobacteria,Bacteria,Brucellaceae,Brucella,Bacteria,,,,,,,,,,,,305,Rhizobiales,Proteobacteria,Endogenous,Brucella melitensis,Bacteria,304
+Alphaproteobacteria,Bacteria,Methylobacteriaceae,Methylobacterium,Bacteria,,,,,,,,,,,,306,Rhizobiales,Proteobacteria,Endogenous,Methylobacterium extorquens,Bacteria,305
+Alphaproteobacteria,Bacteria,Methylocystaceae,Methylosinus,Bacteria,,,,,,,,,,,,307,Rhizobiales,Proteobacteria,Endogenous,Methylosinus trichosporium,Bacteria,306
+Alphaproteobacteria,Bacteria,Methylocystaceae,Methylosinus,Bacteria,,,,,,,,,,,,308,Rhizobiales,Proteobacteria,Growing,Methylosinus trichosporium,Bacteria,307
+Alphaproteobacteria,Bacteria,Phyllobacteriaceae,Aminobacter,Bacteria,,,,,,,,,,,,309,Rhizobiales,Proteobacteria,Endogenous,Aminobacter lissarensis,Bacteria,308
+Alphaproteobacteria,Bacteria,Rhizobiaceae,Agrobacterium,Bacteria,,,,,,,,,,,,310,Rhizobiales,Proteobacteria,Endogenous,Agrobacterium tumefaciens,Bacteria,309
+Alphaproteobacteria,Bacteria,Rhizobiaceae,Rhizobium,Bacteria,,,,,,,,,,,,311,Rhizobiales,Proteobacteria,Endogenous,Rhizobium leguminosarum,Bacteria,310
+Alphaproteobacteria,Bacteria,Rhizobiaceae,Rhizobium,Bacteria,,,,,,,,,,,,312,Rhizobiales,Proteobacteria,Growing,Rhizobium leguminosarum,Bacteria,311
+Alphaproteobacteria,Bacteria,Rhizobiaceae,Sinorhizobium,Bacteria,,,,,,,,,,,,313,Rhizobiales,Proteobacteria,Endogenous,Sinorhizobium meliloti,Bacteria,312
+Alphaproteobacteria,Bacteria,Xanthobacteraceae,Azorhizobium,Bacteria,,,,,,,,,,,,314,Rhizobiales,Proteobacteria,Endogenous,Azorhizobium caulinodans,Bacteria,313
+Alphaproteobacteria,Bacteria,Rhodobacteraceae,Paracoccus,Bacteria,,,,,,,,,,,,315,Rhodobacterales,Proteobacteria,Endogenous,Paracoccus denitrificans,Bacteria,314
+Alphaproteobacteria,Bacteria,Rhodobacteraceae,Paracoccus,Bacteria,,,,,,,,,,,,316,Rhodobacterales,Proteobacteria,Maintenance,Paracoccus denitrificans,Bacteria,315
+Alphaproteobacteria,Bacteria,Rhodobacteraceae,Rhodobacter,Bacteria,,,,,,,,,,,,317,Rhodobacterales,Proteobacteria,Endogenous,Rhodobacter sphaeroides,Bacteria,316
+Alphaproteobacteria,Bacteria,Rhodobacteraceae,Rhodobacter,Bacteria,,,,,,,,,,,,318,Rhodobacterales,Proteobacteria,Growing,Rhodobacter sphaeroides,Bacteria,317
+Alphaproteobacteria,Bacteria,Rhodobacteraceae,Rhodobacter,Bacteria,,,,,,,,,,,,319,Rhodobacterales,Proteobacteria,Maintenance,Rhodobacter sphaeroides,Bacteria,318
+Alphaproteobacteria,Bacteria,Acetobacteraceae,Acetobacter,Bacteria,,,,,,,,,,,,320,Rhodospirillales,Proteobacteria,Endogenous,Acetobacter aceti,Bacteria,319
+Alphaproteobacteria,Bacteria,Acetobacteraceae,Acidiphilium,Bacteria,,,,,,,,,,,,321,Rhodospirillales,Proteobacteria,Maintenance,Acidiphilium acidophilum,Bacteria,320
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Azospirillum,Bacteria,,,,,,,,,,,,322,Rhodospirillales,Proteobacteria,Endogenous,Azospirillum brasilense,Bacteria,321
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Azospirillum,Bacteria,,,,,,,,,,,,323,Rhodospirillales,Proteobacteria,Growing,Azospirillum brasilense,Bacteria,322
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Azospirillum,Bacteria,,,,,,,,,,,,324,Rhodospirillales,Proteobacteria,Endogenous,Azospirillum brasiliense,Bacteria,323
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Azospirillum,Bacteria,,,,,,,,,,,,325,Rhodospirillales,Proteobacteria,Endogenous,Azospirillum lipoferum,Bacteria,324
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Azospirillum,Bacteria,,,,,,,,,,,,326,Rhodospirillales,Proteobacteria,Growing,Azospirillum lipoferum,Bacteria,325
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Novispirillum,Bacteria,,,,,,,,,,,,327,Rhodospirillales,Proteobacteria,Endogenous,Novispirillum itersonii,Bacteria,326
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Phaeospirillum,Bacteria,,,,,,,,,,,,328,Rhodospirillales,Proteobacteria,Endogenous,Phaeospirillum fulvum,Bacteria,327
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Phaeospirillum,Bacteria,,,,,,,,,,,,329,Rhodospirillales,Proteobacteria,Growing,Phaeospirillum fulvum,Bacteria,328
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Rhodospirillum,Bacteria,,,,,,,,,,,,330,Rhodospirillales,Proteobacteria,Endogenous,Rhodospirillum rubrum,Bacteria,329
+Alphaproteobacteria,Bacteria,Rhodospirillaceae,Rhodospirillum,Bacteria,,,,,,,,,,,,331,Rhodospirillales,Proteobacteria,Growing,Rhodospirillum rubrum,Bacteria,330
+Alphaproteobacteria,Bacteria,Sphingomonadaceae,Novosphingobium,Bacteria,,,,,,,,,,,,332,Sphingomonadales,Proteobacteria,Endogenous,Novosphingobium capsulatum,Bacteria,331
+Alphaproteobacteria,Bacteria,Sphingomonadaceae,Zymomonas,Bacteria,,,,,,,,,,,,333,Sphingomonadales,Proteobacteria,Growing,Zymomonas mobilis,Bacteria,332
+Betaproteobacteria,Bacteria,Alcaligenaceae,Achromobacter,Bacteria,,,,,,,,,,,,334,Burkholderiales,Proteobacteria,Endogenous,Achromobacter ruhlandii,Bacteria,333
+Betaproteobacteria,Bacteria,Alcaligenaceae,Achromobacter,Bacteria,,,,,,,,,,,,335,Burkholderiales,Proteobacteria,Endogenous,Achromobacter sp. 1,Bacteria,334
+Betaproteobacteria,Bacteria,Alcaligenaceae,Achromobacter,Bacteria,,,,,,,,,,,,336,Burkholderiales,Proteobacteria,Endogenous,Achromobacter viscosus,Bacteria,335
+Betaproteobacteria,Bacteria,Alcaligenaceae,Achromobacter,Bacteria,,,,,,,,,,,,337,Burkholderiales,Proteobacteria,Endogenous,Achromobacter xerosis,Bacteria,336
+Betaproteobacteria,Bacteria,Alcaligenaceae,Taylorella,Bacteria,,,,,,,,,,,,338,Burkholderiales,Proteobacteria,Endogenous,Taylorella equigenitalis,Bacteria,337
+Betaproteobacteria,Bacteria,Burkholderiaceae,Alcaligenes,Bacteria,,,,,,,,,,,,339,Burkholderiales,Proteobacteria,Endogenous,Cupriavidus necator,Bacteria,338
+Betaproteobacteria,Bacteria,Burkholderiaceae,Burkholderia,Bacteria,,,,,,,,,,,,340,Burkholderiales,Proteobacteria,Endogenous,Burkholderia sp. 1,Bacteria,339
+Betaproteobacteria,Bacteria,Burkholderiaceae,Burkholderia,Bacteria,,,,,,,,,,,,341,Burkholderiales,Proteobacteria,Growing,Burkholderia sp. JT1499,Bacteria,340
+Betaproteobacteria,Bacteria,Burkholderiaceae,Burkholderia,Bacteria,,,,,,,,,,,,342,Burkholderiales,Proteobacteria,Endogenous,Burkholderia sp. JT1500,Bacteria,341
+Betaproteobacteria,Bacteria,Comamonadaceae,Acidovorax,Bacteria,,,,,,,,,,,,343,Burkholderiales,Proteobacteria,Endogenous,Acidovorax facilis,Bacteria,342
+Betaproteobacteria,Bacteria,Comamonadaceae,Delftia,Bacteria,,,,,,,,,,,,344,Burkholderiales,Proteobacteria,Endogenous,Delftia acidovorans,Bacteria,343
+Betaproteobacteria,Bacteria,NaN,Sphaerotilus,Bacteria,,,,,,,,,,,,345,Burkholderiales,Proteobacteria,Endogenous,Sphaerotilus natans,Bacteria,344
+Betaproteobacteria,Bacteria,NaN,Thiomonas,Bacteria,,,,,,,,,,,,346,Burkholderiales,Proteobacteria,Endogenous,Thiomonas intermedia,Bacteria,345
+Betaproteobacteria,Bacteria,Hydrogenophilaceae,Thiobacillus,Bacteria,,,,,,,,,,,,347,Hydrogenophilales,Proteobacteria,Maintenance,Thiobacillus denitrificans,Bacteria,346
+Betaproteobacteria,Bacteria,Hydrogenophilaceae,Thiobacillus,Bacteria,,,,,,,,,,,,348,Hydrogenophilales,Proteobacteria,Maintenance,Thiobacillus ferroxydans,Bacteria,347
+Betaproteobacteria,Bacteria,Methylophilaceae,Methylophilus,Bacteria,,,,,,,,,,,,349,Methylophilales,Proteobacteria,Endogenous,Methylophilus methylotrophus,Bacteria,348
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,350,Neisseriales,Proteobacteria,Endogenous,Neisseria elongata,Bacteria,349
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,351,Neisseriales,Proteobacteria,Endogenous,Neisseria flava,Bacteria,350
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,352,Neisseriales,Proteobacteria,Endogenous,Neisseria gonorrhoeae,Bacteria,351
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,353,Neisseriales,Proteobacteria,Growing,Neisseria gonorrhoeae,Bacteria,352
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,354,Neisseriales,Proteobacteria,Growing,Neisseria meningitidis,Bacteria,353
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,355,Neisseriales,Proteobacteria,Endogenous,Neisseria mucosa,Bacteria,354
+Betaproteobacteria,Bacteria,Neisseriaceae,Neisseria,Bacteria,,,,,,,,,,,,356,Neisseriales,Proteobacteria,Endogenous,Neisseria sicca,Bacteria,355
+Betaproteobacteria,Bacteria,Nitrosomonadaceae,Nitrosomonas,Bacteria,,,,,,,,,,,,357,Nitrosomonadales,Proteobacteria,Endogenous,Nitrosomonas europaea,Bacteria,356
+Deltaproteobacteria,Bacteria,Bdellovibrionaceae,Bdellovibrio,Bacteria,,,,,,,,,,,,358,Bdellovibrionales,Proteobacteria,Endogenous,Bdellovibrio bacteriovorus,Bacteria,357
+Deltaproteobacteria,Bacteria,Bdellovibrionaceae,Bdellovibrio,Bacteria,,,,,,,,,,,,359,Bdellovibrionales,Proteobacteria,Growing,Bdellovibrio bacteriovorus,Bacteria,358
+Deltaproteobacteria,Bacteria,Desulfobulbaceae,Desulfobulbus,Bacteria,,,,,,,,,,,,360,Desulfobacterales,Proteobacteria,Endogenous,Desulfobulbus propionicus,Bacteria,359
+Deltaproteobacteria,Bacteria,Desulfobulbaceae,Desulfobulbus,Bacteria,,,,,,,,,,,,361,Desulfobacterales,Proteobacteria,Growing,Desulfobulbus propionicus,Bacteria,360
+Deltaproteobacteria,Bacteria,Desulfovibrionaceae,Desulfovibrio,Bacteria,,,,,,,,,,,,362,Desulfovibrionales,Proteobacteria,Endogenous,Desulfovibrio desulfuricans,Bacteria,361
+Deltaproteobacteria,Bacteria,Desulfovibrionaceae,Desulfovibrio,Bacteria,,,,,,,,,,,,363,Desulfovibrionales,Proteobacteria,Endogenous,Desulfovibrio gigas,Bacteria,362
+Deltaproteobacteria,Bacteria,Desulfovibrionaceae,Desulfovibrio,Bacteria,,,,,,,,,,,,364,Desulfovibrionales,Proteobacteria,Endogenous,Desulfovibrio salexigens,Bacteria,363
+Deltaproteobacteria,Bacteria,Myxococcaceae,Myxococcus,Bacteria,,,,,,,,,,,,365,Myxococcales,Proteobacteria,Endogenous,Myxococcus xanthus,Bacteria,364
+Deltaproteobacteria,Bacteria,Syntrophobacteraceae,Syntrophobacter,Bacteria,,,,,,,,,,,,366,Syntrophobacterales,Proteobacteria,"Maintenance, flushed chemostat",Syntrophobacter fumaroxidans,Bacteria,365
+Deltaproteobacteria,Bacteria,Syntrophobacteraceae,Syntrophobacter,Bacteria,,,,,,,,,,,,367,Syntrophobacterales,Proteobacteria,"Maintenance, nonflushed chemostat",Syntrophobacter fumaroxidans,Bacteria,366
+Epsilonproteobacteria,Bacteria,Helicobacteraceae,Thiovulum,Bacteria,,,,,,,,,,,,368,Campylobacterales,Proteobacteria,Growing,Thiovulum majus,Bacteria,367
+Gammaproteobacteria,Bacteria,Acidithiobacillaceae,Acidithiobacillus,Bacteria,,,,,,,,,,,,369,Acidithiobacillales,Proteobacteria,Endogenous,Acidithiobacillus ferrooxidans,Bacteria,368
+Gammaproteobacteria,Bacteria,Acidithiobacillaceae,Acidithiobacillus,Bacteria,,,,,,,,,,,,370,Acidithiobacillales,Proteobacteria,Growing,Acidithiobacillus ferrooxidans,Bacteria,369
+Gammaproteobacteria,Bacteria,Acidithiobacillaceae,Acidithiobacillus,Bacteria,,,,,,,,,,,,371,Acidithiobacillales,Proteobacteria,Endogenous,Acidithiobacillus thiooxidans,Bacteria,370
+Gammaproteobacteria,Bacteria,Pseudoalteromonadaceae,Pseudoalteromonas,Bacteria,,,,,,,,,,,,372,Alteromonadales,Proteobacteria,Growing,Pseudoalteromonas haloplanktis,Bacteria,371
+Gammaproteobacteria,Bacteria,Chromatiaceae,Allochromatium,Bacteria,,,,,,,,,,,,373,Chromatiales,Proteobacteria,Endogenous,Allochromatium vinosum,Bacteria,372
+Gammaproteobacteria,Bacteria,Chromatiaceae,Lamprocystis,Bacteria,,,,,,,,,,,,374,Chromatiales,Proteobacteria,Endogenous,Lamprocystis purpurea,Bacteria,373
+Gammaproteobacteria,Bacteria,Chromatiaceae,Thiocapsa,Bacteria,,,,,,,,,,,,375,Chromatiales,Proteobacteria,Endogenous,Thiocapsa pendens,Bacteria,374
+Gammaproteobacteria,Bacteria,Chromatiaceae,Thiocapsa,Bacteria,,,,,,,,,,,,376,Chromatiales,Proteobacteria,Endogenous,Thiocapsa rosea,Bacteria,375
+Gammaproteobacteria,Bacteria,Chromatiaceae,Thiocapsa,Bacteria,,,,,,,,,,,,377,Chromatiales,Proteobacteria,Endogenous,Thiocapsa roseopersicina,Bacteria,376
+Gammaproteobacteria,Bacteria,Chromatiaceae,Thiocystis,Bacteria,,,,,,,,,,,,378,Chromatiales,Proteobacteria,Endogenous,Thiocystis violacea,Bacteria,377
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Escherichia,Bacteria,,,,,,,,,,,,379,Enterobacterales,Proteobacteria,Maximum,Escherichia coli MG1655,Bacteria,378
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Salmonella,Bacteria,,,,,,,,,,,,380,Enterobacterales,Proteobacteria,Endogenous,Salmonella enterica subsp. enterica serovar Typhimurium,Bacteria,379
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Enterobacter,Bacteria,,,,,,,,,,,,381,Enterobacteriales,Proteobacteria,Endogenous,Enterobacter aerogenes,Bacteria,380
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Enterobacter,Bacteria,,,,,,,,,,,,382,Enterobacteriales,Proteobacteria,Maintenance,Enterobacter aerogenes,Bacteria,381
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Enterobacter,Bacteria,,,,,,,,,,,,383,Enterobacteriales,Proteobacteria,Endogenous,Enterobacter cloacae,Bacteria,382
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Escherichia,Bacteria,,,,,,,,,,,,384,Enterobacteriales,Proteobacteria,Endogenous,Escherichia coli,Bacteria,383
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Escherichia,Bacteria,,,,,,,,,,,,385,Enterobacteriales,Proteobacteria,Growing,Escherichia coli,Bacteria,384
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Escherichia,Bacteria,,,,,,,,,,,,386,Enterobacteriales,Proteobacteria,Maintenance,Escherichia coli,Bacteria,385
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Escherichia,Bacteria,,,,,,,,,,,,387,Enterobacteriales,Proteobacteria,Maximum,Escherichia coli W3110,Bacteria,386
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Klebsiella,Bacteria,,,,,,,,,,,,388,Enterobacteriales,Proteobacteria,Growing,Klebsiella aerogenes,Bacteria,387
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Klebsiella,Bacteria,,,,,,,,,,,,389,Enterobacteriales,Proteobacteria,Endogenous,Klebsiella pneumoniae,Bacteria,388
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Klebsiella,Bacteria,,,,,,,,,,,,390,Enterobacteriales,Proteobacteria,Maintenance,Klebsiella pneumoniae,Bacteria,389
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Morganella,Bacteria,,,,,,,,,,,,391,Enterobacteriales,Proteobacteria,Endogenous,Morganella morganii,Bacteria,390
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Proteus,Bacteria,,,,,,,,,,,,392,Enterobacteriales,Proteobacteria,Endogenous,Proteus vulgaris,Bacteria,391
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Serratia,Bacteria,,,,,,,,,,,,393,Enterobacteriales,Proteobacteria,Endogenous,Serratia marcescens,Bacteria,392
+Gammaproteobacteria,Bacteria,Enterobacteriaceae,Yersinia,Bacteria,,,,,,,,,,,,394,Enterobacteriales,Proteobacteria,Endogenous,Yersinia pestis,Bacteria,393
+Gammaproteobacteria,Bacteria,Legionellaceae,Legionella,Bacteria,,,,,,,,,,,,395,Legionellales,Proteobacteria,Endogenous,Legionella pneumophila,Bacteria,394
+Gammaproteobacteria,Bacteria,Methylococcaceae,Methylomicrobium,Bacteria,,,,,,,,,,,,396,Methylococcales,Proteobacteria,Endogenous,Methylomicrobium sp. 1,Bacteria,395
+Gammaproteobacteria,Bacteria,Halomonadaceae,Halomonas,Bacteria,,,,,,,,,,,,397,Oceanospirillales,Proteobacteria,Endogenous,Halomonas halodenitrificans,Bacteria,396
+Gammaproteobacteria,Bacteria,Pasteurellaceae,Haemophilus,Bacteria,,,,,,,,,,,,398,Pasteurellales,Proteobacteria,Endogenous,Haemophilus influenzae,Bacteria,397
+Gammaproteobacteria,Bacteria,Pasteurellaceae,Haemophilus,Bacteria,,,,,,,,,,,,399,Pasteurellales,Proteobacteria,Endogenous,Haemophilus parainfluenzae,Bacteria,398
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,400,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter baumannii,Bacteria,399
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,401,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter calcoaceticus,Bacteria,400
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,402,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter johnsonii,Bacteria,401
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,403,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter sp. 1,Bacteria,402
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,404,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter sp. 2,Bacteria,403
+Gammaproteobacteria,Bacteria,Moraxellaceae,Acinetobacter,Bacteria,,,,,,,,,,,,405,Pseudomonadales,Proteobacteria,Endogenous,Acinetobacter sp. 3,Bacteria,404
+Gammaproteobacteria,Bacteria,Moraxellaceae,Moraxella,Bacteria,,,,,,,,,,,,406,Pseudomonadales,Proteobacteria,Endogenous,Moraxella catarrhalis,Bacteria,405
+Gammaproteobacteria,Bacteria,Moraxellaceae,Moraxella,Bacteria,,,,,,,,,,,,407,Pseudomonadales,Proteobacteria,Endogenous,Moraxella osloensis,Bacteria,406
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Azomonas,Bacteria,,,,,,,,,,,,408,Pseudomonadales,Proteobacteria,Endogenous,Azomonas agilis,Bacteria,407
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Azomonas,Bacteria,,,,,,,,,,,,409,Pseudomonadales,Proteobacteria,Growing,Azomonas agilis,Bacteria,408
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Azotobacter,Bacteria,,,,,,,,,,,,410,Pseudomonadales,Proteobacteria,Endogenous,Azotobacter chroococcum,Bacteria,409
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Azotobacter,Bacteria,,,,,,,,,,,,411,Pseudomonadales,Proteobacteria,Growing,Azotobacter chroococcum,Bacteria,410
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Azotobacter,Bacteria,,,,,,,,,,,,412,Pseudomonadales,Proteobacteria,Endogenous,Azotobacter vinelandii,Bacteria,411
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Cellvibrio,Bacteria,,,,,,,,,,,,413,Pseudomonadales,Proteobacteria,Endogenous,Cellvibrio gilvus,Bacteria,412
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,414,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas aeruginosa,Bacteria,413
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,415,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas fluorescens,Bacteria,414
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,416,Pseudomonadales,Proteobacteria,Growing,Pseudomonas fluorescens,Bacteria,415
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,417,Pseudomonadales,Proteobacteria,Maintenance,Pseudomonas fluorescens,Bacteria,416
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,418,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas formicans,Bacteria,417
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,419,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas oleovorans,Bacteria,418
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,420,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas putida,Bacteria,419
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,421,Pseudomonadales,Proteobacteria,Growing,Pseudomonas putida,Bacteria,420
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,422,Pseudomonadales,Proteobacteria,Endogenous,Pseudomonas stutzeri,Bacteria,421
+Gammaproteobacteria,Bacteria,Pseudomonadaceae,Pseudomonas,Bacteria,,,,,,,,,,,,423,Pseudomonadales,Proteobacteria,Growing,Pseudomonas stutzeri,Bacteria,422
+Gammaproteobacteria,Bacteria,NaN,Unidentified,Bacteria,,,,,,,,,,,,424,Pseudomonadales,Proteobacteria,Endogenous,Unidentified bacterium,Bacteria,423
+Gammaproteobacteria,Bacteria,Francisellaceae,Francisella,Bacteria,,,,,,,,,,,,425,Thiotrichales,Proteobacteria,Endogenous,Francisella tularensis,Bacteria,424
+Gammaproteobacteria,Bacteria,Thiotrichaceae,Beggiatoa,Bacteria,,,,,,,,,,,,426,Thiotrichales,Proteobacteria,Endogenous,Beggiatoa sp. 1,Bacteria,425
+Gammaproteobacteria,Bacteria,Thiotrichaceae,Beggiatoa,Bacteria,,,,,,,,,,,,427,Thiotrichales,Proteobacteria,Growing,Beggiatoa sp. 1,Bacteria,426
+Gammaproteobacteria,Bacteria,Thiotrichaceae,Thiomargarita,Bacteria,,,,,,,,,,,,428,Thiotrichales,Proteobacteria,Endogenous,Thiomargarita namibiensis,Bacteria,427
+Gammaproteobacteria,Bacteria,Thiotrichaceae,Thioploca,Bacteria,,,,,,,,,,,,429,Thiotrichales,Proteobacteria,Endogenous,Thioploca araucae,Bacteria,428
+Gammaproteobacteria,Bacteria,Thiotrichaceae,Thioploca,Bacteria,,,,,,,,,,,,430,Thiotrichales,Proteobacteria,Growing,Thioploca araucae,Bacteria,429
+Gammaproteobacteria,Bacteria,Vibrionaceae,Aliivibrio,Bacteria,,,,,,,,,,,,431,Vibrionales,Proteobacteria,Endogenous,Aliivibrio fischeri,Bacteria,430
+Gammaproteobacteria,Bacteria,Vibrionaceae,Salinivibrio costicola,Bacteria,,,,,,,,,,,,432,Vibrionales,Proteobacteria,Endogenous,Sallinivibrio costicola,Bacteria,431
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,433,Vibrionales,Proteobacteria,Endogenous,Vibrio alginolyticus,Bacteria,432
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,434,Vibrionales,Proteobacteria,Endogenous,Vibrio anguillarum,Bacteria,433
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,435,Vibrionales,Proteobacteria,Growing,Vibrio anguillarum,Bacteria,434
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,436,Vibrionales,Proteobacteria,Endogenous,Vibrio metschnikovii,Bacteria,435
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,437,Vibrionales,Proteobacteria,Endogenous,Vibrio natriegens,Bacteria,436
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,438,Vibrionales,Proteobacteria,Growing,Vibrio natriegens,Bacteria,437
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,439,Vibrionales,Proteobacteria,Maximum,Vibrio natriegens,Bacteria,438
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,440,Vibrionales,Proteobacteria,Endogenous,Vibrio parahaemolyticus,Bacteria,439
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,441,Vibrionales,Proteobacteria,Endogenous,Vibrio sp. 1,Bacteria,440
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,442,Vibrionales,Proteobacteria,Growing,Vibrio sp. DW0,Bacteria,441
+Gammaproteobacteria,Bacteria,Vibrionaceae,Vibrio,Bacteria,,,,,,,,,,,,443,Vibrionales,Proteobacteria,Endogenous,Vibrio sp. DW1,Bacteria,442
+Gammaproteobacteria,Bacteria,Xanthomonadaceae,Xanthomonas,Bacteria,,,,,,,,,,,,444,Xanthomonadales,Proteobacteria,Endogenous,Xanthomonas axonopodis,Bacteria,443
+Spirochaetes,Bacteria,Leptospiraceae,Leptospira,Bacteria,,,,,,,,,,,,445,Spirochaetales,Spirochaetae,Growing,Leptospira sp. 1,Bacteria,444
+Mollicutes,Bacteria,Acholeplasmataceae,Acholeplasma,Bacteria,,,,,,,,,,,,446,Acholeplasmatales,Tenericutes,Endogenous,Acholeplasma laidlawii,Bacteria,445
+Mollicutes,Bacteria,Acholeplasmataceae,Acholeplasma,Bacteria,,,,,,,,,,,,447,Acholeplasmatales,Tenericutes,Growing,Acholeplasma laidlawii,Bacteria,446
+Mollicutes,Bacteria,Mycoplasmataceae,Mycoplasma,Bacteria,,,,,,,,,,,,448,Mycoplasmatales,Tenericutes,Growing,Mycoplasma bovis,Bacteria,447
+Mollicutes,Bacteria,Mycoplasmataceae,Mycoplasma,Bacteria,,,,,,,,,,,,449,Mycoplasmatales,Tenericutes,Growing,Mycoplasma capricolum,Bacteria,448
+Mollicutes,Bacteria,Mycoplasmataceae,Mycoplasma,Bacteria,,,,,,,,,,,,450,Mycoplasmatales,Tenericutes,Growing,Mycoplasma gallisepticum,Bacteria,449
+Cyanophyceae,Bacteria,Chroococcaceae,Anacystis,Bacteria,,,,,,,,,,,,1148,Chroococcales,Cyanobacteria,Dark respiration,Anacystis nidulans PCC,Cyanobacteria,1147
+Cyanophyceae,Bacteria,Chroococcaceae,Anacystis,Bacteria,,,,,,,,,,,,1149,Chroococcales,Cyanobacteria,Dark respiration,Anacystis nidulans PCC 6301 (Synechococcus leopoliensis),Cyanobacteria,1148
+Cyanophyceae,Bacteria,Chroococcaceae,Aphanocapsa,Bacteria,,,,,,,,,,,,1150,Chroococcales,Cyanobacteria,Dark respiration,Aphanocapsa PCC 6714,Cyanobacteria,1149
+Cyanophyceae,Bacteria,Chroococcaceae,Coccochloris,Bacteria,,,,,,,,,,,,1151,Chroococcales,Cyanobacteria,Dark respiration,Coccochloris peniocystis,Cyanobacteria,1150
+Cyanophyceae,Bacteria,Chroococcaceae,Gloeothece,Bacteria,,,,,,,,,,,,1152,Chroococcales,Cyanobacteria,Dark respiration,Gloeothece sp. PCC 6909,Cyanobacteria,1151
+Cyanophyceae,Bacteria,Chroococcaceae,Microcystis,Bacteria,,,,,,,,,,,,1153,Chroococcales,Cyanobacteria,Endogenous,Microcystis PCC 7806,Cyanobacteria,1152
+Cyanophyceae,Bacteria,Chroococcaceae,Synechococcus,Bacteria,,,,,,,,,,,,1154,Chroococcales,Cyanobacteria,Dark respiration,Synechococcus sp. RF-1 (PCC 8801),Cyanobacteria,1153
+Cyanophyceae,Bacteria,Chroococcaceae,Synechocystis,Bacteria,,,,,,,,,,,,1155,Chroococcales,Cyanobacteria,Dark respiration,Synechocystis PCC 6803,Cyanobacteria,1154
+Cyanophyceae,Bacteria,Chroococcaceae,Synechocystis,Bacteria,,,,,,,,,,,,1156,Chroococcales,Cyanobacteria,Dark respiration,Synechocystis aquatilis,Cyanobacteria,1155
+Cyanophyceae,Bacteria,Gloeobacteraceae,Gloeobacter,Bacteria,,,,,,,,,,,,1157,Gloeobacterales,Cyanobacteria,Dark respiration,Gloeobacter violaceus,Cyanobacteria,1156
+Cyanophyceae,Bacteria,Nostocaceae,Anabaena,Bacteria,,,,,,,,,,,,1158,Nostocales,Cyanobacteria,Dark respiration,Anabaena flos-aquae,Cyanobacteria,1157
+Cyanophyceae,Bacteria,Nostocaceae,Anabaena,Bacteria,,,,,,,,,,,,1159,Nostocales,Cyanobacteria,Dark respiration,Anabaena variabilis,Cyanobacteria,1158
+Cyanophyceae,Bacteria,Nostocaceae,Nostoc,Bacteria,,,,,,,,,,,,1160,Nostocales,Cyanobacteria,Dark respiration,Nostoc commune,Cyanobacteria,1159
+Cyanophyceae,Bacteria,Nostocaceae,Nostoc,Bacteria,,,,,,,,,,,,1161,Nostocales,Cyanobacteria,Dark respiration,Nostoc commune var. flagelliforme,Cyanobacteria,1160
+Cyanophyceae,Bacteria,Nostocaceae,Nostoc,Bacteria,,,,,,,,,,,,1162,Nostocales,Cyanobacteria,Dark respiration,Nostoc muscorum G.,Cyanobacteria,1161
+Cyanophyceae,Bacteria,Oscillatoriaceae,Microcoleus,Bacteria,,,,,,,,,,,,1163,Nostocales,Cyanobacteria,Endogenous,Microcoleus chthonoplastes,Cyanobacteria,1162
+Cyanophyceae,Bacteria,Oscillatoriaceae,Oscillatoria,Bacteria,,,,,,,,,,,,1164,Nostocales,Cyanobacteria,Endogenous,Oscillatoria limnetica,Cyanobacteria,1163
+Cyanophyceae,Bacteria,Oscillatoriaceae,Oscillatoria,Bacteria,,,,,,,,,,,,1165,Nostocales,Cyanobacteria,Endogenous,Oscillatoria limosa,Cyanobacteria,1164
+Cyanophyceae,Bacteria,Oscillatoriaceae,Oscillatoria,Bacteria,,,,,,,,,,,,1166,Nostocales,Cyanobacteria,Dark respiration,Oscillatoria terebriformis,Cyanobacteria,1165
+Cyanophyceae,Bacteria,Oscillatoriaceae,Phormidium,Bacteria,,,,,,,,,,,,1167,Nostocales,Cyanobacteria,Dark respiration,Phormidium autumnale (Ag.) Gom.,Cyanobacteria,1166
+Cyanophyceae,Bacteria,Oscillatoriaceae,Phormidium,Bacteria,,,,,,,,,,,,1168,Nostocales,Cyanobacteria,Dark respiration,Phormidium luridum,Cyanobacteria,1167
+Cyanophyceae,Bacteria,Oscillatoriaceae,Planktothrix,Bacteria,,,,,,,,,,,,1169,Nostocales,Cyanobacteria,Dark respiration,Planktothrix agardhii,Cyanobacteria,1168
+Cyanophyceae,Bacteria,Oscillatoriaceae,Spirulina,Bacteria,,,,,,,,,,,,1170,Nostocales,Cyanobacteria,Dark respiration,Spirulina platensis Compere 1968-3786,Cyanobacteria,1169
+Cyanophyceae,Bacteria,Scytonemataceae,Plectonema,Bacteria,,,,,,,,,,,,1171,Nostocales,Cyanobacteria,Dark respiration,Plectonema boryanum,Cyanobacteria,1170
+Cyanophyceae,Bacteria,Prochloraceae,Prochloron,Bacteria,,,,,,,,,,,,1172,Synechococcales,Cyanobacteria,Dark respiration,Prochloron sp. (isolated from Lissoclinum patella),Cyanobacteria,1171
+Oscillatoriophycideae,Bacteria,Cyanothecaceae,Cyanothece,Bacteria,,,,,,,,,,,,1173,Oscillatoriales,Cyanobacteria,Endogenous,Cyanothece PCC 7822,Cyanobacteria,1172
+Oscillatoriophycideae,Bacteria,Microcoleaceae,Trichodesmium,Bacteria,,,,,,,,,,,,1174,Oscillatoriales,Cyanobacteria,Dark respiration,Trichodesmium spp. 1,Cyanobacteria,1173
