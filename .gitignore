@@ -16,3 +16,7 @@ paper/missfont.log
 *.tgz
 *.zip
 ._*
+projects/p9-nseos/data/
+projects/p10-allometry/data/
+outputs/
+*.z01
