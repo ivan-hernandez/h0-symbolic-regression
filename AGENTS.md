@@ -1,9 +1,9 @@
 ## Goal
 - **Template:** METHODOLOGY.md — the 5-phase adversarial SR pipeline (Discovery → Validation → Extension → Debate → Publication). All future projects follow this exactly.
-- Project 1 (H0 paper): COMPLETE through Phase 11+ (all extensions, adversarial debate, Cepheid PL). Don't publish yet (pending strategic decision on timing).
+- Project 1 (H0 paper): COMPLETE through Phase 11+ (all extensions, adversarial debate, Cepheid PL). Not published (pending strategic decision on timing). **JWST/TRGB validation: confirmed Jun 2026.**
 - Project 2 (RAR): COMPLETE (Phases 1-3 papers published).
 - P10 Allometry (mammals): COMPLETE, killed by propaganda clause (b≈2/3 not novel).
-- P11 Microbial Metabolic Scaling: Phases 0-3 COMPLETE (data acquisition → exploration → SR discovery → validation). Active project. Novel finding: continuous curvature in prokaryote metabolic scaling (cubic log-log form beats linear by 13.7%).
+- P11 Microbial Metabolic Scaling: PUBLISHED (Zenodo DOI 10.5281/zenodo.20972996, OSF project 7vt3n). Novel finding: continuous curvature in prokaryote metabolic scaling (cubic log-log form beats linear by 13.7%).
 - Heavy computation runs locally on the "big rig" (12 cores, 15GB RAM). Remote machine 100.121.64.70 is no longer used.
 - LLM tools (Claude, ChatGPT, etc.) are used in this work. This must be declared in all future submissions per Chris Lintott's advice.
 
@@ -19,6 +19,16 @@
 **χ²_H = 25.5/39, χ²_SN = 1405/1590 (full cov)** — SR joint χ²=1430.6 vs ΛCDM 1429.4 (Δχ²=1.2)
 
 **Conclusion:** The Hubble tension resides in the Cepheid calibration (M), not the expansion history shape. When M is free, all data, models, and adversarial challenges converge to H0≈68.
+
+### Post-Publication Validation (Jun 2026)
+| Objection | Status | Data |
+|-----------|--------|------|
+| HST crowding bias | **Closed by JWST** | Riess+2025 (arXiv:2509.01667): JWST Cepheids in 19 hosts, H0=73.49±0.93, unbiased at σ<0.03 mag |
+| TRGB-independent | **Strengthened** | Jensen+2025 (TRGB-SBF III): H0=73.8±2.4; Newman+2025: H0=75.3±2.9 |
+| Cepheid PL form | Rejected (SR) | Linear PL confirmed by SR (Phase 11) |
+| M calibration | Fix-M Δχ²=+82 | Unchanged |
+| DESI DR2 | H0=68.3 | Unchanged |
+| **Status** | **Tension confirmed at 6σ** | All independent distance ladders converge to H0≈73±1 vs expansion history H0≈68±1 |
 
 ## Constraints & Preferences
 - Data must be verified against published tables, not recalled from memory
@@ -235,3 +245,32 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 - `ceph_pl_validate.py`: Optical SR + bootstrap + 10-fold CV validation
 - `ladder_h0.py`: Full distance ladder fit (y, L, C fits files) — H0=73.0±1.0
 - `ceph_pl_summary.py`: Final summary figure and comparison
+
+## Post-Publication Validation (Jun 2026)
+
+New data published since our analysis confirms our conclusions:
+
+### JWST Cepheids (Riess+2025, arXiv:2509.01667)
+- JWST Cycle 1+2 observations of Cepheids in 19 SN Ia hosts (24 SNe), >50% of SH0ES sample
+- **JWST photometry confirms HST photometry** — no crowding bias found (σ<0.03 mag)
+- Background-free Cepheids in NGC 3447A show 0.12 mag scatter, tightest seen
+- H0 = 73.49 ± 0.93 (JWST Cepheids alone)
+- H0 = 73.18 ± 0.88 (JWST + HST Cepheids + 35 TRGB calibrations)
+- **6σ tension with Planck ΛCDM+CMB**
+- **Closes adversarial challenge #2 (crowding bias): rejected**
+
+### TRGB Distance Scale
+- **Jensen+2025** (TRGB-SBF Project III): H0 = 73.8 ± 2.4 — independent of Cepheids
+- **Newman+2025** (early-type host TRGB ladder): H0 = 75.3 ± 2.9 — parallel ladder
+- **Consistent with SH0ES, ruling out Cepheid-specific systematic**
+
+### Implication for Our Work
+| Objection | Old Status | New Status |
+|-----------|-----------|------------|
+| HST crowding bias | Rejected (SR argument) | **Closed by JWST data** |
+| Cepheid PL form | Rejected (SR linear) | Unchanged |
+| M calibration | Fix-M rejected (Δχ²=+82) | Unchanged |
+| TRGB cross-check | Consistent | **Strengthened** |
+| DESI DR2 | H0=68.3 unchanged | Unchanged |
+
+Our conclusion stands: the Hubble tension resides in M (the Cepheid anchor), not the expansion history shape. The new data removes remaining doubt about HST photometric bias.
