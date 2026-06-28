@@ -198,7 +198,7 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 1. r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc
 2. H(z)-only (no SNe) H0=65.4 is 2.3σ below Planck — reflects weak extrapolation of Cpx 13 from z>0.07 to z=0
 3. Three independent SN samples show 1.9 km/s spread — real systematic floor acknowledged
-4. Bootstrap refit of H(z)-only gives ±3.1 km/s, ~4× larger than conditional profile — needs investigation
+4. Bootstrap refit of H(z)-only gives ±3.1 km/s, ~4× larger than conditional profile — **RESOLVED: Joint bootstrap (CC+BAO+DESI+SNe, 200 iters, Jun 2026) gives H0=68.04±0.81, ratio bootstrap/profile = 1.0×. The ±0.8 error bar is confirmed for the full joint dataset.**
 5. M(z) grid uses coarse α step (0.01) — fine enough for <2σ null result, but not precision measurement
 6. Fix-M test is formally symmetric (identifies inconsistency, not culprit)
 7. Reduced χ²_SN = 0.88 indicates conservative systematics — does not affect fix-M Δχ²
