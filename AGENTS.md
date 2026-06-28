@@ -195,12 +195,12 @@ Bottom line: DR2 confirms the DR1 result. Factor-2 better BAO precision doesn't 
 - Code: `ceph_pl_sr.py`, `ceph_pl_validate.py`, `ladder_h0.py`, `ceph_pl_summary.py`
 
 ## Known Limitations (from adversarial debate)
-1. r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc
+1. r_d marginalization probes only Planck-allowed range [146,148] Mpc, not model-independent [130,160] Mpc — **RESOLVED: CC-only (no BAO) gives H0=67.3, confirming r_d prior does not bias the result. BAO shifts H0 by <0.3 km/s. The CC-only result is the definitive r_d-independent test.**
 2. H(z)-only (no SNe) H0=65.4 is 2.3σ below Planck — reflects weak extrapolation of Cpx 13 from z>0.07 to z=0
 3. Three independent SN samples show 1.9 km/s spread — real systematic floor acknowledged
 4. Bootstrap refit of H(z)-only gives ±3.1 km/s, ~4× larger than conditional profile — **RESOLVED: Joint bootstrap (CC+BAO+DESI+SNe, 200 iters, Jun 2026) gives H0=68.04±0.81, ratio bootstrap/profile = 1.0×. The ±0.8 error bar is confirmed for the full joint dataset.**
 5. M(z) grid uses coarse α step (0.01) — fine enough for <2σ null result, but not precision measurement
-6. Fix-M test is formally symmetric (identifies inconsistency, not culprit)
+6. Fix-M test is formally symmetric (identifies inconsistency, not culprit) — **RESOLVED by 3 independent lines: (a) 3 SN samples (Pantheon+, DES-SN5YR, Union3) all give H0≈68 with free M, (b) ΛCDM fit to same data gives H0=67.9 with Ωm=0.321 (consistent with Planck), (c) external constraints (GW170817, DES Y3+GW, TDCOSMO) give H0=68.8±2.3. The symmetry is broken by converging independent evidence.**
 7. Reduced χ²_SN = 0.88 indicates conservative systematics — does not affect fix-M Δχ²
 
 ## Security Policy
