@@ -1,0 +1,117 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Page Not Found | Jodrell Bank Centre for Astrophysics</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="author" content="Deep Thought" />
+	<meta name="keywords" content="missing,404" />
+	<link rel="StyleSheet" type="text/css" href="https://www.jb.man.ac.uk/medialibrary/style.css" media="screen,print" />
+	<link rel="StyleSheet" type="text/css" href="https://www.jb.man.ac.uk/medialibrary/print.css" media="print" />
+	<link rel="SHORTCUT ICON" href="https://www.manchester.ac.uk/medialibrary/images/corporate/favicon.ico" />
+	<link rel="alternate" type="application/rss+xml" title="Jodrell Bank Centre for Astrophysics News Feed" href="https://www.jb.man.ac.uk/feeds/rss.xml" />
+	<script type="text/javascript" src="https://www.jb.man.ac.uk/medialibrary/js/jquery-1.2.6.min.js"></script>
+	<script type="text/javascript" src="https://www.jb.man.ac.uk/medialibrary/js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="https://www.jb.man.ac.uk/medialibrary/js/sortable.js"></script>
+</head>
+<body class="fullwidth">
+<div><a name="pagetop"></a></div>
+<div class="nav-skiplinks"><a href="#body" title="Jump to main content">Jump to main content</a>&nbsp;<a href="#navigation" title="Jump to site navigation">Jump to site navigation</a></div>
+<div id="logo"><a href="https://www.manchester.ac.uk/"><img src="https://www.jb.man.ac.uk/medialibrary/images/Logo_Manchester_block.png" alt="The University of Manchester" width="169" height="71" /></a></div>
+<!-- Start of header -->
+<div id="header">
+	<!-- Start of tools -->
+	<div id="toolbar">
+		<form action="https://www.jb.man.ac.uk/search/" method="get" id="search">
+		<p>
+			<a href="/local/">Intranet</a>			
+		</p>
+		</form>
+	</div> <!-- End of tools -->
+        <div id="titletext">
+	<h3><a href="/">Jodrell Bank Centre for Astrophysics</a></h3><br />
+	<h3><a href="https://www.manchester.ac.uk/physics/">Department of Physics and Astronomy</a></h3>
+	</div>
+</div> <!-- End of header -->
+<div id="contentandsides">
+	<div id="tabbedbar">
+		<div class="tab">
+			<a name="navigation"></a>
+			<ul>
+			<li><a href="https://www.jb.man.ac.uk/" title="Home Page">Home</a></li>
+			<li><a href="https://www.jb.man.ac.uk/news/" title="The latest news and press releases from Jodrell Bank Centre for Astrophysics">News</a></li>
+			<li><a href="https://www.jb.man.ac.uk/research/" title="Our research portfolio, our research goals, funding received and quality of research">Our Research</a></li>
+			<li><a href="https://www.jb.man.ac.uk/research/facilities/" title="Information about the e-MERLIN National Facility, VLBI, Lovell Telescope, and other facilities.">Facilities</a></li>
+			<li><a href="https://www.jb.man.ac.uk/study/" title="Information about our undergraduate, postgraduate and distance learning courses">Study With Us</a></li>
+			<li><a href="https://www.jb.man.ac.uk/astronomy/" title="Discover what you can see in the sky and learn about astronomy">Explore Astronomy</a></li>
+			<li><a href="https://www.jb.man.ac.uk/multimedia/" title="Images, audio, video, web services and more">Multimedia</a></li>
+			<li><a href="https://www.jb.man.ac.uk/visitorcentre/" title="Find out what is on offer at the Jodrell Bank Observatory Discovery Centre in Cheshire">Visitors</a></li>
+			<li><a href="https://www.jb.man.ac.uk/aboutus/" title="About us, our structure, facts and figures, history, mission and diversity">About Us</a></li>
+			<li><a href="https://www.jb.man.ac.uk/contact/people.html" title="Staff and Student List">People</a></li>
+			</ul>
+		</div> <!-- End of tabs -->
+	</div> <!-- End of main menu -->
+	<a name="body"></a>
+	<!-- Start of page content -->
+	<div id="main">
+
+
+
+<h1>Page Not Found (Error 404)</h1>
+
+<!--<p>Unfortunately the following page was not available:</p>
+<p style="text-align:center;color:maroon;">www.jodrellbank.manchester.ac.uk/pulsar/glitches/glitch_table.txt</p>
+<p>This may be because:</p>
+<ul>
+	<li>You may have typed the web address incorrectly. Please check the address and spelling.</li>
+	<li>With the recent redesign of our website, it is possible that the page you were looking for may have been moved, updated or deleted.</li>
+</ul>
+<p>You may wish to use the search box (top right of the page) to search for the content you were looking for, or <a href="/contact/feedback.html">contact us</a> with the address of the page you were expecting.</p>
+-->
+
+	<p>Sorry, but the page you were trying to get to, <span style="text-align:center;color:maroon;">http://www.jb.man.ac.uk/pulsar/glitches/glitch_table.txt</span> does not exist.</p>
+<p>It looks as though this was the result of either:</p><ul><li>a mistyped address;</li><li>the page may have been moved;</li><li>an out-of-date bookmark in your web browser.</li></ul><p>You may want to try searching this site (search box at the right) or using our <a href="/aboutus/a-z/">site map</a> to find what you were looking for.</p>
+
+
+	<!-- End of page content -->
+	</div>
+	<div id="footer">
+		<div class="navigation">
+			<div class="feeds">
+				<ul>
+					<li><a href="/feeds/">Feeds</a></li>
+					<li><a href="/feeds/rss.xml" title="All our feeds"><img src="/medialibrary/images/rss.gif" alt="RSS" title="Jodrell Bank Centre for Astrophysics News Feed" /></a></li>
+					<li><a href="/feeds/twitter/" title="Our Twitter feeds"><img src="/medialibrary/images/twitter.gif" alt="Twitter" title="Jodrell Bank Centre for Astrophysics on Twitter" /></a></li>
+				</ul>
+			</div>
+			<a href="http://www.manchester.ac.uk/disclaimer/" title="Disclaimer">Disclaimer</a> | <a href="http://www.manchester.ac.uk/privacy/" title="Privacy">Privacy</a> | <a href="http://www.manchester.ac.uk/copyright/" title="Copyright Notice">Copyright notice</a> | <a href="http://www.manchester.ac.uk/accessibility/" title="Accessibility">Accessibility</a> | <a href="http://www.manchester.ac.uk/foi/" title="Freedom of information">Freedom of information</a>
+		</div>
+		<div class="update">
+			Last updated: Friday 15 January 2010 (17:57)
+			<br />Page Editor: Deep Thought
+		</div>
+		<div class="contact vcard">
+			<div class="adr">
+				<div class="fn org">
+					<a class="organization-name" href="http://www.manchester.ac.uk/">The University of Manchester</a>,
+					<a class="organization-unit" href="http://www.physics.manchester.ac.uk/">Department of Physics &amp; Astronomy</a>,
+					<span class="organization-unit extended-address">Jodrell Bank Centre for Astrophysics</span>,
+				</div>
+				<div>
+					<span class="street-address">Alan Turing Building, Oxford Road</span>,
+					<span class="locality">Manchester</span>,
+					<span class="postal-code">M13 9PL</span>,
+					<span class="country-name">United Kingdom</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+
+
+

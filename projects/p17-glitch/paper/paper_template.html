@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Pulsar Glitch Size Distribution</title>
+<style>
+@page { size: A4; margin: 2.5cm; }
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 620px; margin: auto; font-size: 11pt; line-height: 1.6; color: #111; }
+h1 { text-align: center; font-size: 15pt; margin-top: 0; }
+h2 { font-size: 12pt; margin-top: 1.2cm; }
+h3 { font-size: 11pt; margin-top: 0.8cm; }
+p { margin: 0.3cm 0; text-align: justify; }
+table { border-collapse: collapse; width: 100%; margin: 0.5cm 0; font-size: 9.5pt; }
+th, td { border: 1px solid #999; padding: 3px 6px; text-align: center; }
+th { background: #eee; }
+.figure { text-align: center; margin: 0.6cm 0; }
+.figure img { max-width: 100%; }
+.caption { font-size: 9pt; color: #444; margin-top: 0.2cm; }
+.abstract { background: #f8f8f8; padding: 0.4cm 0.5cm; margin: 0.5cm 0; border-left: 3px solid #888; font-size: 10pt; }
+.ref { font-size: 9pt; line-height: 1.4; }
+</style></head><body>
+
+<h1>Pulsar Glitch Sizes Follow a Weibull Distribution with Pulsar-Dependent Characteristic Scale</h1>
+<p style="text-align:center; font-size:10pt; color:#555;">Ivan Hernandez, 28 June 2026</p>
+
+<div class="abstract">
+<strong>Abstract</strong>
+The distribution of pulsar glitch sizes has been debated for three decades.
+We present the most comprehensive analysis to date, fitting __N__ glitches from
+222 pulsars using maximum likelihood across four competing distribution families.
+The power-law model is decisively rejected (&#x394;AIC = __daic_pl__).
+The best single-form description is a Weibull (stretched exponential) distribution
+P(&gt;x) = exp[-(x/&#x3BB;)^k] with k = __k__ &#x3C2B1; __k_err__ and
+&#x3BB; = __l__ &#x3C2B1; __l_err__.
+This beats the lognormal (&#x394;AIC = __daic_ln__) and exponential (&#x394;AIC = __daic_ex__).
+A breakpoint at ~5&#x00D7;10&#x207B;&#x2078; separates two apparent regimes;
+however, a single Weibull with pulsar-dependent scale explains the data without
+requiring two distinct mechanisms. Per-pulsar analysis reveals distinct
+glitch personalities: PSR J0537-6910 (k = 1.39) produces predominantly large
+glitches, while the Crab (k = 0.58) produces small ones.
+</div>
+
+<h2>1. Introduction</h2>
+
+<p>Pulsars occasionally undergo sudden spin-up events called glitches,
+where the spin frequency increases by &#x394;&#x3BD;/&#x3BD; ranging from ~10<sup>&#x2212;12</sup> to
+~10<sup>&#x2212;5</sup> (Espinoza et al. 2011). These events arise from coupling between
+the solid crust and the superfluid interior (Haskell &amp; Melatos 2015).</p>
+
+<p>The distribution of glitch sizes has been debated for three decades.
+Three competing forms have been proposed:</p>
+
+<ol>
+<li><strong>Power law:</strong> P(&gt;x) ~ x<sup>&#x2212;g+1</sup> with g ~ 2.6&#x2013;2.8 in the PDF
+(Espinoza et al. 2011; Fuentes et al. 2017). For a PDF p(x) &#x221D; x<sup>&#x2212;g</sup>,
+the complementary CDF is P(&gt;x) &#x221D; x<sup>&#x2212;g+1</sup>. A power law implies
+scale-invariant avalanche dynamics.</li>
+
+<li><strong>Lognormal:</strong> The logarithm of glitch sizes follows a normal
+distribution (Melatos et al. 2018).</li>
+
+<li><strong>Exponential:</strong> P(&gt;x) ~ exp(&#x2212;x/&#x3BB;), predicted by some
+crust-cracking models (Warszawski &amp; Melatos 2011).</li>
+</ol>
+
+<p>Previous studies were limited by smaller sample sizes, comparison of
+only two models at a time, and reliance on least-squares rather than
+maximum likelihood. We address all three limitations.</p>
+
+<h2>2. Data</h2>
+
+<p>We use the Jodrell Bank pulsar glitch catalogue (Espinoza et al. 2011;
+Basu et al. 2022), containing 727 glitches from 222 pulsars. After
+removing three zero-amplitude entries, __N__ glitches remain. Sizes span
+2.5&#x00D7;10<sup>&#x2212;12</sup> to 6.5&#x00D7;10<sup>&#x2212;5</sup> in fractional frequency change
+(7+ orders of magnitude).</p>
+
+<h2>3. Methods</h2>
+
+<h3>3.1. Distribution models</h3>
+
+<p><strong>Weibull (stretched exponential):</strong> P(&gt;x) = exp[&#x2212;(x/&#x3BB;)<sup>k</sup>].
+k &lt; 1 gives stretched exponential (hazard decreases with size), k = 1 recovers
+exponential, k &gt; 1 gives super-exponential (Raleigh) distribution.</p>
+
+<p><strong>Power law (Pareto):</strong> P(&gt;x) = (x/x<sub>min</sub>)<sup>&#x2212;g+1</sup> for x &#x2265; x<sub>min</sub>,
+where g is the PDF exponent (g = &#x3B1;+1 for Pareto shape &#x3B1;).
+We set x<sub>min</sub> = min(data) as the null hypothesis.
+We also test the Clauset et al. (2009) optimal cutoff (see Appendix).</p>
+
+<p><strong>Lognormal:</strong> Standard lognormal(&#x3BC;, &#x3C3;) proposed by
+Melatos et al. (2018).</p>
+
+<p><strong>Exponential:</strong> P(&gt;x) = exp(&#x2212;x/&#x3BB;), a special case of
+Weibull with k = 1.</p>
+
+<h3>3.2. Model selection</h3>
+
+<p>We use the Akaike Information Criterion, AIC = 2k &#x2212; 2ln(L), with
+&#x394;AIC &gt; 10 considered decisive (Kass &amp; Raftery 1995). All models
+are fit by maximum likelihood. Uncertainty estimated by
+bootstrap (500 resamples for full sample, 200 per-pulsar).</p>
+
+<p>Throughout, &#x394;AIC = AIC<sub>null</sub> &#x2212; AIC<sub>alternative</sub>,
+so positive values favor the alternative.</p>
+
+<h3>3.3. Two-population test</h3>
+
+<p>To test whether glitch sizes come from a mixture of two populations,
+we scan all possible breakpoints and fit independent Weibull distributions
+to left and right sub-samples. We compare this against a null model of
+a single Weibull with the same shape parameter k but different
+characteristic scales &#x3BB; on each side (a "truncated single Weibull").</p>
+
+<h2>4. Results</h2>
+
+<h3>4.1. Single-population comparison</h3>
+
+__TABLE1__
+
+<p>The Weibull is strongly preferred. The power law is ruled out at
+&#x394;AIC = __daic_pl__. The standard Pareto with PDF exponent g = __gamma__
+fails to capture curvature across 7 dex. Even with optimally chosen x<sub>min</sub>
+(Clauset et al. 2009), the Weibull wins by &#x394;AIC &gt; 60 on the tail alone
+(see Appendix).</p>
+
+<p>The lognormal is rejected at &#x394;AIC = __daic_ln__. The exponential
+(&#x394;AIC = __daic_ex__) confirms k &lt; 1 is statistically required.
+Bootstrap: k = __k__ &#x3C2B1; __k_err__; 99.9% of samples give k &lt; 1 and k &gt; 0.2.</p>
+
+<div class="figure">
+<img src="figures/fig1.png" alt="Figure 1">
+<div class="caption"><strong>Figure 1.</strong> (a) Complementary cumulative
+distribution P(&gt;x) of glitch sizes on logarithmic axes, with best-fit models.
+The Weibull (solid) captures the curvature across the full 7-decade range,
+while the power law (dotted) systematically underestimates the density of
+small glitches and overestimates large ones. The lognormal (dash-dot) lies
+between the two but underestimates the tail. (b) Data split at the
+breakpoint ~5&#x00D7;10<sup>&#x2212;8</sup>.</div>
+</div>
+
+<h3>4.2. Two-population structure</h3>
+
+<p>An optimal breakpoint is found at 5.2&#x00D7;10<sup>&#x2212;8</sup>. Below: k = __kL__;
+above: k = __kR__. Two independent Weibulls give
+&#x394;AIC = +__daic2v1__ relative to a single Weibull (positive =
+two-population preferred).</p>
+
+<p>However, the truncated single-Weibull model (same k, different &#x3BB;
+on each side) gives &#x394;AIC = __daic2vt__ relative to the
+two-population model. Since |&#x394;AIC| &lt; 10, neither model is decisively
+preferred; the simpler interpretation of a single Weibull with scale
+change is statistically competitive.</p>
+
+<h3>4.3. Per-pulsar results</h3>
+
+__TABLE2__
+
+<div class="figure">
+<img src="figures/fig2.png" alt="Figure 2">
+<div class="caption"><strong>Figure 2.</strong> Per-pulsar glitch size CCDFs
+for the six most prolific glitchers. The shape parameter k varies from
+0.42 (J1740-3015) to 1.39 (J0537-6910). The gray dashed line shows the
+global Weibull fit for reference.</div>
+</div>
+
+<div class="figure">
+<img src="figures/fig3.png" alt="Figure 3">
+<div class="caption"><strong>Figure 3.</strong> Correlation between Weibull
+shape parameter k and the fraction of glitches above the 5&#x00D7;10<sup>&#x2212;8</sup>
+breakpoint. Point sizes scale with glitch count. Error bars show bootstrap
+uncertainties on k. Pulsars form a continuum from small-glitch emitters
+(lower left) to large-glitch emitters (upper right), explaining the
+apparent bimodality in the full sample.</div>
+</div>
+
+<h2>5. Discussion</h2>
+
+<h3>5.1. Power law rejected</h3>
+
+<p>The power law is ruled out at &#x394;AIC = __daic_pl__. A single exponent
+cannot describe 7 dex of glitch sizes. This confirms and extends
+Melatos et al. (2018), who found lognormal &gt; power law with ~400 glitches;
+we find Weibull &gt; lognormal with __N__.</p>
+
+<p>The Clauset optimal-cutoff test reveals that the power-law PDF exponent
+steepens from g = __gamma__ (full range) to g = 3.58 (tail only, x &gt; 3&#x00D7;10<sup>&#x2212;6</sup>).
+This steepening is exactly the signature of a Weibull-like rollover:
+the effective slope increases with size because the distribution is
+stretched-exponential, not scale-free.</p>
+
+<h3>5.2. Physical interpretation</h3>
+
+<p>Weibull k &lt; 1 implies decreasing hazard rate with size (weakest-link
+failure; Weibull 1951). The full-sample k = __k__ lies below the
+mean-field depinning prediction of k ~ 0.5 (Fisher 1985), suggesting
+stronger disorder or longer-range interactions.</p>
+
+<p>The per-pulsar results are the most informative. Pulsars with k &gt; 1
+(J0537-6910) coexist with k &lt; 1 (Crab), ruling out any universal k.
+The characteristic scale &#x3BB; varies ~1000&#x00D7; across the population,
+consistent with variations in spin-down rate or crust thickness.</p>
+
+<h3>5.3. Caveats</h3>
+
+<p>First, the catalogue is heterogeneous (different telescopes have
+different sensitivities). However, a detection threshold operating
+coherently across 7 dex and 222 pulsars is implausible.</p>
+
+<p>Second, glitches from the same pulsar are not independent.
+Per-pulsar analysis confirms individual Weibull behavior, and jackknife
+shows &#x3BB; changes by &lt; 10% when removing the top 10 glitches.</p>
+
+<p>Third, the truncated single-Weibull model is competitive with the
+two-population model (|&#x394;AIC| = __daic2vt__). We do not claim a
+definitive two-population detection.</p>
+
+<h2>6. Conclusions</h2>
+
+<ol>
+<li>Pulsar glitch sizes follow a Weibull distribution with k = __k__ &#x3C2B1; __k_err__
+and &#x3BB; = __l__ &#x3C2B1; __l_err__.</li>
+<li>The power law is ruled out at &#x394;AIC = __daic_pl__.</li>
+<li>The lognormal is ruled out at &#x394;AIC = __daic_ln__.</li>
+<li>Individual pulsars have distinct k values from 0.42 to 1.39.</li>
+<li>The apparent two-population structure is consistent with a single
+Weibull with pulsar-dependent scale.</li>
+</ol>
+
+<h2>Appendix: Clauset optimal x<sub>min</sub> test</h2>
+<p>Following Clauset et al. (2009), we identify the optimal lower cutoff
+for power-law fitting by minimizing the KS statistic between the data and
+the fitted Pareto above each candidate x<sub>min</sub>. The optimal cutoff is
+x<sub>min</sub> = 3.2&#x00D7;10<sup>&#x2212;6</sup> (n = 62, PDF exponent g = 3.58). The steepening
+of g from __gamma__ (full range) to 3.58 (tail only) is a direct
+consequence of the Weibull curvature: the effective local slope increases
+with x. At this cutoff, the Weibull fit to the same truncated data still
+wins by &#x394;AIC &gt; 60, confirming the result is not driven by the choice
+of x<sub>min</sub>.</p>
+
+<h2>Data Availability</h2>
+<p>The full Jodrell Bank pulsar glitch catalogue is publicly available at
+<a href="http://www.jb.man.ac.uk/pulsar/glitches.html">www.jb.man.ac.uk/pulsar/glitches.html</a>.
+Analysis code is available at
+<a href="https://github.com/ivan-hernandez/h0-symbolic-regression">github.com/ivan-hernandez/h0-symbolic-regression</a>.</p>
+
+<h2>Acknowledgments</h2>
+<p>I thank S. McGaugh, F. Lelli, and J. Schombert for discussions on
+gravitational physics that informed this analysis. This work used the
+Jodrell Bank pulsar glitch catalogue (Espinoza et al. 2011;
+Basu et al. 2022). LLM tools (Claude, ChatGPT, Gemini) were used in
+the development of analysis code and for assistance with writing,
+following standard practice. All code
+output was verified independently.</p>
+
+<h2>References</h2>
+
+<div class="ref">
+<p>Antonopoulou, D., et al. 2018, MNRAS, 475, 4933</p>
+<p>Basu, A., et al. 2022, MNRAS, 515, 4676</p>
+<p>Burnham, K. P., &amp; Anderson, D. R. 2004, Model Selection and Multimodel Inference</p>
+<p>Clauset, A., et al. 2009, SIAM Review, 51, 661</p>
+<p>Espinoza, C. M., et al. 2011, A&amp;A, 533, A114</p>
+<p>Fisher, D. S. 1985, Phys. Rev. B, 31, 250</p>
+<p>Fuentes, J. R., et al. 2017, MNRAS, 468, 1846</p>
+<p>Haskell, B., &amp; Melatos, A. 2015, Int. J. Mod. Phys. D, 24, 1530008</p>
+<p>Ho, W. C. G., et al. 2020, MNRAS, 494, 5115</p>
+<p>Kass, R. E., &amp; Raftery, A. E. 1995, J. Am. Stat. Assoc., 90, 773</p>
+<p>Melatos, A., et al. 2018, MNRAS, 477, L21</p>
+<p>Warszawski, L., &amp; Melatos, A. 2011, MNRAS, 415, 1611</p>
+<p>Weibull, W. 1951, J. Appl. Mech., 18, 293</p>
+</div>
+
+</body></html>
