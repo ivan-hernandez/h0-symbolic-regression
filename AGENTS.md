@@ -4,7 +4,7 @@
 - Project 2 (RAR): COMPLETE (Phases 1-3 papers published).
 - P10 Allometry (mammals): COMPLETE, killed by propaganda clause (b≈2/3 not novel).
 - P11 Microbial Metabolic Scaling: PUBLISHED (Zenodo DOI 10.5281/zenodo.20972996, OSF project 7vt3n). Novel finding: continuous curvature in prokaryote metabolic scaling (cubic log-log form beats linear by 13.7%).
-- P17 Pulsar Glitch Size Distribution: Phases 0-3 COMPLETE. Novel finding: glitch sizes follow Weibull (stretched exponential) distribution P(>Δν) = exp(-(Δν/λ)^k) with k≈0.43, beating power law by ΔAIC=1745.
+- P17 Pulsar Glitch Size Distribution: Phases 0-3 COMPLETE. Novel finding: glitch sizes follow Weibull (stretched exponential) distribution P(>Δν) = exp(-(Δν/λ)^k) with k≈0.35, beating power law by ΔAIC=11917 and lognormal by ΔAIC=12.8. Truncation test shows k varies with threshold (0.35→0.80), suggesting possible multi-scale process.
 - Heavy computation runs locally on the "big rig" (12 cores, 15GB RAM). Remote machine 100.121.64.70 is no longer used.
 - LLM tools (Claude, ChatGPT, etc.) are used in this work. This must be declared in all future submissions per Chris Lintott's advice.
 
@@ -49,7 +49,7 @@ methods demonstrations or educational resources, but they shouldn't consume
 the same resources as novel discovery work.
 
 ## Pulsar Glitch Result
-**Pulsar glitch sizes follow a Weibull (stretched exponential) distribution:** P(>Δν) = exp(-(Δν/λ)^k) with k ≈ 0.43, λ ≈ 4.6×10⁻⁶. Beats power law (Espinoza+2011) by ΔAIC = 1745. Characteristic scale λ, not scale-free.
+**Pulsar glitch sizes follow a Weibull (stretched exponential) distribution:** P(>Δν) = exp(-(Δν/λ)^k) with k ≈ 0.35, λ ≈ 2.7×10⁻⁷ (MLE). Beats power law by ΔAIC = 11917 and lognormal by ΔAIC = 12.8. Truncation test shows k varies with threshold (0.35→0.80), suggesting possible multi-scale process.
 
 ## Progress Summary
 ### Phase 1 — Pipeline construction
